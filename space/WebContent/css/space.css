@@ -1,0 +1,91 @@
+body{
+	text-align:center;
+
+}
+#space{
+	float:left;
+	
+	border:1px solid #000;
+
+	width:80%;
+	height:1100px;
+	margin-top:50px;
+	margin-left:10%;
+
+}
+.space_pic{
+	float:left;
+	width:45%;
+	height:20%;
+	margin-bottom:2%;
+	margin-left:2%;
+}
+#space .scollimg{
+    width: 730px;
+    height: 454px;
+    position: relative;
+}
+#space .scollimg img{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#space .btn{
+    width: 730px;
+    height: 220px;
+    position: absolute;
+    top:117px;
+    left: 0;
+}
+#space .btn>div{
+    width: 100px;
+    height: 220px;
+    background: #fff;
+    opacity: 0;
+}
+#space .btn：hover>div{
+    opacity: 0.35;
+}
+#space .btn #btnleft{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#space .btn #btnright{
+    position: absolute;
+    top: 0;
+    right:0;
+}
+/*左右button里的三角形*/
+.triangle{
+    margin-top: 50px;
+    width: 0;
+    height: 0;
+    border-width:70px 40px;
+    border-style: solid;
+}
+
+#space .btn #btnleft .triangle{
+    border-color: transparent #ccc transparent  transparent;
+}
+#space .btn #btnright .triangle{
+    margin-left: 20px;
+    border-color: transparent transparent transparent #ccc;
+}
+#space .item{
+    position: absolute;
+    bottom: 30px;
+    left: 70px;
+    width: 200px;
+    height: 16px;
+}
+#space .item span{
+    width: 16px;
+    height: 16px;
+    background: #ccc;
+    display: inline-block;
+    border-radius: 50%;
+}
+#space .item span:hover{
+    cursor: pointer;
+}

@@ -1,0 +1,40 @@
+.container1{
+	z-index: -1;
+	border:1px solid #D0D0D0;
+	margin-top: 2%;
+}
+.registtitle{
+	text-align: center;
+	margin-top: 2%;
+}
+.registinfo{
+	margin-left: 26%;
+}
+.registinformation{
+	width: 66%;
+	border-radius: 0px;
+}
+.registinfo h5{
+	font-weight: bold;
+	margin-top: 1.5%;
+}
+.registinfo div{
+	margin-bottom: 4%;
+}
+.registcode{
+	margin-top: 2%;
+	width: 40%;
+}
+.sendcode{
+	width: 20%;
+	margin-left: 5%;
+	font-weight: bolder;
+}
+.registbutton{
+	margin-top: 2%;
+	width: 15%;
+	text-align: center;
+	font-weight: bolder;
+	background-color: #1c1d24;
+	color: #FFF;
+}

@@ -1,0 +1,50 @@
+.container1{
+	z-index: -1;
+	border:1px solid #D0D0D0;
+	margin-top: 2%;
+	width: 70%;
+	margin-bottom: 2%;
+}
+.upload{
+	font-size:1.1em;	
+	float:left;
+	width:70%;
+	margin-top: 2%;
+	margin-left:20%;
+}
+.upload_title{
+	font-family: '宋体';
+	font-size: 1.6em;
+	margin-left: 25%;
+}
+.upload_must{
+	margin-top: 1%;
+	display: inline-block;
+	color:red;
+}
+.upload_intro{
+	display: inline-block;
+}
+.upload_formw{
+	display: block;
+	box-shadow:2px 2px 2px darkgray;
+	border:1px solid #66B3FF;
+	width:85%;
+	height:1.5em;
+}
+.upload_otherintro{
+	display: inline-block;
+	margin-top: 2%;
+}
+.upload_submit{
+	width: 100px;
+	display: inline-block;
+	float: right;
+	text-align: center;
+	margin-bottom: 2%;
+}
+#new{
+	display: inline;
+	margin-left: 1%;
+	height: 1.5em;
+}

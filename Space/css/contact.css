@@ -1,0 +1,66 @@
+div{
+	border: 0px solid #000;
+}
+.contact{
+	margin-left: 15%;
+	margin-top: 3%;
+}
+.sendmail{
+	display: inline-block;
+	float: left;
+	width: 45%;
+}
+.sendmail h4{
+	font-size: 1.4em;
+	font-family: 'Passion One', cursive;
+}
+.yourname{
+	width: 45%;
+	display: inline-block;
+}
+.yourname input{
+	width: 10em;
+	height: 30px;
+}
+.youremail{
+	width: 45%;
+	display: inline-block;
+}
+.youremail input{
+	width: 10em;
+	height: 30px;	
+}
+.yourcontent{
+	margin-top: 2%;
+}
+.yourcontent input{
+	height: 30px;
+}
+.yoursuggest{	
+	margin-top: 2%;
+}
+.send{
+	text-align: center;
+	width: 20%;
+	float: right;
+	margin-top: 1%;
+	margin-right: 6%;
+	margin-bottom: 6%;
+}
+.send input{
+	width: 100%;
+}
+.joinus{
+	display: inline-block;
+	margin-left: 8%;
+	margin-top: 8%;
+}
+.joinus h4{
+	margin-bottom: 0px;
+	font-size: 1.4em;
+	font-family: 'Passion One', cursive;
+}
+.qrcode{
+	width: 15%；
+	height：15%；
+}

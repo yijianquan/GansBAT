@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>上传场地</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery.min.js"></script>
+<!-- Custom Theme files -->
+<!--theme-style-->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" charset="utf-8">
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--fonts-->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Passion+One:400,700,900' rel='stylesheet' type='text/css'>
+<!--//fonts-->
+ <script src="js/responsiveslides.min.js"></script>
+<link rel="stylesheet" href="css/upload.css" type="text/css" />
+<script type="text/javascript" src="js/upload.js"></script>
+ <script>
+
+  </script>
+<style type="text/css">
+</style>
+</head>
+<body> 
+	<div class="header-bottom-top">
+		<div class="container">
+			<div class="clearfix"> </div>
+			<div class="header-bottom">			
+				<div class="logo" style="margin-top: 2%；">
+					<a href="index.html"><img src="images/logo.jpg" alt=" " /></a>
+				</div>
+				<div class="top-nav">
+					<ul>
+						<li>
+							<a href="#1">
+							<div onclick="display()" class="login">
+								<div class="outlogin" style="display: inline;">
+									<img src="images/login.jpg">
+								</div>	
+							</div>
+							</a>
+						</li>
+						<li class="smallicon"><a href="information.html" class="scroll"><img src="images/account.jpg"></a></li>
+						<li class="smallicon"><a href="trends.html" class="scroll"><img src="images/trends.jpg"></a></li>
+					</ul>
+					<!--script-->
+					<div id="box" class="dl">						
+						<form>
+							<fieldset>
+							<fieldset>
+								<label for="email">Email Address（邮箱）</label><a href="#1"><p class="loginclose" id="loginclose" onclick="disappear()" onmouseover="changebgcolor1()" onmouseout="changebgcolor2()">×</p></a><br>
+								<input type="text" class="dl_password">
+							</fieldset>
+							<fieldset>
+								<label for="password">Password（密码）</label><br>
+								<input type="password" class="dl_password">
+							</fieldset>
+								<input type="submit" id="login" class="dl_submitlogin" value="登录">
+								<input type="submit" class="dl_submitforget" value="忘记密码？">	
+							</fieldset>
+							<p class="dl_newuser">New User ? （新用户？）
+								<a class="sign" href="regist.html" style="margin-left: 10px;">注册</a>
+							</p>
+						</form>
+					</div>
+				</div>
+				</div>
+		</div>
+	</div>
+	<!-- header -->
+
+	<!-- body -->
+	<div class="container container1">
+	<div class="upload">
+		<p class="upload_title">上传一个你发现的场地</p>
+		<form action="" method="post">
+			<p class="upload_must">*</p><p class="upload_intro">场地类别：</p>
+				<select name="">
+					<option>篮球场</option>
+					<option>足球场</option>
+					<option><p onclick="a()">新建类别</p></option>
+				</select><input type="text" name="" id="new">
+				<br>
+
+			<p class="upload_must">*</p><p class="upload_intro">上传图片：</p><input type="file" name="file"/>
+
+			<p class="upload_must">*</p><p class="upload_intro">详细地点：</p>
+				<input type="text" class="upload_formw" placeholder="省-市-街道-参照物" value=""/>
+
+			<p class="upload_otherintro">是否收费：</p>
+					<input type="radio" name="charge" value="1">是
+					<input type="radio" name="charge" value="0">否<br>
+
+			<p class="upload_otherintro">场地描述：</p>
+				<input type="textarea" class="upload_formw" placeholder="室内室外，地面类型" value="">
+
+			<p class="upload_otherintro">开放时间:</p>
+				<input type="text" class="upload_formw" placeholder="简要描述" value=""/><br>
+
+			<input type="submit" class="upload_submit" value="提交" onclick="upload_alert()"/>
+
+		</form>
+	</div>
+	</div>
+
+	<!-- footer -->
+	<div class="footer">
+		<div class="container">
+		
+			<div class="foter-bottom">
+				<a href="contact.html"><img src="images/icon.jpg"><p style="color: #FFFFFF;display: inline;margin-left: 1%;">欢迎向我们提出建议</p></a><br><br>
+				<p class="footer-grid">声明：本网站只为了给用户提供场地信息，如有错误欢迎指正，对网页上内容的真实性不提供确切保证。</p>
+				<p class="footer-grid" style="float: right;">联系我们，QQ:138888888</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

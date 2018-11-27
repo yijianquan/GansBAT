@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>欢迎反馈意见和建议</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery.min.js"></script>
+<!-- Custom Theme files -->
+<!--theme-style-->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" charset="utf-8">
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--fonts-->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Passion+One:400,700,900' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/contact.css" type="text/css" />
+<!--//fonts-->
+ <script src="js/responsiveslides.min.js"></script>
+ <script>
+    // You can also use "$(window).load(function() {"
+    $(function () {
+      $("#slider2").responsiveSlides({
+        auto: true,
+        pager: true,
+        speed: 300,
+        namespace: "callbacks",
+      });
+    });
+  </script>
+<style type="text/css">
+</style>
+</head>
+<body> 
+<!--header-->
+<div class="header-bottom-top">
+		<div class="container">
+			<div class="clearfix"> </div>
+			<div class="header-bottom">			
+				<div class="logo" style="margin-top: 2%；">
+					<a href="index.html"><img src="images/logo.jpg" alt=" " /></a>
+				</div>
+				<div class="top-nav">
+					<ul>
+						<li>
+							<a href="#1">
+							<div onclick="display()" class="login">
+								<div class="outlogin" style="display: inline;">
+									<img src="images/login.jpg">
+								</div>	
+							</div>
+							</a>
+						</li>
+						<li class="smallicon"><a href="information.html" class="scroll"><img src="images/account.jpg"></a></li>
+						<li class="smallicon"><a href="trends.html" class="scroll"><img src="images/trends.jpg"></a></li>
+					</ul>
+					<!--script-->
+					<div id="box" class="dl">						
+						<form>
+							<fieldset>
+							<fieldset>
+								<label for="email">Email Address（邮箱）</label><a href="#1"><p class="loginclose" id="loginclose" onclick="disappear()" onmouseover="changebgcolor1()" onmouseout="changebgcolor2()">×</p></a><br>
+								<input type="text" class="dl_password">
+							</fieldset>
+							<fieldset>
+								<label for="password">Password（密码）</label><br>
+								<input type="password" class="dl_password">
+							</fieldset>
+								<input type="submit" id="login" class="dl_submitlogin" value="登录">
+								<input type="submit" class="dl_submitforget" value="忘记密码？">	
+							</fieldset>
+							<p class="dl_newuser">New User ? （新用户？）
+								<a class="sign" href="regist.html" style="margin-left: 10px;">注册</a>
+							</p>
+						</form>
+					</div>
+				</div>
+				</div>
+		</div>
+	</div>
+
+		<!--content-->
+		<div class="container">
+			<div class="contact">
+				<div class="sendmail">
+					<h4> 向我们发送邮件:</h4>
+					<form>
+						<div class="yourname">
+							<p> 您的姓名<span>*</span></p>
+							<input type="text">
+						</div>
+						<div class="youremail">
+							<p> 您的邮箱地址/联系方式<span>*</span></p>
+							<input type="text" placeholder="电话/QQ/Wechat">
+						</div>
+						<div class="yourcontent">
+							<p> 标题/类型<span>*</span></p>
+							<input type="text" size="50">
+						</div>
+						<div class="yoursuggest">
+							<p>具体建议<span>*</span></p>
+							<textarea cols="50" rows="8"></textarea>
+						</div>
+						<div class="send">
+							<input type="submit" value="发送" >
+						</div>
+					</form>
+			 	</div>
+				<div class="joinus">
+					<h4>欢迎加入我们的项目组进行讨论</h4>
+					<div class="qrcode">
+						<img src="images/twoforhouse.jpg">
+						<p><h4>扫一扫，加入工作人员的群聊！</h4></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--content-->
+	<!--footer-->
+	<div class="footer">
+		<div class="container">
+		
+			<div class="foter-bottom">
+				<a href="contact.html"><img src="images/icon.jpg"><p style="color: #FFFFFF;display: inline;margin-left: 1%;">欢迎向我们提出建议</p></a><br><br>
+				<p class="footer-grid">声明：本网站只为了给用户提供场地信息，如有错误欢迎指正，对网页上内容的真实性不提供确切保证。</p>
+				<p class="footer-grid" style="float: right;">联系我们，QQ:138888888</p>
+			</div>
+		</div>
+	</div>
+		
+</body>
+</html>

@@ -1,0 +1,136 @@
+.container1{
+	z-index: -1;
+	border:1px solid #D0D0D0;
+	margin-top: 2%;
+}
+.container h4{
+	margin-left: 2%;
+	display: inline;
+	font-weight: bold;
+}
+.container h5{
+	display: inline;
+}
+.trends_line{
+	margin-left: 2%;
+	width: 94%;
+}
+.trends_type{
+	display: inline-block;
+	margin-left: 2%;
+	margin-top: 2%;
+	width: 20%;
+}
+.trends_pchatdiv,.trends_puploaddiv{
+	border: 1px solid #D0D0D0;
+	background-color: #0080FF;
+	border-radius:5px;
+}
+.trends_pchat{
+	margin-right: 0%;
+	width: 100%;
+	background-color: #0080FF;
+	font-size: 1.3em;
+	font-weight: bold;
+	margin-bottom: 0px;
+}
+.trends_pchat img{
+	margin:0px;
+}
+.trends_pupload{
+	width: 100%;
+	background-color: #FFF;
+	font-size: 1.3em;
+	font-weight: bold;
+	margin-bottom: 0px;
+}
+.trends_pchatimg{
+	display: inline-block;
+	width: 20%;
+}
+.trends_puploadimg{
+	display: inline-block;
+	width: 20%;
+}
+.historychat{
+	display: inline-block;
+	float: right;
+	margin-right: 4%;
+	margin-top: 1%;
+	width: 74%;
+	border:2px solid #D0D0D0;
+	margin-bottom: 2%;
+}
+.historyupload{
+	display: none;
+	float: right;
+	margin-right: 4%;
+	margin-top: 1%;
+	width: 74%;
+	border:2px solid #D0D0D0;
+	margin-bottom: 2%;
+}
+.singlechat{
+	margin-top: 2.07%;
+	margin-bottom: 2.07%;
+}
+.singlechat p{
+	display: inline-block;
+	margin-left: 5%;
+	font-size: 1.7em;	
+}
+.prompt{	
+	font-size: 1.1em;
+	font-weight: bold;
+	float: right;
+	margin-right: 2%;
+}
+.promptchatroom{
+	width: 100%;
+	height: 300px;
+}
+.promptchatroom h3{
+	text-align: center;
+	line-height:300px;
+}
+.deletechat{
+	width: 18%;
+	height: 3%;
+	text-align: center;
+	float: right;
+	margin-right: 2%;
+}
+.promptupload h3{
+	text-align: center;
+	line-height: 280px;
+}
+.promptupload a{
+	float: right;
+	margin-right: 4%;
+	margin-bottom: 2%;
+	font-size: 1.2em;
+}
+.uploadsingle{
+	width: 47%;
+	float: left;
+	margin-left: 2%;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	border: 1px solid #0080FF;
+	text-align: center;
+}
+.uploadsingle a{
+	display: block;
+	margin-top: 2%;
+}
+.uploadimg{
+	float: left;
+	padding-left: 10%;
+	width: 90%;
+	height: 90%;
+	margin-bottom: 2%;
+}
+.uploadimg img{
+	width: 100%;
+	height: 100%;
+}

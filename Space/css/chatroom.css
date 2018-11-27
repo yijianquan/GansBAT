@@ -1,0 +1,39 @@
+.chatroom{
+	text-align: center;
+	width: 90%;
+	margin-left: 6%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	height: 500px;
+}
+.threebutton{
+	display: inline-block;
+	float: left;
+}
+.threebutton p{
+	text-align: center;
+	margin:0;
+	width: 6em;
+	height: 6em;
+	border: 1px solid #000;
+	font-weight: bold;
+	font-size: 1em;
+}
+.chatframe{
+	display: inline-block;
+	float: left;
+	border: 1px solid #000;
+	width: 65%;
+	height: 500px;
+}
+.chatcontent{
+	height: 70%;
+	border: 1px solid #000;
+}
+.member{
+	display: inline-block;
+	float: left;
+	border: 1px solid #000;
+	width: 26%;
+	height: 500px;
+}

@@ -1,10 +1,64 @@
 .chatroom{
-	width: 100%;
-	height: 300px;
-	border: 1px solid #000;
+	width: 90%;
+	margin-left: 6%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	height: 600px;
 }
-frame{
+.threebutton{
+	display: inline-block;
+	float: left;
+}
+.threebutton p{
+	text-align: center;
+	margin:0;
+	width: 6em;
+	height: 6em;
 	border: 1px solid #000;
-	width: 300px;
-	height: 300px;
+	font-weight: bold;
+	font-size: 1em;
+}
+.chatfresh{
+	display: block;
+	width: 6em;
+	height:75px;
+}
+.chatsend{
+	display: block;
+	width: 6em;
+	height:75px;
+}
+.chatframe{
+	display: inline-block;
+	float: left;
+	width: 65%;
+	height: 600px;
+}
+.chatcontent{
+	height: 75%;
+	border: 1px solid #000;
+	OVERFLOW-Y: auto;
+	OVERFLOW-X:hidden;
+}
+.sendmessage{
+	float: left;
+}
+.chatbutton{
+	display: inline-block;
+	float: right;
+}
+.sendframe{
+	display: block;
+	float: right;
+}
+.sendframe textarea{
+	font-size: 1.6em;
+	height: 150px;
+}
+.member{
+	display: inline-block;
+	float: left;
+	border: 1px solid #000;
+	width: 24%;
+	height: 600px;
 }

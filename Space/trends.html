@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>(๑╹◡╹)ﾉ"""の个人动态</title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--theme-style-->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--fonts-->
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -18,62 +17,78 @@
 <!--//fonts-->
  <script src="js/responsiveslides.min.js"></script>
 <link rel="stylesheet" href="css/trends.css" type="text/css" />
-
-<style type="text/css">
-</style>
+<link rel="stylesheet" type="text/css" href="css/login.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+		$('#login-button').click(function(event) {
+			event.preventDefault();
+			$('form').fadeOut(500);
+			$('.wrapper').addClass('form-success');
+		});
+</script>
 </head>
 <body>
 	<!--header-->
-<div class="header-bottom-top">
+	<div class="header-bottom-top">
 		<div class="container">
-			<div class="clearfix"> </div>
-			<div class="header-bottom">			
-				<div class="logo" style="margin-top: 2%；">
+			<div class="clearfix"></div>
+			<div class="header-bottom">
+				<div class="logo" style="margin-top: 2% ；">
 					<a href="index.html"><img src="images/logo.jpg" alt=" " /></a>
 				</div>
 				<div class="top-nav">
 					<ul>
-						<li>
-							<a href="#1">
-							<div onclick="display()" class="login">
-								<div class="outlogin" style="display: inline;">
-									<img src="images/login.jpg">
-								</div>	
-							</div>
-							</a>
-						</li>
-						<li class="smallicon"><a href="information.html" class="scroll"><img src="images/account.jpg"></a></li>
-						<li class="smallicon"><a href="trends.html" class="scroll"><img src="images/trends.jpg"></a></li>
+						<li><a href="#" data-toggle="modal" data-target="#myModal"><img
+								src="images/login.jpg"></a> <!-- 模态框（Modal） -->
+							<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+								aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content login">
+										<div class="wrapper">
+											<div class="cont">
+												<h1>Welcome</h1>
+												<form class="form">
+													<input type="text" placeholder="Email Address（邮箱）"> <input
+														type="password" placeholder="Password （密码）">
+													<button type="submit" id="login-button">Login（登陆）</button><br>
+													<a href="#"><div class="login_foot_left">忘记密码</div></a>
+													<a href="#"><div class="login_foot_right" ">注册</div></a>
+												</form>
+											</div>
+											<ul class="bg-bubbles">
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+											</ul>
+
+										</div>
+										<!-- /.modal-content -->
+									</div>
+									<!-- /.modal -->
+								</div></li>
+						<li class="smallicon"><a href="information.html"
+							class="scroll"><img src="images/account.jpg"></a></li>
+						<li class="smallicon"><a href="trends.html" class="scroll"><img
+								src="images/trends.jpg"></a></li>
 					</ul>
-					<!--script-->
-					<div id="box" class="dl">						
-						<form>
-							<fieldset>
-							<fieldset>
-								<label for="email">Email Address（邮箱）</label><a href="#1"><p class="loginclose" id="loginclose" onclick="disappear()" onmouseover="changebgcolor1()" onmouseout="changebgcolor2()">×</p></a><br>
-								<input type="text" class="dl_password">
-							</fieldset>
-							<fieldset>
-								<label for="password">Password（密码）</label><br>
-								<input type="password" class="dl_password">
-							</fieldset>
-								<input type="submit" id="login" class="dl_submitlogin" value="登录">
-								<input type="submit" class="dl_submitforget" value="忘记密码？">	
-							</fieldset>
-							<p class="dl_newuser">New User ? （新用户？）
-								<a class="sign" href="regist.html" style="margin-left: 10px;">注册</a>
-							</p>
-						</form>
-					</div>
 				</div>
-				</div>
+			</div>
 		</div>
 	</div>
 	<!--//header-->
 	
 	<!-- spacetypes -->
 	<div class="container container1">
-		<p><h4>三天打球两天写代码</h4>&nbsp&nbsp<h5><1355335683@qq.com></h5></p>
+		<p><h4>********昵称</h4>&nbsp&nbsp<h5><1355335683@qq.com></h5></p>
 		<img src="images/line.jpg" class="trends_line">
 		<div class="trends_type">
 			<div class="trends_pchatdiv">

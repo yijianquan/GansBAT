@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <title>欢迎来到Space大家庭</title>
 <link rel="stylesheet" href="css/regist.css" type="text/css" />
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
 <!-- Custom Theme files -->
 <!--theme-style-->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
@@ -14,21 +12,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--fonts-->
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Passion+One:400,700,900' rel='stylesheet' type='text/css'>
+<link href='font/font.css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href='font/font.css?family=Passion+One:400,700,900' rel='stylesheet' type='text/css'>
 <!--//fonts-->
  <script src="js/responsiveslides.min.js"></script>
  <script>
-    // You can also use "$(window).load(function() {"
-    $(function () {
-      $("#slider2").responsiveSlides({
-        auto: true,
-        pager: true,
-        speed: 300,
-        namespace: "callbacks",
-      });
-    });
-    
     function check(){
 　　		var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); //正则表达式
 　　		var obj = document.getElementById("mazey"); //要验证的对象
@@ -71,52 +59,71 @@
 		margin-top: 10px;
 	}
 </style>
+<link rel="stylesheet" type="text/css" href="css/login.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+		$('#login-button').click(function(event) {
+			event.preventDefault();
+			$('form').fadeOut(500);
+			$('.wrapper').addClass('form-success');
+		});
+</script>
 </head>
 <body>
 	<!--header-->
-<div class="header-bottom-top">
+	<div class="header-bottom-top">
 		<div class="container">
-			<div class="clearfix"> </div>
-			<div class="header-bottom">			
-				<div class="logo" style="margin-top: 2%；">
+			<div class="clearfix"></div>
+			<div class="header-bottom">
+				<div class="logo" style="margin-top: 2% ；">
 					<a href="index.html"><img src="images/logo.jpg" alt=" " /></a>
 				</div>
 				<div class="top-nav">
 					<ul>
-						<li>
-							<a href="#1">
-							<div onclick="display()" class="login">
-								<div class="outlogin" style="display: inline;">
-									<img src="images/login.jpg">
-								</div>	
-							</div>
-							</a>
-						</li>
-						<li class="smallicon"><a href="information.html" class="scroll"><img src="images/account.jpg"></a></li>
-						<li class="smallicon"><a href="trends.html" class="scroll"><img src="images/trends.jpg"></a></li>
+						<li><a href="#" data-toggle="modal" data-target="#myModal"><img
+								src="images/login.jpg"></a> <!-- 模态框（Modal） -->
+							<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+								aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content login">
+										<div class="wrapper">
+											<div class="cont">
+												<h1>Welcome</h1>
+												<form class="form">
+													<input type="text" placeholder="Email Address（邮箱）"> <input
+														type="password" placeholder="Password （密码）">
+													<button type="submit" id="login-button">Login（登陆）</button><br>
+													<a href="#"><div class="login_foot_left">忘记密码</div></a>
+													<a href="#"><div class="login_foot_right" ">注册</div></a>
+												</form>
+											</div>
+											<ul class="bg-bubbles">
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+											</ul>
+
+										</div>
+										<!-- /.modal-content -->
+									</div>
+									<!-- /.modal -->
+								</div></li>
+						<li class="smallicon"><a href="information.html"
+							class="scroll"><img src="images/account.jpg"></a></li>
+						<li class="smallicon"><a href="trends.html" class="scroll"><img
+								src="images/trends.jpg"></a></li>
 					</ul>
-					<!--script-->
-					<div id="box" class="dl">						
-						<form>
-							<fieldset>
-							<fieldset>
-								<label for="email">Email Address（邮箱）</label><a href="#1"><p class="loginclose" id="loginclose" onclick="disappear()" onmouseover="changebgcolor1()" onmouseout="changebgcolor2()">×</p></a><br>
-								<input type="text" class="dl_password">
-							</fieldset>
-							<fieldset>
-								<label for="password">Password（密码）</label><br>
-								<input type="text" class="dl_password">
-							</fieldset>
-								<input type="submit" id="login" class="dl_submitlogin" value="登录">
-								<input type="submit" class="dl_submitforget" value="忘记密码？">	
-							</fieldset>
-							<p class="dl_newuser">New User ? （新用户？）
-								<a class="sign" href="regist.html" style="margin-left: 10px;">注册</a>
-							</p>
-						</form>
-					</div>
 				</div>
-				</div>
+			</div>
 		</div>
 	</div>
 	<!--//header-->

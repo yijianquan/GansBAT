@@ -6,12 +6,7 @@
 <link rel="stylesheet" href="css/space.css" type="text/css" />
 <link rel="stylesheet" href="css/buttons.css">
 </head>
-<link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-<script src="http://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
 <!-- Custom Theme files -->
 <!--theme-style-->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
@@ -19,54 +14,75 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--fonts-->
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Passion+One:400,700,900' rel='stylesheet' type='text/css'>
+<link href='font/font.css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href='font/font.css?family=Passion+One:400,700,900' rel='stylesheet' type='text/css'>
 <!--//fonts-->
  <script src="js/responsiveslides.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/login.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+		$('#login-button').click(function(event) {
+			event.preventDefault();
+			$('form').fadeOut(500);
+			$('.wrapper').addClass('form-success');
+		});
+</script>
+</head>
 <body>
-		<div class="header-bottom-top">
+	<!--header-->
+	<div class="header-bottom-top">
 		<div class="container">
-			<div class="clearfix"> </div>
-			<div class="header-bottom">			
-				<div class="logo" style="margin-top: 2%；">
+			<div class="clearfix"></div>
+			<div class="header-bottom">
+				<div class="logo" style="margin-top: 2% ；">
 					<a href="index.html"><img src="images/logo.jpg" alt=" " /></a>
 				</div>
 				<div class="top-nav">
 					<ul>
-						<li>
-							<a href="#1">
-							<div onclick="display()" class="login">
-								<div class="outlogin" style="display: inline;">
-									<img src="images/login.jpg">
-								</div>	
-							</div>
-							</a>
-						</li>
-						<li class="smallicon"><a href="information.html" class="scroll"><img src="images/account.jpg"></a></li>
-						<li class="smallicon"><a href="trends.html" class="scroll"><img src="images/trends.jpg"></a></li>
+						<li><a href="#" data-toggle="modal" data-target="#myModal"><img
+								src="images/login.jpg"></a> <!-- 模态框（Modal） -->
+							<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+								aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content login">
+										<div class="wrapper">
+											<div class="cont">
+												<h1>Welcome</h1>
+												<form class="form">
+													<input type="text" placeholder="Email Address（邮箱）"> <input
+														type="password" placeholder="Password （密码）">
+													<button type="submit" id="login-button">Login（登陆）</button><br>
+													<a href="#"><div class="login_foot_left">忘记密码</div></a>
+													<a href="#"><div class="login_foot_right" ">注册</div></a>
+												</form>
+											</div>
+											<ul class="bg-bubbles">
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+												<li></li>
+											</ul>
+
+										</div>
+										<!-- /.modal-content -->
+									</div>
+									<!-- /.modal -->
+								</div></li>
+						<li class="smallicon"><a href="information.html"
+							class="scroll"><img src="images/account.jpg"></a></li>
+						<li class="smallicon"><a href="trends.html" class="scroll"><img
+								src="images/trends.jpg"></a></li>
 					</ul>
-					<!--script-->
-					<div id="box" class="dl">						
-						<form>
-							<fieldset>
-							<fieldset>
-								<label for="email">Email Address（邮箱）</label><a href="#1"><p class="loginclose" id="loginclose" onclick="disappear()" onmouseover="changebgcolor1()" onmouseout="changebgcolor2()">×</p></a><br>
-								<input type="text" class="dl_password">
-							</fieldset>
-							<fieldset>
-								<label for="password">Password（密码）</label><br>
-								<input type="password" class="dl_password">
-							</fieldset>
-								<input type="submit" id="login" class="dl_submitlogin" value="登录">
-								<input type="submit" class="dl_submitforget" value="忘记密码？">	
-							</fieldset>
-							<p class="dl_newuser">New User ? （新用户？）
-								<a class="sign" href="regist.html" style="margin-left: 10px;">注册</a>
-							</p>
-						</form>
-					</div>
 				</div>
-				</div>
+			</div>
 		</div>
 	</div>
 	<!-- header -->
@@ -157,9 +173,9 @@
 						<a href="#"><img class="user_pic" src="images/account.jpg" /></a>
 					</div>
 					<div class="cmt_content">
-						<span><a href="#">我是武永亮老师</a></span>
+						<span><a href="#">username</a></span>
 						<span class="pl"><a href="#">评论</a></span>
-						<p>贼爽，试试就知道了</p>
+						<p>********************************************************************************************************</p>
 					</div>
 				</div>
 				<div class="space_cmt">
@@ -167,19 +183,9 @@
 						<a href="#"><img class="user_pic" src="images/account.jpg" /></a>
 					</div>
 					<div class="cmt_content">
-						<span><a href="#">我的小得得润</a></span>
+						<span><a href="#">username</a></span>
 						<span class="pl"><a href="#">评论</a></span>
-						<p>我是这儿的学生，经常在这打球，最近崴脚了，很难受，有时间约球啊</p>
-					</div>
-				</div>
-				<div class="space_cmt">
-					<div class="cmt_pic">
-						<a href="#"><img class="user_pic" src="images/account.jpg" /></a>
-					</div>
-					<div class="cmt_content">
-						<span><a href="#">小飞宇爱打球</a></span>
-						<span class="pl"><a href="#">评论</a></span>
-						<p>石家庄的冬天有点冷，晚上建议去体育学院打球，那儿舒服。</p>
+						<p>********************************************************************************************************</p>
 					</div>
 				</div>
 				
@@ -192,7 +198,7 @@
 				<span class="intro_font">位置：</span>河北师范大学西操场<br> 
 				<span class="intro_font">距你：</span>0.5km<br> 
 				<a href="#"><img class="space_icon" src="images/like.png" /></a>&nbsp;&nbsp;<span>“点赞数”</span>&nbsp;&nbsp;&nbsp;<a href="#"><img class="space_icon" src="images/share.png" /></a><br>
-				<span style="font-size:1.3em"><a href="chatroom.html">"聊天室"</a></span><span style="font-size:1.3em;margin-left:2em;"><a href="#">"查看地图"</a></span>
+				<span style="font-size:1.3em"><a href="#">"聊天室"</a></span><span style="font-size:1.3em;margin-left:2em;"><a href="#">"查看地图"</a></span>
 			</div>
 			<div class="intro">
 				<!-- 详情 -->

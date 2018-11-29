@@ -27,6 +27,8 @@
 			$('form').fadeOut(500);
 			$('.wrapper').addClass('form-success');
 		});
+
+
 </script>
 </head>
 <body>
@@ -91,7 +93,24 @@
 
 		<!--个人信息-->
 		<div class="intro">
-			<p class="introprefix">昵称：</p><p class="introvalue">GansBAT炒鸡小组冲鸭</p><a href="#" style="display: block;float: right;font-size: 1.3em;color: blue;margin-top: 1%;">编辑资料</a><br/>
+			<p class="introprefix">昵称：</p><p class="introvalue">GansBAT炒鸡小组冲鸭</p><a href="#" style="display: block;float: right;font-size: 1.3em;color: blue;margin-top: 1%;" data-toggle="modal" data-target="#edit">编辑资料</a>
+				<!--弹框-->
+				<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="editLabel" aria-hidden="true">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header">
+               					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+           					</div>
+
+           					<div class="edit_data" style="color:red;">
+           						在这里添加一些文本<input type="text" name="">
+
+           					</div>
+
+				        </div><!-- /.modal-content -->
+				    </div><!-- /.modal -->
+				</div>
+			<br/>
 			<p class="introprefix">邮箱：</p><p class="introvalue">1388888888@qq.com</p><br/>
 			<p class="introprefix"><img src="images/sex.jpg">：</p><p class="introvalue">男</p><br/>
 			<p class="introprefix">爱好：</p><p class="introvalue">篮球 足球</p><br/>

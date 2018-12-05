@@ -1,7 +1,38 @@
+/**   
+ * Copyright © 2018 eSunny Info. Tech Ltd. All rights reserved.
+ * 
+ * 功能描述：
+ * @Package: com.gansbat.space.entity 
+ * @author: Xiaoyi   
+ * @date: Dec 5, 2018 5:18:56 PM 
+ */
 package com.gansbat.space.entity;
 
-public class user {
-	private int id;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+/**   
+* Copyright: Copyright (c) 2018 LanRu-Caifu
+* 
+* @ClassName: User.java
+* @Description: 该类的功能描述
+*
+* @version: v1.0.0
+* @author: Xiaoyi
+* @date: Dec 5, 2018 5:18:56 PM 
+*
+* Modification History:
+* Date         Author          Version            Description
+*---------------------------------------------------------*
+* Dec 5, 2018     Xiaoyi           v1.0.0               修改原因
+*/
+@Entity
+@Table(name="users")
+public class User {
+	private Integer id;
 	private String email;
 	private String nickname;
 	private String password;
@@ -11,11 +42,15 @@ public class user {
 	private String address;
 	private String intro;
 	
-	
-	public int getId() {
+	public User() {
+		
+	}
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getEmail() {
@@ -66,5 +101,4 @@ public class user {
 	public void setIntro(String intro) {
 		this.intro = intro;
 	}
-	
 }

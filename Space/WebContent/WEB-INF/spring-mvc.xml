@@ -12,7 +12,7 @@
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler/>
 	<!-- 自动扫描且只扫描@Controller -->
-	<context:component-scan base-package="com">
+	<context:component-scan base-package="com.gansbat.space">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>

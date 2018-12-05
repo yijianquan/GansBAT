@@ -25,19 +25,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  <script>
     function check(){
 		var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); //正则表达式
-　　		var obj = document.getElementById("mazey"); //要验证的对象
-　　		if(obj.value === ""){ //输入不能为空
-　　　　		document.getElementById("tip1").innerText="邮箱不能为空！";
+		var obj = document.getElementById("mazey"); //要验证的对象
+		if(obj.value === ""){ //输入不能为空
+			document.getElementById("tip1").innerText="邮箱不能为空！";
 　　　　		return false;
-　　		}else if(!reg.test(obj.value)){ //正则验证不通过，格式不对
-　　　		document.getElementById("tip1").innerText="邮箱格式不正确！";
-　　　		　return false;
-　　		}else{
+　　　　	}else if(!reg.test(obj.value)){ //正则验证不通过，格式不对
+　　　　		document.getElementById("tip1").innerText="邮箱格式不正确！";
+　　　　		return false;}
+　　　　	else{
 　　　　		document.getElementById("tip1").innerText="邮箱格式正确！";
 　　　　		return true;
-　　		}
-	}
-    
+　　　　	}
+	}    
     function pwCheck(obj){
     	var pass1 = document.getElementById("p1").value;
     	var pass2 = obj.value;
@@ -140,20 +139,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<p><h1>用 户 注 册</h1></p>
 		</div>
 		<div class="registinfo">
+		<form action="${ctx }regist/storage" method="post">
 			<h5>你的邮箱*</h5>
-			<input class="registinformation" type="text" name="mazey" id="mazey" placeholder="请输入你的email" onblur="check()"><div id="tip1"></div>
+			<input class="registinformation" type="text" name="email" id="mazey" placeholder="请输入你的email" onblur="check()"><div id="tip1"></div>
 			<h5>你的昵称*</h5>
 			<input class="registinformation" type="text" name="nickname" placeholder="请输入你的昵称">
 			<h5>请输入你的密码*</h5>
-			<input class="registinformation" type="text" name="password" placeholder="请输入你的密码" id="p1">
+			<input class="registinformation" type="password" name="password" placeholder="请输入你的密码" id="p1">
 			<h5>请确认你的密码*</h5>			
-			<input class="registinformation" type="text" name="confirmpassword" placeholder="请确认你的密码" id="p2" onblur="pwCheck(this)"><div id="tip"></div>
+			<input class="registinformation" type="password" name="confirmpassword" placeholder="请确认你的密码" id="p2" onblur="pwCheck(this)"><div id="tip"></div>
 
 			<input type="text" name="code" placeholder="请输入你收到的验证码" class="registcode">
 			<input type="submit" value="向邮箱发送验证码" class="sendcode">
 			<div>
 				<input id="regist" type="submit" value="注 册" onMouseOut="this.style.backgroundColor=''" onMouseOver="this.style.backgroundColor='#9D9D9D'" class="registbutton">
 			</div>
+		</form>
 		</div>
 	</div>
 	<!-- footer -->

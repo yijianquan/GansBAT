@@ -44,7 +44,21 @@ public class Space {
 	private String space_intro;
 	private Time opentime;
 	private int likenum;
+	private float decimal;//经度
+	private float latitude;//纬度
 	
+	public float getDecimal() {
+		return decimal;
+	}
+	public void setDecimal(float decimal) {
+		this.decimal = decimal;
+	}
+	public float getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(float latitude) {
+		this.latitude = latitude;
+	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getSpace_id() {

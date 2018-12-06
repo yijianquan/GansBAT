@@ -47,7 +47,6 @@ public class RegistController {
 	public String toRegist(@RequestParam("email") String email,
 			@RequestParam("nickname") String nickname,
 			@RequestParam("password") String password,HttpSession session) {
-		System.out.println("注册成功111！");
 		User user = new User();
 		user.setNickname(nickname);
 		user.setEmail(email);

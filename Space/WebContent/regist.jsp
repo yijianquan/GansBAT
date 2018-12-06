@@ -28,14 +28,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		var obj = document.getElementById("mazey"); //要验证的对象
 		if(obj.value === ""){ //输入不能为空
 			document.getElementById("tip1").innerText="邮箱不能为空！";
-　　　　		return false;
-　　　　	}else if(!reg.test(obj.value)){ //正则验证不通过，格式不对
-　　　　		document.getElementById("tip1").innerText="邮箱格式不正确！";
-　　　　		return false;}
-　　　　	else{
-　　　　		document.getElementById("tip1").innerText="邮箱格式正确！";
-　　　　		return true;
-　　　　	}
+			return false;
+		}else if(!reg.test(obj.value)){ //正则验证不通过，格式不对
+			document.getElementById("tip1").innerText="邮箱格式不正确！";
+			return false;}
+		else{
+			document.getElementById("tip1").innerText="邮箱格式正确！";
+			return true;
+		}
 	}    
     function pwCheck(obj){
     	var pass1 = document.getElementById("p1").value;

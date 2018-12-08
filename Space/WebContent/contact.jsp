@@ -36,81 +36,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 </head>
 <body>
-	<!--header-->
-	<div class="header-bottom-top">
-		<div class="container">
-			<div class="clearfix"></div>
-			<div class="header-bottom">
-				<div class="logo" style="margin-top: 2% ；">
-					<a href="index.html"><img src="images/logo.jpg" alt=" " /></a>
-				</div>
-				<div class="top-nav">
-					<ul>
-						<li><a href="#" data-toggle="modal" data-target="#myModal"><img
-								src="images/login.jpg"></a> <!-- 模态框（Modal） -->
-							<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-								aria-labelledby="myModalLabel" aria-hidden="true">
-								<div class="modal-dialog">
-									<div class="modal-content login">
-										<div class="wrapper">
-											<div class="cont">
-												<h1>Welcome</h1>
-												<form class="form">
-													<input type="text" placeholder="Email Address（邮箱）"> <input
-														type="password" placeholder="Password （密码）">
-													<button type="submit" id="login-button">Login（登陆）</button><br>
-													<a href="#"><div class="login_foot_left">忘记密码</div></a>
-													<a href="regist.html"><div class="login_foot_right" ">注册</div></a>
-												</form>
-											</div>
-											<ul class="bg-bubbles">
-												<li></li>
-												<li></li>
-												<li></li>
-												<li></li>
-												<li></li>
-												<li></li>
-												<li></li>
-												<li></li>
-												<li></li>
-												<li></li>
-											</ul>
-
-										</div>
-										<!-- /.modal-content -->
-									</div>
-									<!-- /.modal -->
-								</div></li>
-						<li class="smallicon"><a href="information.html"
-							class="scroll"><img src="images/account.jpg"></a></li>
-						<li class="smallicon"><a href="trends.html" class="scroll"><img
-								src="images/trends.jpg"></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+	<!--header-->	
+	<jsp:include page="head.jsp"></jsp:include>
+	
 		<!--content-->
 		<div class="container">
 			<div class="contact">
 				<div class="sendmail">
 					<h4> 向我们发送邮件:</h4>
-					<form>
+					<form action="${ctx }contact/storage" method="post">
 						<div class="yourname">
 							<p> 您的姓名<span>*</span></p>
-							<input type="text">
+							<input type="text" name="contact_name">
 						</div>
 						<div class="youremail">
 							<p> 您的邮箱地址/联系方式<span>*</span></p>
-							<input type="text" placeholder="电话/QQ/Wechat">
+							<input type="text" name="contact_infro" placeholder="电话/QQ/Wechat">
 						</div>
 						<div class="yourcontent">
 							<p> 标题/类型<span>*</span></p>
-							<input type="text" size="50">
+							<input type="text" name="contact_title" size="50">
 						</div>
 						<div class="yoursuggest">
 							<p>具体建议<span>*</span></p>
-							<textarea cols="50" rows="8"></textarea>
+							<textarea cols="50" rows="8" name="contact_con"></textarea>
 						</div>
 						<div class="send">
 							<input type="submit" value="发送" >
@@ -126,19 +75,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 		</div>
+	
+		<!-- 上传建议成功提示页面
+		 -->
+		<% String uoloadok = (String)request.getAttribute("contact_ok");
+		if("1".equals(uoloadok)||uoloadok=="1"){%>
+		<script>
+			alert('感谢您的反馈，工作人员将尽快处理这些意见和建议!');
+		</script>
+		<%} %>
 		
 		<!--content-->
-	<!--footer-->
-	<div class="footer">
-		<div class="container">
-		
-			<div class="foter-bottom">
-				<a href="contact.html"><img src="images/icon.jpg"><p style="color: #FFFFFF;display: inline;margin-left: 1%;">欢迎向我们提出建议</p></a><br><br>
-				<p class="footer-grid">声明：本网站只为了给用户提供场地信息，如有错误欢迎指正，对网页上内容的真实性不提供确切保证。</p>
-				<p class="footer-grid" style="float: right;">联系我们，QQ:138888888</p>
-			</div>
-		</div>
-	</div>
+	<!--footer-->	
+	<jsp:include page="foot.jsp"></jsp:include>
 		
 </body>
 </html>

@@ -32,17 +32,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name="contact")
 public class Contact {
-	private int id;
+	private Integer id;
 	private String name;
-	private String contact_info;
+	private String contact_infro;
 	private String title;
+	private String contact_con;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -51,11 +52,11 @@ public class Contact {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getContact_info() {
-		return contact_info;
+	public String getContact_infro() {
+		return contact_infro;
 	}
-	public void setContact_info(String contact_info) {
-		this.contact_info = contact_info;
+	public void setContact_infro(String contact_infro) {
+		this.contact_infro = contact_infro;
 	}
 	public String getTitle() {
 		return title;
@@ -69,6 +70,5 @@ public class Contact {
 	public void setContact_con(String contact_con) {
 		this.contact_con = contact_con;
 	}
-	private String contact_con;
 	
 }

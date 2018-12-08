@@ -76,8 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 	
-		<!-- 上传建议成功提示页面
-		 -->
+		<!-- 上传建议成功提示页面  -->
 		<% String uoloadok = (String)request.getAttribute("contact_ok");
 		if("1".equals(uoloadok)||uoloadok=="1"){%>
 		<script>

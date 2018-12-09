@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,6 +9,9 @@
 <%String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";%> 
 <base href="<%=basePath%>">
+<script src="js/jquery.min.js"></script>
+<script src="js/responsiveslides.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
 
 <!-- Custom Theme files -->
@@ -20,19 +24,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href='font/font.css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
 <link href='font/font.css?family=Passion+One:400,700,900' rel='stylesheet' type='text/css'>
 <!--//fonts-->
- <script src="js/responsiveslides.min.js"></script>
-
 <link rel="stylesheet" type="text/css" href="css/login.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script>
-		$('#login-button').click(function(event) {
-			event.preventDefault();
-			$('form').fadeOut(500);
-			$('.wrapper').addClass('form-success');
-		});
-</script>
+
 </head>
 <body>
 
@@ -88,8 +82,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<a href="detail.html"><p>健身场地</p></a>							
 							</div>
 							<div class="col-md-4 from-grid ">
-								<a href="more.html"><img class="img-responsive left-pic" src="images/moreplace.jpg" alt=" " /></a>
-								<a href="more.html"><p>更多场地……</p></a>							
+								<a href="${ctx }/spacetype/select"><img class="img-responsive left-pic" src="images/moreplace.jpg" alt=" " /></a>
+								<a href="${ctx }/spacetype/select"><p>更多场地……</p></a>							
 							</div>							
 							</div>
 							<div class="clearfix"> </div>

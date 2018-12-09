@@ -41,28 +41,29 @@ public class LoginServiceImpl implements LoginService {
 	private LoginDaoImpl loginDaoImpl;
 	
 	/*
-	 * 将前台传来的登录数据与后台的用户进行对比
+	 * 将前台传来的登录数据与后台的用户进行对比,如果存在返回用户的昵称
 	 */
 	@Transactional(readOnly=true)
 	public String compareUser(User user) {
-		String yes = "false";
+		String username = "";
 		try {
 			List<User> u_list = loginDaoImpl.findAll();
 			for(User u:u_list) {
 				if(user.getEmail().equals(u.getEmail())&&user.getPassword().equals(u.getPassword())) {
 					System.out.println("邮箱和用户密码正确！");
-					yes = "true";
+					username = u.getNickname();
 					break;
 				}else {
+					username = "false";
 					System.out.println("邮箱和用户密码不不不不不正确！");					
 				}
 				
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			yes = "false";
+			username = "false";
 			e.printStackTrace();
 		}
-		return yes;
+		return username;
 	}
 }

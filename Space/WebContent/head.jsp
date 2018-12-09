@@ -10,18 +10,10 @@
 				</div>
 				<div class="top-nav">
 					<ul>
-						<!-- 是否登录来显示内容  -->
-						<% String loginOK = "false";							
-						   String a = (String)request.getAttribute("state");
-						   if("true".equals(a)||a=="true"){
-							   loginOK = a;
-						   }
-						if("false".equals(loginOK)||loginOK=="false"){%>
+						
 						<li><a href="#" data-toggle="modal" data-target="#myModal"><img
 								src="images/login.jpg"></a></li>
-						<%}else{ %>
-						<li><p style="font-size:1.1em;color:#fff;">尊敬的小易喜欢leehom，你好！</p></li>
-						<%} %>
+						<li><p style="font-size:1.1em;color:#fff;">尊敬的 ${username }，你好！</p></li>
 							<!-- 模态框（Modal） -->
 							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 								<div class="modal-dialog">
@@ -29,13 +21,27 @@
 										<div class="wrapper">
 											<div class="cont">
 												<h1>Welcome</h1>
-												<form class="form" action="${ctx }login/loginin" method="post">
-													<input type="text" placeholder="Email Address（邮箱）" name = "login_Email">
-													<input type="password" placeholder="Password （密码）" name ="login_password">
-													<button type="submit" id="login-button">Login（登陆）</button><br>
+												<form class="form" method="post">
+													<input type="text" placeholder="Email Address（邮箱）" name="email">
+													<input type="password" placeholder="Password （密码）" name="password">
+													<button type="submit" id="login-button" onclick="tologin()">Login（登陆）</button><br>
 													<a href="#"><div class="login_foot_left">忘记密码</div></a>
 													<a href="regist.html"><div class="login_foot_right">注册</div></a>
 												</form>
+												<script type="text/javascript">
+												function tologin() {
+													//params.XX必须与Spring Mvc controller中的参数名称一致  
+													//否则在controller中使用@RequestParam绑定
+											        var email = $("#email").val();  
+											        var password = $("#password").val();
+											        console.log("ads");
+													$.post("/login/ajax",{email:email,password:password},function(data){
+													var res = $.parseJSON(data);//把后台传回的json数据解析
+													alert(res);
+													console.log(res);
+													});
+												}
+												</script>
 											</div>
 											<ul class="bg-bubbles">
 												<li></li>

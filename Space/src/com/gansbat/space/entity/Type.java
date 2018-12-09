@@ -33,16 +33,16 @@ import javax.persistence.Table;
 @Table(name="type")
 public class Type {
 
-	private int type_id;
+	private Integer type_id;
 	private String type_name;
 	private String type_img;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getType_id() {
+	public Integer getType_id() {
 		return type_id;
 	}
-	public void setType_id(int type_id) {
+	public void setType_id(Integer type_id) {
 		this.type_id = type_id;
 	}
 	public String getType_name() {

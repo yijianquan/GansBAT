@@ -48,30 +48,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="upload">
 				<input type="button" class="btn btn-upload radius" value="上传场地">
 			</div>
-			<div class="space_types"
-				style="background: url(images/basketball.jpg) no-repeat; background-size: 100% 100%">
-				<span><p>篮 球 场</p></span> <a href="detail.html" class="now"></a>
+			<c:forEach items="${spacetype}" var="spacetype" >		
+			<div class="space_types" style="background: url(${spacetype.type_img }) no-repeat; background-size: 100% 100%">
+				<span><p>${spacetype.type_name }</p></span> <a href="detail.jsp" class="now"></a>
 			</div>
-			<div class="space_types"
-				style="background: url(images/football.jpg) no-repeat; background-size: 100% 100%">
-				<span><p>足 球 场</p></span> <a href="#" class="now"></a>
-			</div>
-			<div class="space_types"
-				style="background: url(images/pingpong.jpg) no-repeat; background-size: 100% 100%">
-				<span><p>乒 乓 球 场</p></span> <a href="#" class="now"></a>
-			</div>
-			<div class="space_types"
-				style="background: url(images/ground.jpg) no-repeat; background-size: 100% 100%">
-				<span><p>橡 胶 跑 道</p></span> <a href="#" class="now"></a>
-			</div>
-			<div class="space_types"
-				style="background: url(images/bodybuild.jpg) no-repeat; background-size: 100% 100%">
-				<span><p>健 身 场 地</p></span> <a href="#" class="now"></a>
-			</div>
-			<div class="space_types"
-				style="background: url(images/volleyball.jpg) no-repeat; background-size: 100% 100%">
-				<span><p>排 球 场</p></span> <a href="#" class="now"></a>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
 	<!-- footer -->

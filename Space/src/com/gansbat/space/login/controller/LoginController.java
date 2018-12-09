@@ -9,16 +9,21 @@
 package com.gansbat.space.login.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.loader.custom.EntityFetchReturn;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gansbat.space.entity.User;
 import com.gansbat.space.login.service.LoginServiceImpl;
+
 
 /**   
 * Copyright: Copyright (c) 2018 LanRu-Caifu
@@ -49,9 +54,29 @@ public class LoginController {
 		User user = new User();
 		user.setEmail(email);
 		user.setPassword(password);
-		String a =  loginServiceImpl.compareUser(user);
+		//判断登录是否成功，若成功并得到用户的名字
+		String username =  loginServiceImpl.compareUser(user);
+		String a="";
+		if(username.equals("false")) {
+			a = "false";
+		}else {
+			a = "true";
+		}
+		System.out.println(a);
 		model.addAttribute("state",a);
+		model.addAttribute("username",username);
 		return "home";
 	}
-
+	
+	 @RequestMapping(value="/ajax",method=RequestMethod.POST)
+	 @ResponseBody
+	 public void add(HttpServletResponse response,HttpServletRequest request){
+		 System.out.println("跳到了controller");
+		 
+		 User user = new User();
+		 user.setEmail((String)request.getAttribute("email"));
+		 user.setPassword((String)request.getAttribute("password"));
+		 System.out.println(user.getPassword()+" "+user.getEmail());
+	     System.out.println("好");
+	}
 }

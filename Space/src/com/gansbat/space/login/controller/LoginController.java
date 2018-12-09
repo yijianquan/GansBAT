@@ -8,12 +8,14 @@
  */
 package com.gansbat.space.login.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.hibernate.loader.custom.EntityFetchReturn;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
 import com.gansbat.space.entity.User;
 import com.gansbat.space.login.service.LoginServiceImpl;
 
@@ -68,15 +71,33 @@ public class LoginController {
 		return "home";
 	}
 	
-	 @RequestMapping(value="/ajax",method=RequestMethod.POST)
+	//跳转到这
+	 @RequestMapping(value="ajax",method=RequestMethod.POST)
 	 @ResponseBody
 	 public void add(HttpServletResponse response,HttpServletRequest request){
-		 System.out.println("跳到了controller");
-		 
+		 System.out.println("跳到了controller");		 
 		 User user = new User();
-		 user.setEmail((String)request.getAttribute("email"));
-		 user.setPassword((String)request.getAttribute("password"));
-		 System.out.println(user.getPassword()+" "+user.getEmail());
-	     System.out.println("好");
+		 String email = (String)request.getParameter("email");
+		 String password = (String)request.getParameter("password");
+		 user.setEmail(email);user.setPassword(password);
+		//判断登录是否成功，若成功并得到用户的名字
+		String username =  loginServiceImpl.compareUser(user);
+		String a="";
+		if(username.equals("false")||username=="false") {
+			a = "Login fault!Please check your email or password!";
+		}else {
+			a = "Login success!";
+		};
+		response.setCharacterEncoding("UTF-8");//resp是HttpServletResponse对象
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+			System.out.println(JSON.toJSONString(a));
+			out.print(JSON.toJSONString(a));
+			out.print(JSON.toJSONString(username));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<c:forEach items="${spacetype}" var="spacetype" >		
 			<div class="space_types" style="background: url(${spacetype.type_img }) no-repeat; background-size: 100% 100%">
-				<span><p>${spacetype.type_name }</p></span> <a href="detail.jsp" class="now"></a>
+				<span><p>${spacetype.type_name }</p></span> <a href="${ctx }/seletspace/alltypespace?spacetype=${spacetype.type_id }" class="now"></a>
 			</div>
 			</c:forEach>
 		</div>

@@ -33,11 +33,4 @@ import com.gansbat.space.entity.Type;
 @Repository
 public class SpaceDaoImpl extends BaseDao<Type, Integer> {
 
-	/*
-	 * 查询出场地所有类型
-	 */
-	@Override
-	public List<Type> findAll() throws Exception{
-		return super.findAll();
-	}
 }

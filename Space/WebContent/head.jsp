@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <div class="header-bottom-top">
 		<div class="container">
 			<div class="clearfix"></div>
@@ -11,9 +12,9 @@
 				<div class="top-nav">
 					<ul>
 						
-						<li><a href="#" data-toggle="modal" data-target="#myModal"><img
+						<li id="userlogin"><a href="#" data-toggle="modal" data-target="#myModal"><img
 								src="images/login.jpg"></a></li>
-						<li><p style="font-size:1.1em;color:#fff;">尊敬的 ${username }，你好！</p></li>
+						<li id="userwelcome" style="display:none;"><p style="font-size:1.1em;color:#fff;">尊敬的 ${username }，你好！</p></li>
 							<!-- 模态框（Modal） -->
 							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 								<div class="modal-dialog">
@@ -22,25 +23,28 @@
 											<div class="cont">
 												<h1>Welcome</h1>
 												<form class="form" method="post">
-													<input type="text" placeholder="Email Address（邮箱）" name="email">
-													<input type="password" placeholder="Password （密码）" name="password">
-													<button type="submit" id="login-button" onclick="tologin()">Login（登陆）</button><br>
+													<input type="text" placeholder="Email Address（邮箱）" id="email" name="email">
+													<input type="password" placeholder="Password （密码）" id="password" name="password">
+													<button type="submit" id="login-button">Login（登陆）</button><br>
 													<a href="#"><div class="login_foot_left">忘记密码</div></a>
 													<a href="regist.html"><div class="login_foot_right">注册</div></a>
 												</form>
 												<script type="text/javascript">
-												function tologin() {
-													//params.XX必须与Spring Mvc controller中的参数名称一致  
-													//否则在controller中使用@RequestParam绑定
-											        var email = $("#email").val();  
-											        var password = $("#password").val();
-											        console.log("ads");
-													$.post("/login/ajax",{email:email,password:password},function(data){
-													var res = $.parseJSON(data);//把后台传回的json数据解析
-													alert(res);
-													console.log(res);
-													});
-												}
+												$(function(){
+													 $("#login-button").click(function(){
+													 	var email = $("#email").val();  
+												        var password = $("#password").val();
+														$.post("${ctx}/login/ajax",{email:email,password:password},function(data){
+															var res = $.parseJSON(data);//把后台传回的json数据解析
+															alert(res);
+															console.log(res);
+															if(res=="Login success!"){
+																$("#userwelcome").css("display","inline-block");
+																$("#userlogin").css("display","none");
+															}
+														});
+													})
+												})
 												</script>
 											</div>
 											<ul class="bg-bubbles">

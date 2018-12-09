@@ -8,6 +8,21 @@
  */
 package com.gansbat.space.selectspace.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.gansbat.space.entity.Space;
+import com.gansbat.space.selectspace.service.SelectspaceServiceImpl;
+
 /**   
 * Copyright: Copyright (c) 2018 LanRu-Caifu
 * 
@@ -23,6 +38,23 @@ package com.gansbat.space.selectspace.controller;
 *---------------------------------------------------------*
 * Dec 6, 2018     Xiaoyi           v1.0.0               修改原因
 */
+@Controller
+@RequestMapping(value="/seletspace")
 public class SelectspaceController {
 
+	@Resource
+	private SelectspaceServiceImpl selectspaceServiceImpl;
+	
+	@RequestMapping(value="alltypespace",method=RequestMethod.POST)
+	public String toTypeSpace(HttpServletRequest request,Model model) {
+		int t_id = Integer.parseInt(request.getParameter("spacetype"));
+		List<Space> s_list = new ArrayList<>();
+		selectspaceServiceImpl.selectAllSpace(t_id);
+		System.out.println("查询成功！");
+		for(Space s:s_list) {
+			System.out.println(s.getType_id());
+		}
+		model.addAttribute("typeallspace", s_list);
+		return "detail";
+	}
 }

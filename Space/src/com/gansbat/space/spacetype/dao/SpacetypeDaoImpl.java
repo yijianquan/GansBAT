@@ -8,6 +8,13 @@
  */
 package com.gansbat.space.spacetype.dao;
 
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.gansbat.space.basedao.BaseDao;
+import com.gansbat.space.entity.Type;
+
 /**   
 * Copyright: Copyright (c) 2018 LanRu-Caifu
 * 
@@ -23,6 +30,13 @@ package com.gansbat.space.spacetype.dao;
 *---------------------------------------------------------*
 * Dec 6, 2018     Xiaoyi           v1.0.0               修改原因
 */
-public class SpacetypeDaoImpl {
-
+@Repository
+public class SpacetypeDaoImpl extends BaseDao<Type, Integer> {
+	/*
+	 * 查询出场地所有类型
+	 */
+	@Override
+	public List<Type> findAll() throws Exception{
+		return super.findAll();
+	}
 }

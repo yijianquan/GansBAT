@@ -34,7 +34,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="space")
 public class Space {
-	private int space_id;
+	private Integer space_id;
 	private int type_id;
 	private String space_address;
 	private String space_img1;
@@ -46,7 +46,9 @@ public class Space {
 	private int likenum;
 	private float decimal;//经度
 	private float latitude;//纬度
-	
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public float getDecimal() {
 		return decimal;
 	}
@@ -59,12 +61,10 @@ public class Space {
 	public void setLatitude(float latitude) {
 		this.latitude = latitude;
 	}
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getSpace_id() {
+	public Integer getSpace_id() {
 		return space_id;
 	}
-	public void setSpace_id(int space_id) {
+	public void setSpace_id(Integer space_id) {
 		this.space_id = space_id;
 	}
 	public int getType_id() {

@@ -11,11 +11,25 @@
 				</div>
 				<div class="top-nav">
 					<ul>
-						
-						<li id="userlogin"><a href="#" data-toggle="modal" data-target="#myModal"><img
-								src="images/login.jpg"></a></li>
 						<li class="userwelcome" id="userwelcome" style="display:none;"><p style="font-size:1.1em;color:#fff;display:inline;">尊敬的</p><p id="username" style="font-size:1.1em;color:#fff;display:inline;"></p><p style="font-size:1.1em;color:#fff;display:inline;">，你好！</p></li>
-							<!-- 模态框（Modal） -->
+						<% String user=(String)session.getAttribute("nowuser");
+						if(user!=null){
+							System.out.println("当前用户已登录");
+							System.out.println(user);
+						%>
+							<script type="text/javascript">
+								window.onload = function() {
+									$("#userwelcome").css("display","inline")
+									$("#userlogin").css("display","none")
+									$("#username").text("<%=user%>");
+								};
+							</script>
+						<%}else{
+							System.out.println("当前用户还未登录"); %>
+							<li id="userlogin"><a href="#" data-toggle="modal" data-target="#myModal"><img
+								src="images/login.jpg"></a></li>
+						<%}%>						
+						<!-- 模态框（Modal） -->
 							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 								<div class="modal-dialog">
 									<div class="modal-content login">
@@ -82,39 +96,3 @@
 			</div>
 		</div>
 	</div>
-<!--
- 	<script>
-	function loginAction() {
-	    // 获取用户输入的账号和密码
-	    var email = $('#login_email').val();
-	    var password = $('#login_password').val();
-	    $.ajax({
-	        url : 'login/loginin',
-	        type : 'post',
-	        // data对象中的属性名要和服务端控制器的参数名一致 login(name, password)
-	        data : {
-	            'email' : name,
-	            'password' : password
-	        },
-	        dataType : 'json',
-	        success : function(result) {
-	            if (result.state == 0) {
-	                // 登录成功，设置cookie并跳转edit.html
-	                addCookie('userId', result.data.id);
-	                addCookie('nick', result.data.nick);
-	                location.href = 'edit.html';
-	            } else {
-	                // 登录失败
-	                var msg = result.message;
-	                $('#sig_in').next().html(msg);
-	                $('#sig_in').next().css("color", "red");
-	            }
-	        },
-	        error : function(e) {
-	            alert("系统异常");
-	        }
-	    });
-	    $('#password').val("");
-	}
-</script>
--->

@@ -8,6 +8,7 @@
  */
 package com.gansbat.space.login.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gansbat.space.entity.User;
 import com.gansbat.space.login.dao.LoginDaoImpl;
+import com.sun.scenario.effect.Blend;
 
 /**   
 * Copyright: Copyright (c) 2018 LanRu-Caifu
@@ -54,8 +56,7 @@ public class LoginServiceImpl implements LoginService {
 					username = u.getNickname();
 					break;
 				}else {
-					username = "false";
-					System.out.println("邮箱和用户密码不不不不不正确！");					
+					username = "false";				
 				}
 				
 			}
@@ -66,4 +67,5 @@ public class LoginServiceImpl implements LoginService {
 		}
 		return username;
 	}
+	
 }

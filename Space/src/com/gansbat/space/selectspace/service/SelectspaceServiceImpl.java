@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gansbat.space.entity.Space;
 import com.gansbat.space.selectspace.dao.SelectspaceDaoImpl;
+import com.gansbat.space.user.service.UserServiceImpl;
 
 /**   
 * Copyright: Copyright (c) 2018 LanRu-Caifu
@@ -47,7 +48,6 @@ public class SelectspaceServiceImpl implements SelectspaceService {
 	@Transactional(readOnly=true)
 	public List<Space> selectAllSpace(Integer t_id){
 		System.out.println("跳转到了service");
-		System.out.println(t_id);
 		List<Space> s_list = new ArrayList<Space>();
 		try {
 			s_list = selectspaceDaoImpl.findTypeAllSpace(t_id);

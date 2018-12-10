@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.gansbat.space.entity.User;
 import com.gansbat.space.login.service.LoginServiceImpl;
+import com.gansbat.space.user.service.UserServiceImpl;
 
 
 /**   
@@ -49,7 +50,8 @@ public class LoginController {
 	
 	@Resource
 	private LoginServiceImpl loginServiceImpl;
-	
+	@Resource
+	private UserServiceImpl userServiceImpl;
 	/*
 	 * controller实现登录，但得跳转，实际上不需要跳转
 	 */
@@ -79,12 +81,17 @@ public class LoginController {
 	 */
 	 @RequestMapping(value="ajax",method=RequestMethod.POST)
 	 @ResponseBody
-	 public void add(HttpServletResponse response,HttpServletRequest request){
-		 System.out.println("跳到了controller");		 
+	 public void add(HttpServletResponse response,HttpServletRequest request,HttpSession session){
 		 User user = new User();
 		 String email = (String)request.getParameter("email");
 		 String password = (String)request.getParameter("password");
 		 user.setEmail(email);user.setPassword(password);
+		 
+		 String now_user = userServiceImpl.findNicknameAccordingEmail(email);
+		 System.out.println("当前用户是："+now_user);
+		 session.setAttribute("nowuser", now_user);
+		 
+		 
 		//判断登录是否成功，若成功并得到用户的名字
 		String username =  loginServiceImpl.compareUser(user);
 		String a="";
@@ -93,6 +100,8 @@ public class LoginController {
 		}else {
 			a = "Login success!";
 		};
+		
+		//b用来封装成集合传到页面
 		Object[] b = {a,username};
 		response.setCharacterEncoding("UTF-8");//resp是HttpServletResponse对象
 		PrintWriter out = null;

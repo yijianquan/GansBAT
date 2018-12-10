@@ -8,6 +8,9 @@
  */
 package com.gansbat.space.login.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**   
 * Copyright: Copyright (c) 2018 LanRu-Caifu
 * 
@@ -24,5 +27,4 @@ package com.gansbat.space.login.service;
 * Dec 6, 2018     Xiaoyi           v1.0.0               修改原因
 */
 public interface LoginService {
-
 }

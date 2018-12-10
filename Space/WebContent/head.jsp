@@ -14,7 +14,7 @@
 						
 						<li id="userlogin"><a href="#" data-toggle="modal" data-target="#myModal"><img
 								src="images/login.jpg"></a></li>
-						<li id="userwelcome" style="display:none;"><p style="font-size:1.1em;color:#fff;">尊敬的 ${username }，你好！</p></li>
+						<li class="userwelcome" id="userwelcome" style="display:none;"><p style="font-size:1.1em;color:#fff;display:inline;">尊敬的</p><p id="username" style="font-size:1.1em;color:#fff;display:inline;"></p><p style="font-size:1.1em;color:#fff;display:inline;">，你好！</p></li>
 							<!-- 模态框（Modal） -->
 							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 								<div class="modal-dialog">
@@ -22,7 +22,7 @@
 										<div class="wrapper">
 											<div class="cont">
 												<h1>Welcome</h1>
-												<form class="form" method="post">
+												<form class="form" method="post" onsubmit="return saveReport()">
 													<input type="text" placeholder="Email Address（邮箱）" id="email" name="email">
 													<input type="password" placeholder="Password （密码）" id="password" name="password">
 													<button type="submit" id="login-button">Login（登陆）</button><br>
@@ -31,19 +31,26 @@
 												</form>
 												<script type="text/javascript">
 												$(function(){
-													 $("#login-button").click(function(){
+													 $("#login-button").click(function(event){
+														var a=null;
+														var b = null;
 													 	var email = $("#email").val();  
 												        var password = $("#password").val();
 														$.post("${ctx}/login/ajax",{email:email,password:password},function(data){
 															var res = $.parseJSON(data);//把后台传回的json数据解析
 															alert(res);
-															console.log(res);
-															if(res=="Login success!"){
-																$("#userwelcome").css("display","inline-block");
-																$("#userlogin").css("display","none");
+															$.each(res,function(index,value){
+															     a = res[0];
+															     b = res[1];
+															});
+															if(a=="Login success!"){
+																$("#userwelcome").show();
+																$("#userlogin").hide();
+																$("#username").text(b);
 															}
 														});
-													})
+														event.preventDefault();
+													});
 												})
 												</script>
 											</div>

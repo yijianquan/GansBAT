@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -50,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<c:forEach items="${spacetype}" var="spacetype" >		
 			<div class="space_types" style="background: url(${spacetype.type_img }) no-repeat; background-size: 100% 100%">
-				<span><p>${spacetype.type_name }</p></span> <a href="${ctx }/seletspace/alltypespace?spacetype=${spacetype.type_id }" class="now"></a>
+				<span><p>${spacetype.type_name }</p></span> <a href="${ctx }/selectspace/alltypespace?spacetype=${spacetype.type_id }" class="now"></a>
 			</div>
 			</c:forEach>
 		</div>

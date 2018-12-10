@@ -1,3 +1,6 @@
+package com.gansbat.space.space.controller;
+
+
 /**   
  * Copyright © 2018 eSunny Info. Tech Ltd. All rights reserved.
  * 
@@ -6,7 +9,6 @@
  * @author: Xiaoyi   
  * @date: Dec 6, 2018 9:54:07 AM 
  */
-package com.gansbat.space.space.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,18 +39,7 @@ import com.gansbat.space.space.service.SpaceServiceImpl;
 *---------------------------------------------------------*
 * Dec 6, 2018     Xiaoyi           v1.0.0               修改原因
 */
-@Controller
-@RequestMapping(value="/spacetype")
 public class SpaceController {
 
-	@Resource
-	private SpaceServiceImpl spaceServiceImpl;
 	
-	@RequestMapping(value="select",method=RequestMethod.GET)
-	public String toSelectType(Model model) {
-		List<Type> t_list = new ArrayList<>();
-		t_list = spaceServiceImpl.selectAllType();
-		model.addAttribute("spacetype", t_list);
-		return "more";
-	}
 }

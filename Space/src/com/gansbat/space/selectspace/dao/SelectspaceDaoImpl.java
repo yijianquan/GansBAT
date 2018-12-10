@@ -34,9 +34,19 @@ import com.gansbat.space.entity.Space;
 public class SelectspaceDaoImpl extends BaseDao<Space, Integer>{
 
 	/*
-	 * 根据传来场地类型t_is来查询所有该类型场地
+	 * 根据传来场地类型t_id来查询所有该类型场地
 	 */
-	public List<Space> findOne(Integer t_id) throws Exception {
+	public List<Space> findTypeAllSpace(Integer t_id) throws Exception {
 		return super.find("from Space where type_id=?", new Object[] {t_id});
 	}
+
+	/*
+	 * 根据传来场地类型t_id来查询所有该类型场地
+	 */
+	@Override
+	public List<Space> find(String hql, Object[] params) throws Exception {
+		// TODO Auto-generated method stub
+		return super.find(hql, params);
+	}
+	
 }

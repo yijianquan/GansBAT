@@ -50,6 +50,9 @@ public class LoginController {
 	@Resource
 	private LoginServiceImpl loginServiceImpl;
 	
+	/*
+	 * controller实现登录，但得跳转，实际上不需要跳转
+	 */
 	@RequestMapping(value="loginin",method=RequestMethod.POST)
 	public String toLogin(@RequestParam("login_Email") String email,
 			@RequestParam("login_password") String password,
@@ -71,7 +74,9 @@ public class LoginController {
 		return "home";
 	}
 	
-	//跳转到这
+	/*
+	 * 通过ajax传数据到这
+	 */
 	 @RequestMapping(value="ajax",method=RequestMethod.POST)
 	 @ResponseBody
 	 public void add(HttpServletResponse response,HttpServletRequest request){
@@ -88,13 +93,13 @@ public class LoginController {
 		}else {
 			a = "Login success!";
 		};
+		Object[] b = {a,username};
 		response.setCharacterEncoding("UTF-8");//resp是HttpServletResponse对象
 		PrintWriter out = null;
 		try {
 			out = response.getWriter();
-			System.out.println(JSON.toJSONString(a));
-			out.print(JSON.toJSONString(a));
-			out.print(JSON.toJSONString(username));
+			System.out.println(JSON.toJSONString(b));
+			out.print(JSON.toJSONString(b));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

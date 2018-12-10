@@ -60,103 +60,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a href="upload.html"><input type="button" class="btn btn-upload radius" value="上传场地" ></a>
 			</div>
 		</div>
-
-		<div class="detail_body">
-			<a href="space.html">
-			<div class="detail_pic">
-				<img width="100%" height="100%" src="images/basketball1.jpg">
+		
+		<c:forEach items="${typeallspace}" var="allspace" >
+			<div class="detail_body">
+				<a href="space.html">
+				<div class="detail_pic">
+					<img width="100%" height="100%" src="${allspace.space_img1 }">
+				</div>
+				<div class="detail_text">
+					<span>地点：${allspace.space_address }</span><br>
+					<span>距离：0.3km</span><br>
+					<span>查看详情</span>
+				</div>
+				</a>
 			</div>
-			<div class="detail_text">
-				<span>地点：河北师范大学体育学院</span><br>
-				<span>距离：0.3km</span><br>
-				<span>查看详情</span>
-			</div>
-			</a>
-		</div>
-		<div class="detail_body">
-			<a href="space.html">
-			<div class="detail_pic">
-				<img width="100%" height="100%" src="images/basketball2.jpg">
-			</div>
-			<div class="detail_text">
-				<span>地点：河北师范大学西操场</span><br>
-				<span>距离：0.5km</span><br>
-				<span>查看详情</span>
-			</div>
-			</a>
-		</div>
-		<div class="detail_body">
-			<a href="space.html">
-			<div class="detail_pic">
-				<img width="100%" height="100%" src="images/basketball6.jpg">
-			</div>
-			<div class="detail_text">
-				<span>地点：石家庄体育馆</span><br>
-				<span>距离：6km</span><br>
-				<span>查看详情</span>
-			</div>
-			</a>
-		</div>
-		<div class="detail_body">
-			<a href="space.html">
-			<div class="detail_pic">
-				<img width="100%" height="100%" src="images/basketball3.jpg">
-			</div>
-			<div class="detail_text">
-				<span>地点：石家庄平安公园篮球场</span><br>
-				<span>距离：2.6km</span><br>
-				<span>查看详情</span>
-			</div>
-			</a>
-		</div>
-		<div class="detail_body">
-			<a href="space.html">
-			<div class="detail_pic">
-				<img width="100%" height="100%" src="images/basketball4.jpg">
-			</div>
-			<div class="detail_text">
-				<span>地点：石家庄粟水清苑</span><br>
-				<span>距离：0.2km</span><br>
-				<span>查看详情</span>
-			</div>
-			</a>
-		</div>
-		<div class="detail_body">
-			<a href="space.html">
-			<div class="detail_pic">
-				<img width="100%" height="100%" src="images/basketball5.jpg">
-			</div>
-			<div class="detail_text">
-				<span>地点：石家庄南山小区</span><br>
-				<span>距离：7.8km</span><br>
-				<span>查看详情</span>
-			</div>
-			</a>
-		</div>
-		<div class="detail_body">
-			<a href="space.html">
-			<div class="detail_pic">
-				<img width="100%" height="100%" src="images/basketball4.jpg">
-			</div>
-			<div class="detail_text">
-				<span>地点：石家庄粟水清苑</span><br>
-				<span>距离：0.2km</span><br>
-				<span>查看详情</span>
-			</div>
-			</a>
-		</div>
-		<div class="detail_body">
-			<a href="space.html">
-			<div class="detail_pic">
-				<img width="100%" height="100%" src="images/basketball5.jpg">
-			</div>
-			<div class="detail_text">
-				<span>地点：石家庄南山小区</span><br>
-				<span>距离：7.8km</span><br>
-				<span>查看详情</span>
-			</div>
-			</a>
-		</div>
+		</c:forEach>
 				
 	</div>
 

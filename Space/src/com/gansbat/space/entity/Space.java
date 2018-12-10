@@ -8,6 +8,7 @@
  */
 package com.gansbat.space.entity;
 
+import java.math.BigDecimal;
 import java.sql.Time;
 
 import javax.persistence.Entity;
@@ -35,7 +36,7 @@ import javax.persistence.Table;
 @Table(name="space")
 public class Space {
 	private Integer space_id;
-	private int type_id;
+	private Integer type_id;
 	private String space_address;
 	private String space_img1;
 	private String space_img2;
@@ -44,33 +45,25 @@ public class Space {
 	private String space_intro;
 	private Time opentime;
 	private int likenum;
-	private float decimal;//经度
-	private float latitude;//纬度
+	private BigDecimal longitude;//经度
+	private BigDecimal latitude;//纬度
 
+
+	public Space() {
+	}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public float getDecimal() {
-		return decimal;
-	}
-	public void setDecimal(float decimal) {
-		this.decimal = decimal;
-	}
-	public float getLatitude() {
-		return latitude;
-	}
-	public void setLatitude(float latitude) {
-		this.latitude = latitude;
-	}
 	public Integer getSpace_id() {
 		return space_id;
 	}
 	public void setSpace_id(Integer space_id) {
 		this.space_id = space_id;
 	}
-	public int getType_id() {
+	public Integer getType_id() {
 		return type_id;
 	}
-	public void setType_id(int type_id) {
+	public void setType_id(Integer type_id) {
 		this.type_id = type_id;
 	}
 	public String getSpace_address() {
@@ -121,4 +114,20 @@ public class Space {
 	public void setLikenum(int likenum) {
 		this.likenum = likenum;
 	}
+	public BigDecimal getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(BigDecimal longitude) {
+		this.longitude = longitude;
+	}
+
+	public BigDecimal getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(BigDecimal latitude) {
+		this.latitude = latitude;
+	}
+
 }

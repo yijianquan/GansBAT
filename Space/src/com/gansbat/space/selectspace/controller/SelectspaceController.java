@@ -39,20 +39,19 @@ import com.gansbat.space.selectspace.service.SelectspaceServiceImpl;
 * Dec 6, 2018     Xiaoyi           v1.0.0               修改原因
 */
 @Controller
-@RequestMapping(value="/seletspace")
+@RequestMapping(value="/selectspace")
 public class SelectspaceController {
 
 	@Resource
 	private SelectspaceServiceImpl selectspaceServiceImpl;
 	
-	@RequestMapping(value="alltypespace",method=RequestMethod.POST)
+	@RequestMapping(value="/alltypespace",method=RequestMethod.GET)
 	public String toTypeSpace(HttpServletRequest request,Model model) {
-		int t_id = Integer.parseInt(request.getParameter("spacetype"));
-		List<Space> s_list = new ArrayList<>();
-		selectspaceServiceImpl.selectAllSpace(t_id);
+		Integer t_id = Integer.parseInt(request.getParameter("spacetype"));
+		List<Space> s_list = selectspaceServiceImpl.selectAllSpace(t_id);
 		System.out.println("查询成功！");
 		for(Space s:s_list) {
-			System.out.println(s.getType_id());
+			System.out.println(s.getSpace_id());
 		}
 		model.addAttribute("typeallspace", s_list);
 		return "detail";

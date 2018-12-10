@@ -35,7 +35,7 @@ import com.gansbat.space.selectspace.dao.SelectspaceDaoImpl;
 * Dec 6, 2018     Xiaoyi           v1.0.0               修改原因
 */
 @Service
-@Transactional(readOnly=true)
+@Transactional(readOnly=false)
 public class SelectspaceServiceImpl implements SelectspaceService {
 
 	@Resource
@@ -45,10 +45,12 @@ public class SelectspaceServiceImpl implements SelectspaceService {
 	 * 将前台传来的登录数据与后台的用户进行对比,如果存在返回用户的昵称
 	 */
 	@Transactional(readOnly=true)
-	public List<Space> selectAllSpace(int t_id){
-		List<Space> s_list = new ArrayList<>();
+	public List<Space> selectAllSpace(Integer t_id){
+		System.out.println("跳转到了service");
+		System.out.println(t_id);
+		List<Space> s_list = new ArrayList<Space>();
 		try {
-			s_list = selectspaceDaoImpl.findOne(t_id);
+			s_list = selectspaceDaoImpl.findTypeAllSpace(t_id);
 			System.out.println("查询该类场地成功！");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50506
 File Encoding         : 65001
 
-Date: 2018-12-05 16:18:50
+Date: 2018-12-10 14:06:51
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -59,11 +59,13 @@ CREATE TABLE `contact` (
   `title` varchar(20) NOT NULL,
   `contact_con` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of contact
 -- ----------------------------
+INSERT INTO `contact` VALUES ('1', '易剑权', '15226515211', '我觉得这个网站设计的特别棒', '做的不错，继续加油');
+INSERT INTO `contact` VALUES ('9', '易剑权', '15226515211', '网站做的很好', '哈哈');
 
 -- ----------------------------
 -- Table structure for `history`
@@ -86,7 +88,7 @@ CREATE TABLE `history` (
 -- ----------------------------
 DROP TABLE IF EXISTS `space`;
 CREATE TABLE `space` (
-  `space_id` int(11) NOT NULL,
+  `space_id` int(11) NOT NULL AUTO_INCREMENT,
   `type_id` int(11) NOT NULL,
   `space_address` varchar(50) NOT NULL,
   `space_img1` varchar(30) NOT NULL,
@@ -96,12 +98,20 @@ CREATE TABLE `space` (
   `space_intro` varchar(100) DEFAULT NULL,
   `opentime` time DEFAULT NULL,
   `likenum` int(11) unsigned zerofill NOT NULL,
+  `longitude` decimal(10,6) DEFAULT NULL,
+  `latitude` decimal(10,6) DEFAULT NULL,
   PRIMARY KEY (`space_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of space
 -- ----------------------------
+INSERT INTO `space` VALUES ('1', '1', '河北师范大学体育学院', 'images/basketball1.jpg', null, null, '0', null, null, '00000000000', null, null);
+INSERT INTO `space` VALUES ('2', '1', '河北师范大学西操场', 'images/basketball2.jpg', null, null, '0', null, null, '00000000000', null, null);
+INSERT INTO `space` VALUES ('3', '1', '石家庄体育馆', 'images/basketball3.jpg', null, null, '0', null, null, '00000000000', null, null);
+INSERT INTO `space` VALUES ('4', '1', '石家庄平安公园篮球场', 'images/basketball4.jpg', null, null, '0', null, null, '00000000000', null, null);
+INSERT INTO `space` VALUES ('5', '1', '石家庄粟水清苑', 'images/basketball5.jpg', null, null, '0', null, null, '00000000000', null, null);
+INSERT INTO `space` VALUES ('6', '1', '石家庄南山', 'images/basketball5.jpg', null, null, '0', null, null, '00000000000', null, null);
 
 -- ----------------------------
 -- Table structure for `type`
@@ -117,12 +127,12 @@ CREATE TABLE `type` (
 -- ----------------------------
 -- Records of type
 -- ----------------------------
-INSERT INTO `type` VALUES ('1', '篮球场', '');
-INSERT INTO `type` VALUES ('2', '足球场', '');
-INSERT INTO `type` VALUES ('3', '乒乓球场', '');
-INSERT INTO `type` VALUES ('4', '橡胶跑道', '');
-INSERT INTO `type` VALUES ('5', '健身场地', '');
-INSERT INTO `type` VALUES ('6', '排球场', '');
+INSERT INTO `type` VALUES ('1', '篮 球 场', 'images/basketball.jpg');
+INSERT INTO `type` VALUES ('2', '足 球 场', 'images/football.jpg');
+INSERT INTO `type` VALUES ('3', '乒 乓 球 场', 'images/pingpong.jpg');
+INSERT INTO `type` VALUES ('4', '橡 胶 跑 道', 'images/ground.jpg');
+INSERT INTO `type` VALUES ('5', '健 身 场 地', 'images/bodybuild.jpg');
+INSERT INTO `type` VALUES ('6', '排 球 场', 'images/volleyball.jpg');
 
 -- ----------------------------
 -- Table structure for `upload`
@@ -161,11 +171,13 @@ CREATE TABLE `users` (
   `address` varchar(30) DEFAULT NULL,
   `intro` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
+INSERT INTO `users` VALUES ('1', '1355335683@qq.com', '纯情小火又鸟', 'yijianquan', '0', '0', null, null, null);
+INSERT INTO `users` VALUES ('2', '123', '123', '123', '0', '0', null, null, null);
 
 -- ----------------------------
 -- Table structure for `user_upload`

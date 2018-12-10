@@ -43,7 +43,7 @@ public class SelectspaceServiceImpl implements SelectspaceService {
 	private SelectspaceDaoImpl selectspaceDaoImpl;
 
 	/*
-	 * 将前台传来的登录数据与后台的用户进行对比,如果存在返回用户的昵称
+	 * 根据类型ID找到所有的场地并返回
 	 */
 	@Transactional(readOnly=true)
 	public List<Space> selectAllSpace(Integer t_id){

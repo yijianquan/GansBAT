@@ -8,15 +8,12 @@
  */
 package com.gansbat.space.space.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gansbat.space.entity.Type;
+import com.gansbat.space.entity.Space;
 import com.gansbat.space.space.dao.SpaceDaoImpl;
 
 /**   
@@ -42,15 +39,16 @@ public class SpaceServiceImpl {
 	private SpaceDaoImpl spaceDaoImpl;
 
 	@Transactional(readOnly=true)
-	public List<Type> selectAllType(){
-		List<Type> t_list = new ArrayList<>();
+	public Space selectSpaceAccordingSpaceId(Integer space_id) {
+		Space space = new Space();
 		try {
-			t_list = spaceDaoImpl.findAll();
-			System.out.println("service查询成功！");
+			space = spaceDaoImpl.findSpaceAccordingSpaceId(space_id);
+			System.out.println("查询到了场地！");
+			return space;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return t_list;
+		return space;
 	}
 }

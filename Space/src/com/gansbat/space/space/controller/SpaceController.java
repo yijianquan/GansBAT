@@ -10,18 +10,16 @@ package com.gansbat.space.space.controller;
  * @date: Dec 6, 2018 9:54:07 AM 
  */
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.gansbat.space.entity.Type;
-import com.gansbat.space.login.service.LoginServiceImpl;
+import com.gansbat.space.entity.Space;
 import com.gansbat.space.space.service.SpaceServiceImpl;
 
 /**   
@@ -39,7 +37,21 @@ import com.gansbat.space.space.service.SpaceServiceImpl;
 *---------------------------------------------------------*
 * Dec 6, 2018     Xiaoyi           v1.0.0               修改原因
 */
+@Controller
+@RequestMapping(value="/selectthisspace")
 public class SpaceController {
+	
+	@Resource
+	private SpaceServiceImpl spaceServiceImpl;
+	
+	@RequestMapping(value="/aspace",method=RequestMethod.GET)
+	public String toFindASpace(HttpServletRequest request,Model model) {
+		Integer space_id = Integer.parseInt(request.getParameter("space_id"));
+		System.out.println(space_id);
+		Space space = spaceServiceImpl.selectSpaceAccordingSpaceId(space_id);
+		model.addAttribute("space", space);
+		return "space";
+	}
 
 	
 }

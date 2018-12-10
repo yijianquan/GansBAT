@@ -13,6 +13,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.gansbat.space.basedao.BaseDao;
+import com.gansbat.space.entity.Space;
 import com.gansbat.space.entity.Type;
 
 /**   
@@ -31,6 +32,12 @@ import com.gansbat.space.entity.Type;
 * Dec 6, 2018     Xiaoyi           v1.0.0               修改原因
 */
 @Repository
-public class SpaceDaoImpl extends BaseDao<Type, Integer> {
+public class SpaceDaoImpl extends BaseDao<Space, Integer> {
 
+	/*
+	 * 根据传来的场地ID来返回场地
+	 */
+	public Space findSpaceAccordingSpaceId(Integer space_id) throws Exception {
+		return super.findOne("from Space where space_id = ?", new Object[] {space_id});
+	}
 }

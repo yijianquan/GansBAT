@@ -55,13 +55,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<!-- 轮播（Carousel）项目 -->
 				<div class="carousel-inner pic">
 					<div class="item active">
-						<img src="images/basketball2.jpg" width="100%" height=auto>
+						<img src="${space.space_img1 }" width="100%" height=auto>
 					</div>
 					<div class="item">
-						<img src="images/1.jpg">
+						<img src="${space.space_img2 }">
 					</div>
 					<div class="item">
-						<img src="images/2.jpg">
+						<img src="${space.space_img3 }">
 					</div>
 				</div>
 				<!-- 轮播（Carousel）导航 -->
@@ -149,7 +149,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="space_introduction">
 			<div class="intro">
 				<!-- 简介 -->
-				<span class="intro_font">位置：</span>河北师范大学西操场<br> 
+				<span class="intro_font">位置：</span>${space.space_address }<br> 
 				<span class="intro_font">距你：</span>0.5km<br> 
 				<a href="#"><img class="space_icon" src="images/like.png" /></a>&nbsp;&nbsp;<span>“点赞数”</span>&nbsp;&nbsp;&nbsp;<a href="#"><img class="space_icon" src="images/share.png" /></a><br>
 				<span style="font-size:1.3em"><a href="#">"聊天室"</a></span><span style="font-size:1.3em;margin-left:2em;"><a href="#">"查看地图"</a></span>

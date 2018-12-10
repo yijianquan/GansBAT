@@ -8,6 +8,11 @@
  */
 package com.gansbat.space.uploadspace.dao;
 
+import org.springframework.stereotype.Repository;
+
+import com.gansbat.space.basedao.BaseDao;
+import com.gansbat.space.entity.Upload;
+
 /**   
 * Copyright: Copyright (c) 2018 LanRu-Caifu
 * 
@@ -23,6 +28,11 @@ package com.gansbat.space.uploadspace.dao;
 *---------------------------------------------------------*
 * Dec 6, 2018     Xiaoyi           v1.0.0               修改原因
 */
-public class UploadspaceDaoImpl {
-
+@Repository
+public class UploadspaceDaoImpl extends BaseDao<Upload,Integer>{
+	
+	@Override
+	public void save(Upload upload) throws Exception{
+		super.save(upload);
+	}
 }

@@ -8,6 +8,14 @@
  */
 package com.gansbat.space.uploadspace.service;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.gansbat.space.entity.Upload;
+import com.gansbat.space.uploadspace.dao.UploadspaceDaoImpl;
+
 /**   
 * Copyright: Copyright (c) 2018 LanRu-Caifu
 * 
@@ -23,6 +31,20 @@ package com.gansbat.space.uploadspace.service;
 *---------------------------------------------------------*
 * Dec 6, 2018     Xiaoyi           v1.0.0               修改原因
 */
+@Service
+@Transactional(readOnly=false)
 public class UploadspaceServiceImpl {
-
+	
+	@Resource
+	private UploadspaceDaoImpl uploadspaceDaoImpl;
+	
+	@Transactional(readOnly=false)
+	public void saveUpload(Upload upload) {
+		try {
+			uploadspaceDaoImpl.save(upload);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

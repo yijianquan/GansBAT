@@ -35,6 +35,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$('form').fadeOut(500);
 			$('.wrapper').addClass('form-success');
 		});
+		var result = ${result};
+		if(result!= null){
+			alert(result);
+		}
 </script>
 </head>
 <body>
@@ -46,31 +50,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="container container1">
 	<div class="upload">
 		<p class="upload_title">上传一个你发现的场地</p>
-		<form action="" method="post">
+		<form action="" method="post" enctype="multipart/form-data">
 			<p class="upload_must">*</p><p class="upload_intro">场地类别：</p>
-				<select name="">
-					<option>篮球场</option>
-					<option>足球场</option>
-					<option>新建类别</option>
-				</select><br>
+				<select name="type_id">
+					<option value="1">篮球场</option>
+					<option value="2">足球场</option>
+					<option value="3">乒乓球场</option>
+					<option value="4">橡胶跑道</option>
+					<option value="5">健身场地</option>
+					<option value="6">排球场</option>
+					<option value="7">新建类别</option>
+				</select>
+				<br>
 
-			<p class="upload_must">*</p><p class="upload_intro">上传图片：</p><input type="file" name="file"/>
+			<p class="upload_must">*</p><p class="upload_intro">上传图片：</p><input type="file" name="upfile"/>
 
 			<p class="upload_must">*</p><p class="upload_intro">详细地点：</p>
-				<input type="text" class="upload_formw" placeholder="省-市-街道-参照物" value=""/>
+				<input type="text" name="address" class="upload_formw" placeholder="省-市-街道-参照物" value=""/>
 
 			<p class="upload_otherintro">是否收费：</p>
 					<input type="radio" name="charge" value="1">是
 					<input type="radio" name="charge" value="0">否<br>
 
 			<p class="upload_otherintro">场地描述：</p>
-				<input type="textarea" class="upload_formw" placeholder="室内室外，地面类型" value="">
+				<input type="textarea" name="intro" class="upload_formw" placeholder="室内室外，地面类型" value="">
 
 			<p class="upload_otherintro">开放时间:</p>
-				<input type="text" class="upload_formw" placeholder="简要描述" value=""/><br>
+				<input type="text" name="opentime" class="upload_formw" placeholder="简要描述" value=""/><br>
 
 			<input type="submit" class="upload_submit" value="提交" onclick="upload_alert()"/>
-
+		
 		</form>
 	</div>
 	</div>

@@ -19,21 +19,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.gansbat.space.entity.Upload;
 import com.gansbat.space.uploadspace.service.UploadspaceServiceImpl;
 
-/**   
+/**
+ * 
 * Copyright: Copyright (c) 2018 LanRu-Caifu
 * 
-* @ClassName: UploadController.java
-* @Description: 该类的功能描述
+* @ClassName: UploadspaceController.java
+* @Description: 上传页面的controller类
 *
 * @version: v1.0.0
-* @author: Xiaoyi
-* @date: Dec 6, 2018 9:42:19 AM 
+* @author: dell
+* @date: 2018年12月11日 下午2:39:20 
 *
 * Modification History:
 * Date         Author          Version            Description
 *---------------------------------------------------------*
-* Dec 6, 2018     Xiaoyi           v1.0.0               修改原因
-*/
+* 2018年12月11日     xurunkai           v1.0.0               修改原因
+ */
 @Controller
 @RequestMapping("/upload")
 public class UploadspaceController {
@@ -51,6 +52,7 @@ public class UploadspaceController {
 			@RequestParam("opentime") String opentime,
 			Model model
 			) {
+		String result=null;
 		Upload upload = new Upload();
 		upload.setType_id(type_id);
 		upload.setSpace_img1(space_img);
@@ -59,8 +61,8 @@ public class UploadspaceController {
 		upload.setSpace_intro(intro);
 		upload.setOpentime(opentime);
 		uploadspaceServiceImpl.saveUpload(upload);
-		String result=null;
-		model.addAttribute(result, "上传成功！");
+		
+		model.addAttribute("result", "上传成功！");
 		return "upload";
 	}
 }

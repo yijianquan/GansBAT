@@ -24,7 +24,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--//fonts-->
  <script src="js/responsiveslides.min.js"></script>
 <link rel="stylesheet" href="css/upload.css" type="text/css" />
-<script type="text/javascript" src="js/upload.js"></script>
 <link rel="stylesheet" type="text/css" href="css/login.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <script src="js/jquery.min.js"></script>
@@ -35,22 +34,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$('form').fadeOut(500);
 			$('.wrapper').addClass('form-success');
 		});
-		var result = ${result};
-		if(result!= null){
-			alert(result);
-		}
 </script>
 </head>
 <body>
 	<!--header-->
 	<jsp:include page="head.jsp"></jsp:include>
 	<!-- header -->
-
+	<c:if test="${result != null }"><script>alert("上传成功！")</script>${result }=null;</c:if>
 	<!-- body -->
 	<div class="container container1">
 	<div class="upload">
 		<p class="upload_title">上传一个你发现的场地</p>
-		<form action="" method="post" enctype="multipart/form-data">
+		<form action="${ctx }upload/upload" method="post">
 			<p class="upload_must">*</p><p class="upload_intro">场地类别：</p>
 				<select name="type_id">
 					<option value="1">篮球场</option>
@@ -59,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<option value="4">橡胶跑道</option>
 					<option value="5">健身场地</option>
 					<option value="6">排球场</option>
-					<option value="7">新建类别</option>
+					<option value="7">其他类别</option>
 				</select>
 				<br>
 
@@ -78,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<p class="upload_otherintro">开放时间:</p>
 				<input type="text" name="opentime" class="upload_formw" placeholder="简要描述" value=""/><br>
 
-			<input type="submit" class="upload_submit" value="提交" onclick="upload_alert()"/>
+			<input type="submit" class="upload_submit" value="提交" />
 		
 		</form>
 	</div>

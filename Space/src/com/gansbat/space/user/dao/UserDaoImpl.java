@@ -32,9 +32,15 @@ import com.gansbat.space.entity.User;
 public class UserDaoImpl extends BaseDao<User, Integer> {
 
 	/*
-	 * 根据传来的用户email来查询用户的nickname（昵称）
+	 * 根据传来的用户email来查询一个用户的nickname（昵称）
 	 */
 	public User findNicknameAccordingEmail(String email) throws Exception{	
 		return super.findOne("from User where email=?", new Object[] {email});
+	}
+	/*
+	 * 根据传来的用户Id来查寻出用户的nickname
+	 */
+	public User findNicknameAccordingUserId(Integer user_id) throws Exception {
+		return super.findOne("from User where id=?",new Object[] {user_id});
 	}
 }

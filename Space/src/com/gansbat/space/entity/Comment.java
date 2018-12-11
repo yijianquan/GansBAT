@@ -33,29 +33,37 @@ import javax.persistence.Table;
 @Table(name="comment")
 public class Comment {
 	
-	private int comment_id;
-	private int space_id;
-	private int user_id;
-	
+	private Integer comment_id;
+	private Integer space_id;
+	private Integer user_id;
+	private String user_nickname;
+	private String comment;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getComment_id() {
+	public Integer getComment_id() {
 		return comment_id;
 	}
-	public void setComment_id(int comment_id) {
+	public void setComment_id(Integer comment_id) {
 		this.comment_id = comment_id;
 	}
-	public int getSpace_id() {
+	public Integer getSpace_id() {
 		return space_id;
 	}
-	public void setSpace_id(int space_id) {
+	public void setSpace_id(Integer space_id) {
 		this.space_id = space_id;
 	}
-	public int getUser_id() {
+	public Integer getUser_id() {
 		return user_id;
 	}
-	public void setUser_id(int user_id) {
+	public void setUser_id(Integer user_id) {
 		this.user_id = user_id;
+	}
+	public String getUser_nickname() {
+		return user_nickname;
+	}
+	public void setUser_nickname(String user_nickname) {
+		this.user_nickname = user_nickname;
 	}
 	public String getComment() {
 		return comment;
@@ -63,5 +71,5 @@ public class Comment {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	private String comment;
+	
 }

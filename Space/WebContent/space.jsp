@@ -1,3 +1,5 @@
+<%@page import="com.gansbat.space.entity.User"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -78,71 +80,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="space_comment">
 			<textarea class="space_textarea" name="" placeholder="发表下你对球场的评论："></textarea>
 			<div class="space_sbm">
-				<a href="#" class="button button-glow button-rounded button-raised button-primary">Go</a>
+				<a href="#" class="button button-glow button-rounded button-raised button-primary">send</a>
 			</div>
-			<div class="cmt">
+			<div class="cmt">				
 				
+				<c:forEach items="${comment}" var="comment" >
 				<div class="space_cmt">
 					<div class="cmt_pic">
 						<a href="#"><img class="user_pic" src="images/account.jpg" /></a>
 					</div>
 					<div class="cmt_content">
-						<span><a href="#">王伟老师</a></span>
+						<span><a href="#">${comment.user_nickname }</a></span>
 						<span class="pl"><a href="#">评论：</a></span>
-						<p>这个球场还可以，经常和学生们在这打球</p>
+						<p>${ comment.comment}</p>
 					</div>
-				</div>
-				<div class="space_cmt">
-					<div class="cmt_pic">
-						<a href="#"><img class="user_pic" src="images/account.jpg" /></a>
-					</div>
-					<div class="cmt_content">
-						<span><a href="#">王鹏帆老师</a></span>
-						<span class="pl"><a href="#">评论：</a></span>
-						<p>打过很多次，很爽，地板给力。</p>
-					</div>
-				</div>
-				<div class="space_cmt">
-					<div class="cmt_pic">
-						<a href="#"><img class="user_pic" src="images/account.jpg" /></a>
-					</div>
-					<div class="cmt_content">
-						<span><a href="#">陈润资老师</a></span>
-						<span class="pl"><a href="#">评论</a></span>
-						<p>我不打篮球但带小孩去过几次，很好用</p>
-					</div>
-				</div>
-				<div class="space_cmt">
-					<div class="cmt_pic">
-						<a href="#"><img class="user_pic" src="images/account.jpg" /></a>
-					</div>
-					<div class="cmt_content">
-						<span><a href="#">丁盟老师</a></span>
-						<span class="pl"><a href="#">评论</a></span>
-						<p>球场不错，每次来这打球的人也很多。</p>
-					</div>
-				</div>
-				<div class="space_cmt">
-					<div class="cmt_pic">
-						<a href="#"><img class="user_pic" src="images/account.jpg" /></a>
-					</div>
-					<div class="cmt_content">
-						<span><a href="#">username</a></span>
-						<span class="pl"><a href="#">评论</a></span>
-						<p>********************************************************************************************************</p>
-					</div>
-				</div>
-				<div class="space_cmt">
-					<div class="cmt_pic">
-						<a href="#"><img class="user_pic" src="images/account.jpg" /></a>
-					</div>
-					<div class="cmt_content">
-						<span><a href="#">username</a></span>
-						<span class="pl"><a href="#">评论</a></span>
-						<p>********************************************************************************************************</p>
-					</div>
-				</div>
-				
+				</div>	
+				</c:forEach>
 
 			</div>
 		</div>
@@ -151,22 +104,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<!-- 简介 -->
 				<span class="intro_font">位置：</span>${space.space_address }<br> 
 				<span class="intro_font">距你：</span>0.5km<br> 
-				<a href="#"><img class="space_icon" src="images/like.png" /></a>&nbsp;&nbsp;<span>“点赞数”</span>&nbsp;&nbsp;&nbsp;<a href="#"><img class="space_icon" src="images/share.png" /></a><br>
+				<a href="#"><img class="space_icon" src="images/like.png" /></a>&nbsp;&nbsp;<span>“点赞数：”${space.likenum }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img class="space_icon" src="images/share.png" />&nbsp;&nbsp;&nbsp;分享</a><br>
 				<span style="font-size:1.3em"><a href="#">"聊天室"</a></span><span style="font-size:1.3em;margin-left:2em;"><a href="#">"查看地图"</a></span>
 			</div>
 			<div class="intro">
 				<!-- 详情 -->
-				<span class="intro_font">是否收费：</span><span>“是”</span><br> 
-				<span class="intro_font">场地类型：</span><span>塑料地板</span><br> 
-				<span class="intro_font">开放时间：</span><span>全天</span><br>
+				<span class="intro_font">是否收费：</span><span id="charge"></span><br>
+				<span class="intro_font">场地类型：</span><span>${space.space_intro }</span><br> 
+				<span class="intro_font">开放时间：</span><span>${space.opentime }</span><br>
 			</div>
 			<div class="space_btn">
 			<a href="#" class="button button-glow button-border button-rounded button-primary">信息不准确，我要反馈</a>
 			</div>			
 		</div>
+		<script>
+			$(function(){
+				var charge = ${charge};
+				console.log(charge);
+				if(charge==1){
+					$("#charge").text('是');
+				}else{
+					$("#charge").text('否');
+				}
+			})
+		</script>
 	</div>
 	</div>
 	<!-- footer -->
-	<jsp:include page="head.jsp"></jsp:include>
+	<jsp:include page="foot.jsp"></jsp:include>
 </body>
 </html>

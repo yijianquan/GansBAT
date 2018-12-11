@@ -43,7 +43,7 @@ public class Space {
 	private String space_img3;
 	private int charge;
 	private String space_intro;
-	private Time opentime;
+	private String opentime;
 	private int likenum;
 	private BigDecimal longitude;//经度
 	private BigDecimal latitude;//纬度
@@ -102,12 +102,14 @@ public class Space {
 	public void setSpace_intro(String space_intro) {
 		this.space_intro = space_intro;
 	}
-	public Time getOpentime() {
+	public String getOpentime() {
 		return opentime;
 	}
-	public void setOpentime(Time opentime) {
+
+	public void setOpentime(String opentime) {
 		this.opentime = opentime;
 	}
+
 	public int getLikenum() {
 		return likenum;
 	}

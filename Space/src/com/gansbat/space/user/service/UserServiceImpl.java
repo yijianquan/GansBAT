@@ -55,4 +55,23 @@ public class UserServiceImpl implements UserService {
 		}
 		return nickname;
 	}
+	
+	/*
+	 * 调用UserDaoImpl里的方法取出nickname并返回
+	 */
+	@Transactional(readOnly=true)
+	public String findNicknameAccordingUserId(Integer user_id) {
+		System.out.println("正在根据user_id查询用户nickname");
+		try {
+			User user = userDaoImpl.findNicknameAccordingUserId(user_id);
+			String user_nickname = user.getNickname();
+			System.out.println(user_nickname);
+			return user_nickname;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("根据user_id查询用户昵称失败");
+			return null;
+		}
+	}
 }

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50506
 File Encoding         : 65001
 
-Date: 2018-12-10 14:06:51
+Date: 2018-12-11 17:39:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,13 +40,22 @@ CREATE TABLE `comment` (
   `comment_id` int(11) NOT NULL AUTO_INCREMENT,
   `space_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
+  `user_nickname` varchar(20) DEFAULT NULL,
   `comment` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`comment_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of comment
 -- ----------------------------
+INSERT INTO `comment` VALUES ('1', '2', '1', '王伟老师', '这个球场还可以，经常和学生们在这打球');
+INSERT INTO `comment` VALUES ('2', '2', '2', '王鹏帆老师', '打过很多次，很爽，地板给力。');
+INSERT INTO `comment` VALUES ('3', '2', '3', '陈润滋老师', '我不打篮球但带小孩去过几次，很好用');
+INSERT INTO `comment` VALUES ('4', '2', '4', '丁盟老师', '球场不错，每次来这打球的人也很多。');
+INSERT INTO `comment` VALUES ('5', '2', '5', '我是武永亮老师', '贼爽，试试就知道了');
+INSERT INTO `comment` VALUES ('6', '2', '6', '我是小得润润', '我是这儿的学生，经常在这打球，最近崴脚了，很难受，有时间约球啊');
+INSERT INTO `comment` VALUES ('7', '2', '7', '小飞飞爱打球', '石家庄的冬天有点冷，晚上建议去体育学院打球，那儿舒服。');
+INSERT INTO `comment` VALUES ('8', '2', '8', '李岱恒同学', '还可以哈');
 
 -- ----------------------------
 -- Table structure for `contact`
@@ -96,7 +105,7 @@ CREATE TABLE `space` (
   `space_img3` varchar(30) DEFAULT NULL,
   `charge` int(11) NOT NULL,
   `space_intro` varchar(100) DEFAULT NULL,
-  `opentime` time DEFAULT NULL,
+  `opentime` varchar(30) DEFAULT NULL,
   `likenum` int(11) unsigned zerofill NOT NULL,
   `longitude` decimal(10,6) DEFAULT NULL,
   `latitude` decimal(10,6) DEFAULT NULL,
@@ -107,7 +116,7 @@ CREATE TABLE `space` (
 -- Records of space
 -- ----------------------------
 INSERT INTO `space` VALUES ('1', '1', '河北师范大学体育学院', 'images/basketball1.jpg', null, null, '0', null, null, '00000000000', null, null);
-INSERT INTO `space` VALUES ('2', '1', '河北师范大学西操场', 'images/basketball2.jpg', null, null, '0', null, null, '00000000000', null, null);
+INSERT INTO `space` VALUES ('2', '1', '河北师范大学西操场', 'images/basketball2.jpg', 'images/1.jpg', 'images/2.jpg', '1', '塑料地板', '全天', '00000000099', null, null);
 INSERT INTO `space` VALUES ('3', '1', '石家庄体育馆', 'images/basketball3.jpg', null, null, '0', null, null, '00000000000', null, null);
 INSERT INTO `space` VALUES ('4', '1', '石家庄平安公园篮球场', 'images/basketball4.jpg', null, null, '0', null, null, '00000000000', null, null);
 INSERT INTO `space` VALUES ('5', '1', '石家庄粟水清苑', 'images/basketball5.jpg', null, null, '0', null, null, '00000000000', null, null);
@@ -171,13 +180,19 @@ CREATE TABLE `users` (
   `address` varchar(30) DEFAULT NULL,
   `intro` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', '1355335683@qq.com', '纯情小火又鸟', 'yijianquan', '0', '0', null, null, null);
-INSERT INTO `users` VALUES ('2', '123', '123', '123', '0', '0', null, null, null);
+INSERT INTO `users` VALUES ('1', 'wangwei', '王伟老师', 'yijianquan', '0', '0', null, null, null);
+INSERT INTO `users` VALUES ('2', 'wangpengfan', '王鹏帆老师', 'wangpengfan', '0', '0', null, null, null);
+INSERT INTO `users` VALUES ('3', 'chenrunzi', '陈润滋老师', 'zhangfeiyu', '0', '0', null, null, null);
+INSERT INTO `users` VALUES ('4', 'dingmeng', '丁盟老师', 'dingmeng', '0', '45', null, null, null);
+INSERT INTO `users` VALUES ('5', 'wuyongliang', '我是武永亮老师', 'wuyongliang', '0', '50', null, null, null);
+INSERT INTO `users` VALUES ('6', 'wangderun', '我是小得润润', 'wangderun', '0', '20', null, null, null);
+INSERT INTO `users` VALUES ('7', 'zhangfeiyu', '小飞飞爱打球', 'zhangfeiyu', '0', '47', null, null, null);
+INSERT INTO `users` VALUES ('8', 'lidaiheng', '李岱恒同学', 'lidaiheng', '0', '0', null, null, null);
 
 -- ----------------------------
 -- Table structure for `user_upload`

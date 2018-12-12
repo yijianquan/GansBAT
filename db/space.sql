@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50506
 File Encoding         : 65001
 
-Date: 2018-12-11 17:39:52
+Date: 2018-12-12 17:38:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -81,16 +81,28 @@ INSERT INTO `contact` VALUES ('9', '易剑权', '15226515211', '网站做的很�
 -- ----------------------------
 DROP TABLE IF EXISTS `history`;
 CREATE TABLE `history` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
+  `space_id` int(11) DEFAULT NULL,
   `space_name` varchar(20) DEFAULT NULL,
   `space_img` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of history
 -- ----------------------------
+INSERT INTO `history` VALUES ('0', '7', '1', '河北师范大学体育学院', 'images/basketball1.jpg');
+INSERT INTO `history` VALUES ('1', '7', '2', '河北师范大学西操场', 'images/basketball2.jpg');
+INSERT INTO `history` VALUES ('3', '7', '3', '石家庄体育馆', 'images/basketball3.jpg');
+INSERT INTO `history` VALUES ('4', '7', '4', '石家庄平安公园篮球场', 'images/basketball4.jpg');
+INSERT INTO `history` VALUES ('6', '7', '5', '石家庄粟水清苑', 'images/basketball5.jpg');
+INSERT INTO `history` VALUES ('7', '7', '6', '石家庄南山', 'images/basketball5.jpg');
+INSERT INTO `history` VALUES ('14', '7', '2', '河北师范大学西操场', 'images/basketball2.jpg');
+INSERT INTO `history` VALUES ('15', '2', '2', '河北师范大学西操场', 'images/basketball2.jpg');
+INSERT INTO `history` VALUES ('16', '2', '2', '河北师范大学西操场', 'images/basketball2.jpg');
+INSERT INTO `history` VALUES ('17', '7', '2', '河北师范大学西操场', 'images/basketball2.jpg');
+INSERT INTO `history` VALUES ('18', '7', '1', '河北师范大学体育学院', 'images/basketball1.jpg');
 
 -- ----------------------------
 -- Table structure for `space`
@@ -159,11 +171,12 @@ CREATE TABLE `upload` (
   `opentime` varchar(20) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of upload
 -- ----------------------------
+INSERT INTO `upload` VALUES ('1', '1', '', null, null, '结了婚', '1', '系红领巾hh', '河涸海干开关机', '0');
 
 -- ----------------------------
 -- Table structure for `users`
@@ -191,7 +204,7 @@ INSERT INTO `users` VALUES ('3', 'chenrunzi', '陈润滋老师', 'zhangfeiyu', '
 INSERT INTO `users` VALUES ('4', 'dingmeng', '丁盟老师', 'dingmeng', '0', '45', null, null, null);
 INSERT INTO `users` VALUES ('5', 'wuyongliang', '我是武永亮老师', 'wuyongliang', '0', '50', null, null, null);
 INSERT INTO `users` VALUES ('6', 'wangderun', '我是小得润润', 'wangderun', '0', '20', null, null, null);
-INSERT INTO `users` VALUES ('7', 'zhangfeiyu', '小飞飞爱打球', 'zhangfeiyu', '0', '47', null, null, null);
+INSERT INTO `users` VALUES ('7', 'zhangfeiyu', '小飞飞爱打球', 'zhangfeiyu', '1', '47', '篮球,足球', '河北省石家庄市', '我的优点是我很帅，我的缺点是我帅的并不明显');
 INSERT INTO `users` VALUES ('8', 'lidaiheng', '李岱恒同学', 'lidaiheng', '0', '0', null, null, null);
 
 -- ----------------------------

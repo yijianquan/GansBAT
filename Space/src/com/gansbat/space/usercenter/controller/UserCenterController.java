@@ -59,6 +59,8 @@ public class UserCenterController {
 		//获取当前用户的email
 		String email = (String) httpSession.getAttribute("nowemail");
 		System.out.println(email);
+		//如果email不为空才进行如下操作
+		if(email!=null) {
 		User user = userCenterServiceImpl.selectUserAccordingEmail(email);
 		System.out.println(user.getNickname());
 		model.addAttribute("user", user);
@@ -68,6 +70,7 @@ public class UserCenterController {
 		Page<History> p_history = historyServiceImpl.selectHistory(pageNum, user_id);
 		model.addAttribute("p_history", p_history.getList());
 		model.addAttribute("page", p_history);
+		}
 		
 		return "information";
 	}

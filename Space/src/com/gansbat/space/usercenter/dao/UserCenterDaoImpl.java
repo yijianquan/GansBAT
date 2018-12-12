@@ -8,6 +8,11 @@
  */
 package com.gansbat.space.usercenter.dao;
 
+import org.springframework.stereotype.Repository;
+
+import com.gansbat.space.basedao.BaseDao;
+import com.gansbat.space.entity.User;
+
 /**   
 * Copyright: Copyright (c) 2018 LanRu-Caifu
 * 
@@ -23,6 +28,14 @@ package com.gansbat.space.usercenter.dao;
 *---------------------------------------------------------*
 * Dec 6, 2018     Xiaoyi           v1.0.0               修改原因
 */
-public class UserCenterDaoImpl {
-
+@Repository
+public class UserCenterDaoImpl extends BaseDao<User, Integer> {
+	
+	/*
+	 * 根据用户的email来查询用户信息
+	 */
+	public User findUserAccordingEmail(String email) throws Exception {
+		return super.findOne("from User where email = ?", new Object[] {email});
+	}
+	
 }

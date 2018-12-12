@@ -52,32 +52,9 @@ public class LoginController {
 	private LoginServiceImpl loginServiceImpl;
 	@Resource
 	private UserServiceImpl userServiceImpl;
-	/*
-	 * controller实现登录，但得跳转，实际上不需要跳转
-	 */
-	@RequestMapping(value="loginin",method=RequestMethod.POST)
-	public String toLogin(@RequestParam("login_Email") String email,
-			@RequestParam("login_password") String password,
-			HttpSession session,Model model) {
-		User user = new User();
-		user.setEmail(email);
-		user.setPassword(password);
-		//判断登录是否成功，若成功并得到用户的名字
-		String username =  loginServiceImpl.compareUser(user);
-		String a="";
-		if(username.equals("false")) {
-			a = "false";
-		}else {
-			a = "true";
-		}
-		System.out.println(a);
-		model.addAttribute("state",a);
-		model.addAttribute("username",username);
-		return "home";
-	}
 	
 	/*
-	 * 通过ajax传数据到这
+	 * 实现登录操作
 	 */
 	 @RequestMapping(value="ajax",method=RequestMethod.POST)
 	 @ResponseBody
@@ -90,6 +67,7 @@ public class LoginController {
 		 String now_user = userServiceImpl.findNicknameAccordingEmail(email);
 		 System.out.println("当前用户是："+now_user);
 		 session.setAttribute("nowuser", now_user);
+		 session.setAttribute("nowemail", email);
 		 
 		 
 		//判断登录是否成功，若成功并得到用户的名字

@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!--个人信息-->
 		<div class="intro">
-			<p class="introprefix">昵称：</p><p class="introvalue">GansBAT炒鸡小组冲鸭</p><a href="#" style="display: block;float: right;font-size: 1.3em;color: blue;margin-top: 1%;" data-toggle="modal" data-target="#edit">编辑资料</a>
+			<p class="introprefix">昵称：</p><p class="introvalue">${user.nickname }</p><a href="#" style="display: block;float: right;font-size: 1.3em;color: blue;margin-top: 1%;" data-toggle="modal" data-target="#edit">编辑资料</a>
 				<!--弹框-->
 				<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="editLabel" aria-hidden="true">
 				    <div class="modal-dialog">
@@ -76,11 +76,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    </div><!-- /.modal -->
 				</div>
 			<br/>
-			<p class="introprefix">邮箱：</p><p class="introvalue">1388888888@qq.com</p><br/>
-			<p class="introprefix"><img src="images/sex.jpg">：</p><p class="introvalue">男</p><br/>
-			<p class="introprefix">爱好：</p><p class="introvalue">篮球 足球</p><br/>
-			<p class="introprefix">住址：</p><p class="introvalue">湖南省湘潭市</p><br/>
+			<p class="introprefix">邮箱：</p><p class="introvalue">${user.email }</p><br/>
+			<p class="introprefix"><img src="images/sex.jpg">：</p><p class="introvalue" id="usersex"></p><br/>
+			<p class="introprefix">爱好：</p><p class="introvalue">${user.hobby }</p><br/>
+			<p class="introprefix">住址：</p><p class="introvalue">${user.address }</p><br/>
 		</div>
+			<!-- 根据传来的数字判断性别是男是女 -->
+			<script>
+			$(function(){
+				var sex = ${user.sex};
+				console.log(sex);
+				if(sex==1){
+					$("#usersex").text('男');
+				}else{
+					$("#usersex").text('女');
+				}
+			})
+			</script>
 
 		<!--上传过的场地-->
 		<div class="historyupload" id="historyupload">

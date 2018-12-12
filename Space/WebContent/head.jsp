@@ -87,7 +87,7 @@
 									<!-- /.modal -->
 								</div>
 							</div>
-						<li class="smallicon"><a href="information.jsp"
+						<li class="smallicon"><a href="${ctx}/usercenter/tocenter"
 							class="scroll"><img src="images/account.jpg"></a></li>
 						<li class="smallicon"><a href="trends.jsp" class="scroll"><img
 								src="images/trends.jpg"></a></li>

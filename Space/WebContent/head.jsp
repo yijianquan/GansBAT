@@ -14,7 +14,7 @@
 			<div class="clearfix"></div>
 			<div class="header-bottom">
 				<div class="logo" style="margin-top: 2% ；">
-					<a href="index.html"><img src="images/logo.jpg" alt=" " /></a>
+					<a href="${ctx }/home/tohome"><img src="images/logo.jpg" alt=" " /></a>
 				</div>
 				<div class="top-nav">
 					<ul>

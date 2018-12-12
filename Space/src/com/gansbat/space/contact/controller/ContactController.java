@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gansbat.space.contact.service.ContactServiceImpl;
 import com.gansbat.space.entity.Contact;
+import com.sun.org.apache.bcel.internal.generic.ReturnInstruction;
 
 /**   
 * Copyright: Copyright (c) 2018 LanRu-Caifu
@@ -41,6 +42,11 @@ public class ContactController {
 
 	@Resource
 	private ContactServiceImpl contactServiceImpl;
+	
+	@RequestMapping(value="tocontact")
+	public String toContact() {		
+		return "contact";
+	}
 	
 	@RequestMapping(value="storage",method=RequestMethod.POST)
 	public String toSaveContact(@RequestParam("contact_name") String name,

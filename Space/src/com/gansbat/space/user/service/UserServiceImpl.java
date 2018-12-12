@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gansbat.space.entity.User;
 import com.gansbat.space.user.dao.UserDaoImpl;
+import com.sun.jmx.snmp.SnmpStringFixed;
+import com.sun.org.apache.regexp.internal.recompile;
 
 /**   
 * Copyright: Copyright (c) 2018 LanRu-Caifu
@@ -71,6 +73,23 @@ public class UserServiceImpl implements UserService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("根据user_id查询用户昵称失败");
+			return null;
+		}
+	}
+	
+	/*
+	 * 调用UserDaoImpl里的方法取出用户Id并返回
+	 */
+	@Transactional(readOnly=true)
+	public Integer findIdAccordingEmail(String email) {
+		try {
+			User user = userDaoImpl.findIdAccordingUserEmail(email);
+			System.out.println("根据email查询用户Id成功，Id是："+user.getId());
+			return user.getId();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("取出用户Id失败！");
 			return null;
 		}
 	}

@@ -35,6 +35,7 @@ public class History {
 
 	private int id;
 	private int user_id;
+	private int space_id;
 	private String space_name;
 	private String space_img;
 	
@@ -51,6 +52,12 @@ public class History {
 	}
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
+	}
+	public int getSpace_id() {
+		return space_id;
+	}
+	public void setSpace_id(int space_id) {
+		this.space_id = space_id;
 	}
 	public String getSpace_name() {
 		return space_name;

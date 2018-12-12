@@ -2,6 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<script>
+		$('#login-button').click(function(event) {
+			event.preventDefault();
+			$('form').fadeOut(500);
+			$('.wrapper').addClass('form-success');
+		});
+</script>
 <div class="header-bottom-top">
 		<div class="container">
 			<div class="clearfix"></div>
@@ -15,8 +22,7 @@
 						<% String user=(String)session.getAttribute("nowuser");
 						if(user!=null){
 							System.out.println("当前用户已登录");
-							System.out.println(user);
-						%>
+							System.out.println(user);%>
 							<script type="text/javascript">
 								window.onload = function() {
 									$("#userwelcome").css("display","inline")
@@ -89,7 +95,7 @@
 							</div>
 						<li class="smallicon"><a href="${ctx}/usercenter/tocenter"
 							class="scroll"><img src="images/account.jpg"></a></li>
-						<li class="smallicon"><a href="trends.jsp" class="scroll"><img
+						<li class="smallicon"><a href="${ctx}/trends/totrends" class="scroll"><img
 								src="images/trends.jpg"></a></li>
 					</ul>
 				</div>

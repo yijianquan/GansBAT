@@ -15,8 +15,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.gansbat.space.basedao.Page;
+import com.gansbat.space.entity.History;
 import com.gansbat.space.entity.User;
+import com.gansbat.space.history.service.HistoryServiceImpl;
+import com.gansbat.space.user.service.UserServiceImpl;
 import com.gansbat.space.usercenter.service.UserCenterServiceImpl;
 
 /**   
@@ -40,17 +45,29 @@ public class UserCenterController {
 	
 	@Resource
 	private UserCenterServiceImpl userCenterServiceImpl;
+	@Resource
+	private HistoryServiceImpl historyServiceImpl;
+	@Resource
+	private UserServiceImpl userServiceImpl;
 	
 	/*
 	 * 跳转到个人中心页面
 	 */
 	@RequestMapping(value="tocenter",method=RequestMethod.GET)
-	public String toUserCenter(HttpSession httpSession,Model model) {
+	public String toUserCenter(HttpSession httpSession,Model model,
+			@RequestParam(value="pageNum",defaultValue="1") int pageNum) {
+		//获取当前用户的email
 		String email = (String) httpSession.getAttribute("nowemail");
 		System.out.println(email);
 		User user = userCenterServiceImpl.selectUserAccordingEmail(email);
 		System.out.println(user.getNickname());
 		model.addAttribute("user", user);
+		
+		int user_id = userServiceImpl.findIdAccordingEmail(email);
+		//获取用户的浏览记录
+		Page<History> p_history = historyServiceImpl.selectHistory(pageNum, user_id);
+		model.addAttribute("p_history", p_history.getList());
+		model.addAttribute("page", p_history);
 		
 		return "information";
 	}

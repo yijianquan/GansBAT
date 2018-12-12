@@ -77,7 +77,6 @@ public abstract class BaseDao<T, PK extends Serializable> {
 	
 	@SuppressWarnings("unchecked")
 	public T findOne(String hql, Object[] params) throws Exception {
-		System.out.println("ksdjf");
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
 		if (params != null && params.length > 0) {
 			for (int i = 0; i < params.length; i++)

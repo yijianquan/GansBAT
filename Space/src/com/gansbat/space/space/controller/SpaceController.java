@@ -1,7 +1,5 @@
 package com.gansbat.space.space.controller;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**   
@@ -13,9 +11,9 @@ import java.util.List;
  * @date: Dec 6, 2018 9:54:07 AM 
  */
 
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +24,7 @@ import com.gansbat.space.comment.service.CommentServiceImpl;
 import com.gansbat.space.entity.Comment;
 import com.gansbat.space.entity.Space;
 import com.gansbat.space.entity.User;
+import com.gansbat.space.history.service.HistoryServiceImpl;
 import com.gansbat.space.space.service.SpaceServiceImpl;
 import com.gansbat.space.spacetype.service.SpacetypeServiceImpl;
 import com.gansbat.space.user.service.UserServiceImpl;
@@ -54,9 +53,13 @@ public class SpaceController {
 	private SpaceServiceImpl spaceServiceImpl;
 	@Resource
 	private CommentServiceImpl commentServiceImpl;
+	@Resource
+	private UserServiceImpl userServiceImpl;
+	@Resource
+	private HistoryServiceImpl historyServiceImpl;
 	
 	@RequestMapping(value="/aspace",method=RequestMethod.GET)
-	public String toFindASpace(HttpServletRequest request,Model model) {
+	public String toFindASpace(HttpSession httpSession,HttpServletRequest request,Model model) {
 		Integer space_id = Integer.parseInt(request.getParameter("space_id"));
 		System.out.println(space_id);
 		
@@ -73,6 +76,20 @@ public class SpaceController {
 			System.out.println(comment.getUser_nickname());
 		}
 		model.addAttribute("comment", c_list);		
+		
+
+		/*
+		 * 如果当前用户已登录，则帮用户记录他的历史记录
+		 */
+			//获取当前用户的email
+			String email = (String) httpSession.getAttribute("nowemail");
+			System.out.println("当前用户的email是："+email);
+			if(email!=null) {
+				//根据email查询出用户的id
+				Integer u_id = userServiceImpl.findIdAccordingEmail(email);
+				//将用户id，场地图片，名称放入history
+				historyServiceImpl.insertHistory(u_id,space_id,space.getSpace_address(), space.getSpace_img1());
+			}
 		
 		return "space";
 	}

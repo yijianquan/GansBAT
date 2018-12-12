@@ -12,6 +12,9 @@ import org.springframework.stereotype.Repository;
 
 import com.gansbat.space.basedao.BaseDao;
 import com.gansbat.space.entity.User;
+import com.sun.jmx.snmp.SnmpStringFixed;
+
+import jdk.nashorn.internal.runtime.ECMAErrors;
 
 /**   
 * Copyright: Copyright (c) 2018 LanRu-Caifu
@@ -42,5 +45,12 @@ public class UserDaoImpl extends BaseDao<User, Integer> {
 	 */
 	public User findNicknameAccordingUserId(Integer user_id) throws Exception {
 		return super.findOne("from User where id=?",new Object[] {user_id});
+	}
+	
+	/*
+	 * 根据用户email来查询出用户的id
+	 */
+	public User findIdAccordingUserEmail(String email) throws Exception{		
+		return super.findOne("from User where email = ?",new Object[] { email});
 	}
 }

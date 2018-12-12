@@ -43,7 +43,7 @@ public class SelectspaceController {
 	@Resource
 	private SelectspaceServiceImpl selectspaceServiceImpl;
 	
-	@RequestMapping(value="/alltypespace",method=RequestMethod.GET)
+	@RequestMapping(value="alltypespace",method=RequestMethod.GET)
 	public String toTypeSpace(HttpServletRequest request,Model model) {
 		Integer t_id = Integer.parseInt(request.getParameter("spacetype"));
 		List<Space> s_list = selectspaceServiceImpl.selectAllSpace(t_id);

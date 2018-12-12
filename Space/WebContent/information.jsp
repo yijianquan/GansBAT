@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,15 +28,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script>
-		$('#login-button').click(function(event) {
-			event.preventDefault();
-			$('form').fadeOut(500);
-			$('.wrapper').addClass('form-success');
-		});
-
-
-</script>
 
 </head>
 <body>
@@ -125,21 +117,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a href=""><img src="images/history.jpg"></a>
 				</div>
 			</div>
+			<div style="float:right;margin-right:5%;margin-top:2%;">
+				<a href="${ctx}/usercenter/tocenter?pageNum=1">首页</a>
+				<a href="${ctx}/usercenter/tocenter?pageNum=${page.prePageNum}">上一页</a>
+				<a href="${ctx}/usercenter/tocenter?pageNum=${page.nextPageNum}">下一页</a>
+				<a href="${ctx}/usercenter/tocenter?pageNum=${page.totalPageNum}">末页</a>
+			</div>
 		</div>
 
 		<!--用户浏览过的场地历史-->
 		<div class="browserhistory">
 			<p class="historycontent">浏览历史：</p>
 			<div class="browsercontent">
-				<a href="#"><p>河北师范大学西操场篮球场の聊天室</p></a>
-				<a href="#"><p>河北师范大学西操场篮球场の聊天室</p></a>
-				<a href="#"><p>河北师范大学西操场篮球场の聊天室</p></a>
-				<a href="#"><p>河北师范大学西操场篮球场の聊天室</p></a>
+				<c:forEach items="${p_history}" var="p_history" >
+					<p><a href="#">${p_history.space_name}</a></p>
+				</c:forEach>
+			</div>
+			<div style="float:right;margin-right:5%;">
+				<a href="${ctx}/usercenter/tocenter?pageNum=1">首页</a>
+				<a href="${ctx}/usercenter/tocenter?pageNum=${page.prePageNum}">上一页</a>
+				<a href="${ctx}/usercenter/tocenter?pageNum=${page.nextPageNum}">下一页</a>
+				<a href="${ctx}/usercenter/tocenter?pageNum=${page.totalPageNum}">末页</a>
 			</div>
 		</div>
 
 	</div>
+	
 	<!-- footer -->
 	<jsp:include page="foot.jsp"></jsp:include>
+	
 </body>
 </html>

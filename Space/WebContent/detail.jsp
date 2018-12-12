@@ -31,13 +31,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script>
-		$('#login-button').click(function(event) {
-			event.preventDefault();
-			$('form').fadeOut(500);
-			$('.wrapper').addClass('form-success');
-		});
-</script>
 </head>
 <body>
 	<!--header-->

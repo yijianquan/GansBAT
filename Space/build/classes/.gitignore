@@ -1,7 +1,3 @@
-/bin/
-/target/
-.classpath
-.gitignore
-.project
-.settings/
+/applicationContext.xml
 /com/
+/dbinfo.properties

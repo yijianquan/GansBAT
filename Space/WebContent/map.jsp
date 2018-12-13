@@ -49,7 +49,7 @@
     });
     AMap.plugin('AMap.Geolocation', function() {
         var geolocation = new AMap.Geolocation({
-            enableHighAccuracy: true,//是否使用高精度定位，默认:true
+        	enableHighAccuracy: true,//是否使用高精度定位，默认:true
             timeout: 10000,          //超过10秒后停止定位，默认：5s
             buttonPosition:'RB',    //定位按钮的停靠位置
             buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
@@ -63,7 +63,7 @@
             }
         });
     });
-    //解析定位结果
+  	//解析定位结果
     function onComplete(data) {
            //步行导航
         var walking = new AMap.Walking({
@@ -72,7 +72,7 @@
         });
         var pos=data.position.toString().split(",");
         //根据起终点坐标规划步行路线
-        walking.search([pos[0],pos[1]], [114.523027,38.000129/*${ }*/], function(status, result) {
+        walking.search([pos[0],pos[1]], [${longitude },${latitude }], function(status, result) {
         // result即是对应的步行路线数据信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_WalkingResult
         if (status === 'complete') {
             log.success('绘制步行路线完成')

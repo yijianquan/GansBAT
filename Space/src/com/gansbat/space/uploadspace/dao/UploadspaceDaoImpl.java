@@ -11,6 +11,7 @@ package com.gansbat.space.uploadspace.dao;
 import org.springframework.stereotype.Repository;
 
 import com.gansbat.space.basedao.BaseDao;
+import com.gansbat.space.basedao.Page;
 import com.gansbat.space.entity.Upload;
 
 /**   
@@ -34,5 +35,13 @@ public class UploadspaceDaoImpl extends BaseDao<Upload,Integer>{
 	@Override
 	public void save(Upload upload) throws Exception{
 		super.save(upload);
+	}
+	
+	/*
+	 * 查询用户所有的上传记录
+	 */
+	public Page<Upload> findPage(int pageNum,int user_id)throws Exception {
+		
+		return super.findPage(pageNum, 4, "select count(*) from Upload where user_id = ?", "from Upload where user_id = ?", new Object[] {user_id});
 	}
 }

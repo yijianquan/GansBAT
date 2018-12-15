@@ -38,6 +38,17 @@ public class Comment {
 	private Integer user_id;
 	private String user_nickname;
 	private String comment;
+	
+	public Comment() {
+		
+	}
+	
+	public Comment(Integer space_id,Integer user_id,String user_nickname,String comment) {
+		this.space_id = space_id;
+		this.user_id = user_id;
+		this.user_nickname = user_nickname;
+		this.comment = comment;
+	}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

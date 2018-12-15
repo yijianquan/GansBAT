@@ -71,10 +71,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 		<div class="space_comment">
-			<textarea class="space_textarea" name="" placeholder="发表下你对球场的评论："></textarea>
-			<div class="space_sbm">
-				<a href="#" class="button button-glow button-rounded button-raised button-primary">send</a>
-			</div>
+		
+			<form action="${ctx }/selectthisspace/tocomment?space_id=${space.space_id }" method="post" onsubmit="return verify()">
+				<textarea class="space_textarea" name="space_comment" placeholder="发表下你对球场的评论：" id="spacecomment"></textarea>
+				<div class="space_sbm">
+					<input type="submit" value="发送" class="button button-glow button-rounded button-raised button-primary">
+				</div>
+			</form>
+			<script type="text/javascript">
+			    function verify() {
+			        <%String user=(String)session.getAttribute("nowuser");
+					if(user==null){%>
+						alert('请先登录！')
+						return false;
+			        <%}%>
+			        var file = $("#spacecomment").val();
+			        if (file == '' || file==null) {
+			            alert('请填写评论内容');
+			            return false;
+			        }
+			    }
+			</script>
+			
 			<div class="cmt">				
 				
 				<c:forEach items="${comment}" var="comment" >
@@ -98,11 +116,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<span class="intro_font">位置：</span>${space.space_address }<br> 
 				<span class="intro_font">距你：</span>0.5km<br> 
 				<a href="#"><img class="space_icon" src="images/like.png" /></a>&nbsp;&nbsp;<span>“点赞数：”${space.likenum }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img class="space_icon" src="images/share.png" />&nbsp;&nbsp;&nbsp;分享</a><br>
-<<<<<<< HEAD
-				<span style="font-size:1.3em"><a href="${ctx }/chatroom/tochatroom?space_id=${space.space_id }">"聊天室"</a></span><span style="font-size:1.3em;margin-left:2em;"><a href="#">"查看地图"</a></span>
-=======
-				<span style="font-size:1.3em"><a href="#">"聊天室"</a></span><span style="font-size:1.3em;margin-left:2em;"><a href="${ctx }/selectthisspace/map">"查看地图"</a></span>
->>>>>>> 511d05a1fe73a37c0bd29d9c122600d134ff819e
+				<span style="font-size:1.3em"><a href="${ctx }/chatroom/tochatroom?space_id=${space.space_id }">"聊天室"</a></span><span style="font-size:1.3em;margin-left:2em;"><a href="#">"查看地图"</a></span>				
 			</div>
 			<div class="intro">
 				<!-- 详情 -->

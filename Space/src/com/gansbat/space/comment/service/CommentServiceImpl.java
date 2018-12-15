@@ -53,4 +53,21 @@ public class CommentServiceImpl {
 		}
 		return c_list;
 	}
+	
+	/*
+	 * 存储评论
+	 */
+	@Transactional(readOnly=false)
+	public void saveComment(Integer space_id,Integer user_id,String user_nickname,String space_comment){
+		Comment comment = new Comment(space_id, user_id, user_nickname, space_comment);
+		try {
+			commentDaoImpl.save(comment);
+			System.out.println("存储评论成功！");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		
+	}
 }

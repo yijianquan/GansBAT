@@ -38,6 +38,14 @@ public class CommentDaoImpl extends BaseDao<Comment, Integer> {
 	 */
 	public List<Comment> findAllAccordingSpaceId(Integer space_id) throws Exception{
 		
-		return super.find("from Comment where space_id = ?", new Object[] {space_id});
+		return super.find("from Comment where space_id = ? order by id desc", new Object[] {space_id});
+	}
+	
+	/*
+	 * 存储用户的评论信息
+	 */
+	@Override
+	public void save(Comment comment) throws Exception{
+		super.save(comment);
 	}
 }

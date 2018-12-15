@@ -41,7 +41,8 @@ public class User {
 	private String hobby;
 	private String address;
 	private String intro;
-//	private Chatroom chatroom;
+	private Integer height;
+	private Integer weight;
 	
 	public User() {
 		
@@ -102,13 +103,16 @@ public class User {
 	public void setIntro(String intro) {
 		this.intro = intro;
 	}
-	
-//	@OneToMany
-//	@JoinColumn(name="room_id",insertable = false, updatable = false,nullable=true)
-//	public Chatroom getChatroom() {
-//		return chatroom;
-//	}
-//	public void setChatroom(Chatroom chatroom) {
-//		this.chatroom = chatroom;
-//	}
+	public Integer getHeight() {
+		return height;
+	}
+	public void setHeight(Integer height) {
+		this.height = height;
+	}
+	public Integer getWeight() {
+		return weight;
+	}
+	public void setWeight(Integer weight) {
+		this.weight = weight;
+	}
 }

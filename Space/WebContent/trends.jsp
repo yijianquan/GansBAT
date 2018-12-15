@@ -49,10 +49,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<img src="images/line.jpg" class="trends_line">
 		<div class="trends_type">
 			<div class="trends_pchatdiv">
-				<p class="trends_pchat" id="trends_pchat"><img class="trends_pchatimg" id="trends_pchatimg" src="images/finger.jpg"><a href="" onclick="clickchatroom()">曾经加入的聊天室*</a></p>
+				<p class="trends_pchat" id="trends_pchat" onclick="clickchatroom()"><img class="trends_pchatimg" id="trends_pchatimg" src="images/finger.jpg">曾经加入的聊天室*</p>
 			</div>
 			<div class="trends_puploaddiv">
-				<p class="trends_pupload" id="trends_pupload"><img class="trends_puploadimg" id="trends_puploadimg" src="images/white.jpg"><a href="" onclick="clickupload()">上传过的场地*</a></p>
+				<p class="trends_pupload" id="trends_pupload" onclick="clickupload()"><img class="trends_puploadimg" id="trends_puploadimg" src="images/white.jpg">上传过的场地*</p>
 			</div>
 		</div>
 		<div class="historychat" id="historychat"">
@@ -81,30 +81,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<h3>你似乎还没上传过场地！</h3>
 				<a href="">上传个自己发现的场地吧(　 ´-ω ･)▄︻┻┳══━一</a>
 			</div>-->
-			<div class="uploadsingle">
-				<a href="">河北师大体育学院</a>
-				<div class="uploadimg">
-					<a href=""><img src="images/history.jpg"></a>
+			<c:forEach items="${u_history}" var="u_history" >
+				<div class="uploadsingle">
+					<a href="">${u_history.space_address }</a>
+					<div class="uploadimg">
+						<a href=""><img src="${u_history.space_img1 }"></a>
+					</div>
 				</div>
-			</div>
-			<div class="uploadsingle">
-				<a href="">河北师大体育学院</a>
-				<div class="uploadimg">
-					<a href=""><img src="images/history.jpg"></a>
-				</div>
-			</div>
-			<div class="uploadsingle">
-				<a href="">河北师大体育学院</a>
-				<div class="uploadimg">
-					<a href=""><img src="images/history.jpg"></a>
-				</div>
-			</div>
-			<div class="uploadsingle">
-				<a href="">河北师大体育学院</a>
-				<div class="uploadimg">
-					<a href=""><img src="images/history.jpg"></a>
-				</div>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
 	<!-- footer -->

@@ -57,42 +57,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<!--聊天内容-->
 				<div class="chatcontent">
-					<div class="human">
-						<p>王伟老师：</p>
-						<p>大家下午都来打球啊！</p>
-					</div>
-					<div class="human">
-						<p>王伟老师：</p>
-						<p>大家下午都来打球啊！</p>
-					</div>
-					<div class="human">
-						<p>王伟老师：</p>
-						<p>大家下午都来打球啊！</p>
-					</div>
-					<div class="human">
-						<p>王伟老师：</p>
-						<p>大家下午都来打球啊！</p>
-					</div>
-					<div class="human">
-						<p>王伟老师：</p>
-						<p>大家下午都来打球啊！</p>
-					</div>
-					<div class="human">
-						<p>王伟老师：</p>
-						<p>大家下午都来打球啊！</p>
-					</div>
-					<div class="human">
-						<p>王伟老师：</p>
-						<p>大家下午都来打球啊！</p>
-					</div>
-					<div class="human">
-						<p>王伟老师：</p>
-						<p>大家下午都来打球啊！</p>
-					</div>
-					<div class="human">
-						<p>王伟老师：</p>
-						<p>大家下午都来打球啊！</p>
-					</div>
+					<c:forEach items="${c_list}" var="c_list" >
+						<div class="human">
+							<p>${c_list.user_nickname }：</p>
+							<p>${c_list.chat_content }</p>
+						</div>
+					</c:forEach>
 				</div>
 				
 				<!--发送聊天-->
@@ -109,11 +79,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<!--成员-->
 			<div class="member">
-				<div class="membersingle">
-					<p style="display:inline;">王伟老师：</p><p style="display: inline;margin-left: 20%;">年龄：42</p><br>
-					<p style="display:inline;">身高：175</p><p style="display: inline;margin-left: 20%;">体重：140</p>
-					<p>自我介绍：我的优点是我很帅，我的缺点是我帅的并不明显</p>
-				</div>
+				<c:forEach items="${u_list}" var="u_list" >
+					<div class="membersingle">
+						<p style="display:inline;">${u_list.nickname }：</p><p style="display: inline;margin-left: 20%;">年龄：${u_list.age }</p><br>
+						<p style="display:inline;">身高：${u_list.height }</p><p style="display: inline;margin-left: 20%;">体重：${u_list.weight }</p>
+						<p>自我介绍：${u_list.intro }</p>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 	</div>

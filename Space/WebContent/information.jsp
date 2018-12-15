@@ -93,35 +93,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<h3>你似乎还没上传过场地！</h3>
 				<a href="">上传个自己发现的场地吧(　 ´-ω ･)▄︻┻┳══━一</a>
 			</div>-->
-			<div class="uploadsingle">
-				<a href="">河北师大体育学院</a>
-				<div class="uploadimg">
-					<a href=""><img src="images/history.jpg"></a>
+			<c:forEach items="${u_history}" var="u_history" >
+				<div class="uploadsingle">
+					<a href="">${u_history.space_address }</a>
+					<div class="uploadimg">
+						<a href=""><img src="${u_history.space_img1 }"></a>
+					</div>
 				</div>
-			</div>
-			<div class="uploadsingle">
-				<a href="">河北师大体育学院</a>
-				<div class="uploadimg">
-					<a href=""><img src="images/history.jpg"></a>
-				</div>
-			</div>
-			<div class="uploadsingle">
-				<a href="">河北师大体育学院</a>
-				<div class="uploadimg">
-					<a href=""><img src="images/history.jpg"></a>
-				</div>
-			</div>
-			<div class="uploadsingle">
-				<a href="">河北师大体育学院</a>
-				<div class="uploadimg">
-					<a href=""><img src="images/history.jpg"></a>
-				</div>
-			</div>
+			</c:forEach>
 			<div style="float:right;margin-right:5%;margin-top:2%;">
 				<a href="${ctx}/usercenter/tocenter?pageNum=1">首页</a>
-				<a href="${ctx}/usercenter/tocenter?pageNum=${page.prePageNum}">上一页</a>
-				<a href="${ctx}/usercenter/tocenter?pageNum=${page.nextPageNum}">下一页</a>
-				<a href="${ctx}/usercenter/tocenter?pageNum=${page.totalPageNum}">末页</a>
+				<a href="${ctx}/usercenter/tocenter?pageNum=${u_page.prePageNum}">上一页</a>
+				<a href="${ctx}/usercenter/tocenter?pageNum=${u_page.nextPageNum}">下一页</a>
+				<a href="${ctx}/usercenter/tocenter?pageNum=${u_page.totalPageNum}">末页</a>
 			</div>
 		</div>
 

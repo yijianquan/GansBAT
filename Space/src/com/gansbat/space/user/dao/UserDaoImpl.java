@@ -8,6 +8,7 @@
  */
 package com.gansbat.space.user.dao;
 
+import org.omg.CORBA.OBJ_ADAPTER;
 import org.springframework.stereotype.Repository;
 
 import com.gansbat.space.basedao.BaseDao;
@@ -52,5 +53,11 @@ public class UserDaoImpl extends BaseDao<User, Integer> {
 	 */
 	public User findIdAccordingUserEmail(String email) throws Exception{		
 		return super.findOne("from User where email = ?",new Object[] { email});
+	}
+	/*
+	 * 根据用户id来查出该学生
+	 */
+	public User findUserById(Integer user_id) throws Exception{
+		return super.findOne("from User where id = ?", new Object[] {user_id});
 	}
 }

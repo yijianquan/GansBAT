@@ -40,7 +40,8 @@ public class Chatroom {
 	private int room_id;
 	private int space_id;
 	private int user_id;
-//	private Set<User> users;//在获取聊天室的时候，得到聊天室内的用户
+	private String user_nickname;
+	private String chat_content;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -62,13 +63,17 @@ public class Chatroom {
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
-	
-//	@OneToMany(mappedBy="chatroom",targetEntity=User.class,cascade= {javax.persistence.CascadeType.ALL})
-//	public Set<User> getUsers() {
-//		return users;
-//	}
-//	public void setUsers(Set<User> users) {
-//		this.users = users;
-//	}
+	public String getUser_nickname() {
+		return user_nickname;
+	}
+	public void setUser_nickname(String user_nickname) {
+		this.user_nickname = user_nickname;
+	}
+	public String getChat_content() {
+		return chat_content;
+	}
+	public void setChat_content(String chat_content) {
+		this.chat_content = chat_content;
+	}
 	
 }

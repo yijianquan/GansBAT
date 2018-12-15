@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gansbat.space.basedao.Page;
 import com.gansbat.space.entity.History;
+import com.gansbat.space.entity.Upload;
 import com.gansbat.space.entity.User;
 import com.gansbat.space.history.service.HistoryServiceImpl;
+import com.gansbat.space.uploadspace.service.UploadspaceServiceImpl;
 import com.gansbat.space.user.service.UserServiceImpl;
 import com.gansbat.space.usercenter.service.UserCenterServiceImpl;
 
@@ -50,13 +52,16 @@ public class UserCenterController {
 	private HistoryServiceImpl historyServiceImpl;
 	@Resource
 	private UserServiceImpl userServiceImpl;
+	@Resource
+	private UploadspaceServiceImpl uploadspaceServiceImpl;
 	
 	/*
 	 * 跳转到个人中心页面
 	 */
 	@RequestMapping(value="tocenter",method=RequestMethod.GET)
 	public String toUserCenter(HttpSession httpSession,Model model,
-			@RequestParam(value="pageNum",defaultValue="1") int pageNum) {
+			@RequestParam(value="pageNum",defaultValue="1") int pageNum,
+			@RequestParam(value="u_pageNum",defaultValue="1") int u_pageNum) {
 		//获取当前用户的email
 		String email = (String) httpSession.getAttribute("nowemail");
 		System.out.println(email);
@@ -71,6 +76,11 @@ public class UserCenterController {
 		Page<History> p_history = historyServiceImpl.selectHistory(pageNum, user_id);
 		model.addAttribute("p_history", p_history.getList());
 		model.addAttribute("page", p_history);
+		
+		//获取用户的上传历史记录
+		Page<Upload> u_history = uploadspaceServiceImpl.selectUpload(u_pageNum, user_id);
+		model.addAttribute("u_history", u_history.getList());
+		model.addAttribute("u_page", u_history);
 		}
 		
 		return "information";

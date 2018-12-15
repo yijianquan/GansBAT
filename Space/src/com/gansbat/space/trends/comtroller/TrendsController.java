@@ -15,8 +15,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.gansbat.space.basedao.Page;
+import com.gansbat.space.entity.Upload;
 import com.gansbat.space.entity.User;
+import com.gansbat.space.uploadspace.service.UploadspaceServiceImpl;
 import com.gansbat.space.user.service.UserServiceImpl;
 
 /**   
@@ -40,9 +44,11 @@ public class TrendsController {
 	
 	@Resource
 	private UserServiceImpl userServiceImpl;
+	@Resource
+	private UploadspaceServiceImpl uploadspaceServiceImpl;
 	
 	@RequestMapping(value="totrends",method=RequestMethod.GET)
-	public String toTrends(HttpSession httpSession,Model model) {
+	public String toTrends(@RequestParam(value="u_pageNum",defaultValue="1") int u_pageNum,HttpSession httpSession,Model model) {
 		//获取当前用户的email
 		String email = (String) httpSession.getAttribute("nowemail");		
 		
@@ -52,7 +58,15 @@ public class TrendsController {
 			String nickname = userServiceImpl.findNicknameAccordingEmail(email);
 			model.addAttribute("nickname", nickname);
 			model.addAttribute("email", email);
+			int user_id = userServiceImpl.findIdAccordingEmail(email);
+			
 			//查询用户加入过的聊天室和上传过的场地操作
+			
+			
+			//查询用户的上传历史
+			Page<Upload> u_history = uploadspaceServiceImpl.selectUpload(u_pageNum, user_id);
+			model.addAttribute("u_history", u_history.getList());
+			model.addAttribute("u_page", u_history);
 		}
 
 		return "trends";

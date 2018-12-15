@@ -93,4 +93,18 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 	}
+	/*
+	 * 根据id查询到该位用户
+	 */
+	@Transactional
+	public User findUserById(Integer user_id) {
+		try {
+			User user = userDaoImpl.findUserById(user_id);
+			return user;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

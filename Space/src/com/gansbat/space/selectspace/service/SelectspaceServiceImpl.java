@@ -47,7 +47,6 @@ public class SelectspaceServiceImpl implements SelectspaceService {
 	 */
 	@Transactional(readOnly=true)
 	public List<Space> selectAllSpace(Integer t_id){
-		System.out.println("跳转到了service");
 		List<Space> s_list = new ArrayList<Space>();
 		try {
 			s_list = selectspaceDaoImpl.findTypeAllSpace(t_id);

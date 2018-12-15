@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.catalina.ant.FindLeaksTask;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
@@ -84,7 +85,16 @@ public abstract class BaseDao<T, PK extends Serializable> {
 		}
 		return (T) query.uniqueResult();
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	public List<Integer> findDistinct(String hql,Object[] params)throws Exception{
+		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+		if (params != null && params.length > 0) {
+			for (int i = 0; i < params.length; i++)
+				query.setParameter(i, params[i]);
+		}
+		return query.list();
+	}
 	/**
 	 * @desc 查询全部数据
 	 * @return 全部数据的List集合

@@ -45,8 +45,8 @@ public class Space {
 	private String space_intro;
 	private String opentime;
 	private int likenum;
-	private BigDecimal longitude;//经度
-	private BigDecimal latitude;//纬度
+	private float longitude;//经度
+	private float latitude;//纬度
 
 
 	public Space() {
@@ -116,19 +116,19 @@ public class Space {
 	public void setLikenum(int likenum) {
 		this.likenum = likenum;
 	}
-	public BigDecimal getLongitude() {
+	public float getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(BigDecimal longitude) {
+	public void setLongitude(float longitude) {
 		this.longitude = longitude;
 	}
 
-	public BigDecimal getLatitude() {
+	public float getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(BigDecimal latitude) {
+	public void setLatitude(float latitude) {
 		this.latitude = latitude;
 	}
 

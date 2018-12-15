@@ -23,12 +23,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.gansbat.space.comment.service.CommentServiceImpl;
 import com.gansbat.space.entity.Comment;
 import com.gansbat.space.entity.Space;
-import com.gansbat.space.entity.User;
 import com.gansbat.space.history.service.HistoryServiceImpl;
 import com.gansbat.space.space.service.SpaceServiceImpl;
-import com.gansbat.space.spacetype.service.SpacetypeServiceImpl;
 import com.gansbat.space.user.service.UserServiceImpl;
-import com.sun.jndi.url.corbaname.corbanameURLContextFactory;
 
 /**   
 * Copyright: Copyright (c) 2018 LanRu-Caifu
@@ -92,6 +89,17 @@ public class SpaceController {
 			}
 		
 		return "space";
+	}
+	//查看地图
+	@RequestMapping(value="/map",method=RequestMethod.GET)
+	public String toMap(HttpServletRequest request,Model model) {
+		Integer space_id = Integer.parseInt(request.getParameter("space_id"));
+		Space space = spaceServiceImpl.selectSpaceAccordingSpaceId(space_id);
+		float longitude = space.getLongitude();
+		float latitude = space.getLatitude();
+		model.addAttribute("longitude",longitude);
+		model.addAttribute("latitude",latitude);
+		return "map";
 	}
 
 	

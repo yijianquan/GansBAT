@@ -47,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="container">
 		<div class="more">
 			<div class="upload">
-				<input type="button" class="btn btn-upload radius" value="上传场地">
+				<a href="${ctx }/upload/toupload"><input type="button" class="btn btn-upload radius" value="上传场地"></a>
 			</div>
 			<c:forEach items="${spacetype}" var="spacetype" >		
 			<div class="space_types" style="background: url(${spacetype.type_img }) no-repeat; background-size: 100% 100%">

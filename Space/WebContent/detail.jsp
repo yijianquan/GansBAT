@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</form>
 			</div>
 			<div class="detail_upload">
-				<a href="upload.html"><input type="button" class="btn btn-upload radius" value="上传场地" ></a>
+				<a href="${ctx }/upload/toupload"><input type="button" class="btn btn-upload radius" value="上传场地" ></a>
 			</div>
 		</div>
 		

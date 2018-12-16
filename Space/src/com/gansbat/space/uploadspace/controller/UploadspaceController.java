@@ -42,6 +42,11 @@ public class UploadspaceController {
 	@Resource
 	private UploadspaceServiceImpl uploadspaceServiceImpl;
 	
+	@RequestMapping(value="toupload")
+	public String jumpUpload(){
+		return "upload";
+	}
+	
 	@RequestMapping(value="upload",method=RequestMethod.POST)
 	public String toUpload(
 			@RequestParam("type_id") int type_id,

@@ -49,19 +49,24 @@ public class HistoryServiceImpl {
 		history.setSpace_name(space_name);
 		history.setUser_id(user_id);
 		//如果用户已经拥有该条浏览历史，则删除上一条历史记录
+		History d_history=null;
 		try {
-			History d_history = historyDaoImpl.findHistoryAccordingSpaceId(space_id,user_id);
-			if(d_history!=null) {
-				historyDaoImpl.delete(d_history);
-				System.out.println("删除成功！");
-			}
+			d_history = historyDaoImpl.findHistoryAccordingSpaceId(space_id,user_id);
 		} catch (Exception e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
+		if(d_history!=null) {
+			try {
+				historyDaoImpl.delete(d_history);
+				System.out.println("删除成功！");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		try {
 			historyDaoImpl.save(history);
-			System.out.println("存储浏览记录成功！");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -74,7 +79,6 @@ public class HistoryServiceImpl {
 	@Transactional(readOnly=true)
 	public Page<History> selectHistory(int pageNum,int user_id){
 		try {
-			System.out.println("正在进行分页查询....");
 			return historyDaoImpl.findPage(pageNum,user_id);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

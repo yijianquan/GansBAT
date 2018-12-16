@@ -20,9 +20,7 @@
 					<ul>
 						<li class="userwelcome" id="userwelcome" style="display:none;"><p style="font-size:1.1em;color:#fff;display:inline;">尊敬的</p><p id="username" style="font-size:1.1em;color:#fff;display:inline;"></p><p style="font-size:1.1em;color:#fff;display:inline;">，你好！</p></li>
 						<% String user=(String)session.getAttribute("nowuser");
-						if(user!=null){
-							System.out.println("当前用户已登录");
-							System.out.println(user);%>
+						if(user!=null){%>
 							<script type="text/javascript">
 								window.onload = function() {
 									$("#userwelcome").css("display","inline")
@@ -30,8 +28,7 @@
 									$("#username").text("<%=user%>");
 								};
 							</script>
-						<%}else{
-							System.out.println("当前用户还未登录"); %>
+						<%}else{ %>
 							<li id="userlogin"><a href="#" data-toggle="modal" data-target="#myModal"><img
 								src="images/login.jpg"></a></li>
 						<%}%>						

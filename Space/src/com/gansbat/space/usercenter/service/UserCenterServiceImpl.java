@@ -54,6 +54,26 @@ public class UserCenterServiceImpl {
 	}
 	
 	/*
-	 * 
+	 * 用户编辑资料
 	 */
+	@Transactional(readOnly=false)
+	public Integer updataUserInfo(String email,Integer sex,String nickname,String hobby,String address,Integer age) {
+		User user = selectUserAccordingEmail(email);
+		user.setNickname(nickname);
+		user.setSex(sex);
+		user.setAddress(address);
+		user.setHobby(hobby);
+		user.setAge(age);
+		try {
+			userCenterDaoImpl.update(user);
+			System.out.println("更新成功！");
+			return 1;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("更新失败！");
+			return 0;
+		}
+		
+	}
 }

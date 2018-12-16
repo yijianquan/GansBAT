@@ -51,8 +51,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
            					<div class="edit_data" style="color:black;">
            						<center>
-	           							<form style="margin-bottom:15px ;margin-top:15px">
-	           								昵称：<input type="text" name="userID" value="" placeholder="请输入你的昵称"style="width:300px; height:40px;" />*<br><br>
+	           							<form onsubmit="return checkForm()" action="${ctx }/usercenter/toeditinfo" method="post" style="margin-bottom:15px ;margin-top:15px">
+	           								昵称：<input type="text" name="user_nickname" value="" placeholder="请输入你的昵称"style="width:300px; height:40px;" />*<br><br>
 	           								性别：<label><input name="sex" type="radio" value="男" />男 </label> 
 											     <label><input name="sex" type="radio" value="女" />女 </label><br><br> 
 	           								爱好：<input type="text" name="hobby" value="" placeholder="请输入你的爱好"style="width:300px; height:40px;" /> <br><br>
@@ -61,6 +61,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	           							 	<input type=submit name="submit1"  class="btn "  value="保存 " onclick="return check(this.form)">  
 	           							</form>
 	           					</center>
+	           					<script type="text/javascript">
+	           					function checkForm(){
+	           						if(window.confirm("确认保存修改吗？")){
+	           							return true;
+	           						}
+	           						return false;
+	           					}
+	           					</script>
            					</div>
 
 				        </div><!-- /.modal-content -->

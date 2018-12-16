@@ -88,8 +88,13 @@ public class UserCenterController {
 	/*
 	 * 保存编辑的资料并重新跳转到个人中心页面
 	 */
-	@RequestMapping(value="tocenter",method=RequestMethod.GET)
+	@RequestMapping(value="toeditinfo",method=RequestMethod.POST)
 	public String toEditUserInfo(HttpSession httpSession,Model model,
+			@RequestParam("user_nickname") String nickname,
+			@RequestParam("sex") String u_sex,
+			@RequestParam("hobby") String hobby,
+			@RequestParam("address") String address,
+			@RequestParam("age") Integer age,
 			@RequestParam(value="pageNum",defaultValue="1") int pageNum,
 			@RequestParam(value="u_pageNum",defaultValue="1") int u_pageNum) {
 		//获取当前用户的email
@@ -98,7 +103,12 @@ public class UserCenterController {
 		
 		//如果email不为空才进行如下操作
 		if(email!=null) {
-		//存储用户修改的信息	
+		//存储用户修改的信息
+			Integer sex = 0;
+			if(u_sex.equals("男")) {
+				sex = 1;
+			}
+		userCenterServiceImpl.updataUserInfo(email, sex, nickname, hobby, address, age);
 		
 		User user = userCenterServiceImpl.selectUserAccordingEmail(email);
 		System.out.println(user.getNickname());

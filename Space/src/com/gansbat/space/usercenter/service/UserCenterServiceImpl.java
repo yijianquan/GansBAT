@@ -52,4 +52,8 @@ public class UserCenterServiceImpl {
 			return null;
 		}
 	}
+	
+	/*
+	 * 
+	 */
 }

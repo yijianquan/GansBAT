@@ -37,5 +37,10 @@ public class UserCenterDaoImpl extends BaseDao<User, Integer> {
 	public User findUserAccordingEmail(String email) throws Exception {
 		return super.findOne("from User where email = ?", new Object[] {email});
 	}
-	
+	/*
+	 * 修改用户的信息
+	 */
+	public void update(User user) throws Exception{
+		super.update(user);
+	}
 }

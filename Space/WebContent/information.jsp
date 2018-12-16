@@ -52,7 +52,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            					<div class="edit_data" style="color:black;">
            						<center>
 	           							<form style="margin-bottom:15px ;margin-top:15px">
-
 	           								昵称：<input type="text" name="userID" value="" placeholder="请输入你的昵称"style="width:300px; height:40px;" />*<br><br>
 	           								性别：<label><input name="sex" type="radio" value="男" />男 </label> 
 											     <label><input name="sex" type="radio" value="女" />女 </label><br><br> 

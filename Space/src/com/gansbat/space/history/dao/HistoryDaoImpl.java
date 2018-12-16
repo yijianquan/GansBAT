@@ -48,12 +48,9 @@ public class HistoryDaoImpl extends BaseDao<History, Integer> {
 	/*
 	 * 删除用户的浏览记录
 	 */
-	@Override
-	public void delete(Object entity) throws Exception {
-		// TODO Auto-generated method stub
-		super.delete(entity);
+	public void delete(History history) throws Exception{
+		super.delete(history);
 	}
-	
 	/*
 	 * 读取用户所有的历史记录
 	 */

@@ -46,7 +46,6 @@ public class CommentServiceImpl {
 		List<Comment> c_list = new ArrayList<Comment>();
 		try {
 			c_list = commentDaoImpl.findAllAccordingSpaceId(space_id);
-			System.out.println("查询到场地"+space_id+"的所有评论");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,7 +61,6 @@ public class CommentServiceImpl {
 		Comment comment = new Comment(space_id, user_id, user_nickname, space_comment);
 		try {
 			commentDaoImpl.save(comment);
-			System.out.println("存储评论成功！");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

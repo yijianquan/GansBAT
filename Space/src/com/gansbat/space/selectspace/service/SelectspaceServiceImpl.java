@@ -50,7 +50,6 @@ public class SelectspaceServiceImpl implements SelectspaceService {
 		List<Space> s_list = new ArrayList<Space>();
 		try {
 			s_list = selectspaceDaoImpl.findTypeAllSpace(t_id);
-			System.out.println("查询该类场地成功！");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -56,7 +56,6 @@ public class ChatroomController {
 	@RequestMapping(value = "tochatroom",method=RequestMethod.GET)
 	public String toChatroom(HttpServletRequest request,HttpSession httpSession,Model model) {
 		String email = (String) httpSession.getAttribute("nowemail");
-		System.out.println(email);
 		//根据场地id找到对应的聊天室
 		Integer space_id = Integer.parseInt(request.getParameter("space_id"));
 		List<Chatroom> c_list = chatroomServiceImpl.selectAll(space_id);

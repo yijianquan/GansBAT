@@ -51,8 +51,10 @@ public class HistoryServiceImpl {
 		//如果用户已经拥有该条浏览历史，则删除上一条历史记录
 		try {
 			History d_history = historyDaoImpl.findHistoryAccordingSpaceId(space_id,user_id);
-			historyDaoImpl.delete(d_history);
-			System.out.println("删除成功！");
+			if(d_history!=null) {
+				historyDaoImpl.delete(d_history);
+				System.out.println("删除成功！");
+			}
 		} catch (Exception e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();

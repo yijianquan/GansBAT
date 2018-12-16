@@ -53,7 +53,6 @@ public class RegistController {
 		user.setEmail(email);
 		user.setPassword(password);
 		registServieImpl.registUser(user);
-		System.out.println("注册成功！");
 		return "regist";
 	}
 

@@ -43,12 +43,10 @@ public class UserCenterServiceImpl {
 		User user = new User();
 		try {
 			user = userCenterDaoImpl.findUserAccordingEmail(email);
-			System.out.println("根据email查询用户成功！");
 			return user;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("根据email查询用户失败！");
 			return null;
 		}
 	}
@@ -66,12 +64,10 @@ public class UserCenterServiceImpl {
 		user.setAge(age);
 		try {
 			userCenterDaoImpl.update(user);
-			System.out.println("更新成功！");
 			return 1;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("更新失败！");
 			return 0;
 		}
 		

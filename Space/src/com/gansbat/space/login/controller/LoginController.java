@@ -65,7 +65,6 @@ public class LoginController {
 		 user.setEmail(email);user.setPassword(password);
 		 
 		 String now_user = userServiceImpl.findNicknameAccordingEmail(email);
-		 System.out.println("当前用户是："+now_user);
 		 session.setAttribute("nowuser", now_user);
 		 session.setAttribute("nowemail", email);
 		 

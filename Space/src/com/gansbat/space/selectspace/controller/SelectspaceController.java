@@ -47,7 +47,6 @@ public class SelectspaceController {
 	public String toTypeSpace(HttpServletRequest request,Model model) {
 		Integer t_id = Integer.parseInt(request.getParameter("spacetype"));
 		List<Space> s_list = selectspaceServiceImpl.selectAllSpace(t_id);
-		System.out.println("查询成功！");
 		for(Space s:s_list) {
 			System.out.println(s.getSpace_id());
 		}

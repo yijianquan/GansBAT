@@ -52,7 +52,6 @@ public class LoginServiceImpl implements LoginService {
 			List<User> u_list = loginDaoImpl.findAll();
 			for(User u:u_list) {
 				if((user.getEmail().equals(u.getEmail())||user.getEmail()==u.getEmail())&&(user.getPassword().equals(u.getPassword())||user.getPassword()==u.getPassword())) {
-					System.out.println("邮箱和用户密码正确！");
 					username = u.getNickname();
 					break;
 				}else {

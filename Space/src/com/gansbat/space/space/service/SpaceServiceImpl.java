@@ -43,7 +43,6 @@ public class SpaceServiceImpl {
 		Space space = new Space();
 		try {
 			space = spaceDaoImpl.findSpaceAccordingSpaceId(space_id);
-			System.out.println("查询到了场地！");
 			return space;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

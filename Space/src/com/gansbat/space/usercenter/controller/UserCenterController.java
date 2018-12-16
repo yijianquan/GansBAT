@@ -64,11 +64,9 @@ public class UserCenterController {
 			@RequestParam(value="u_pageNum",defaultValue="1") int u_pageNum) {
 		//获取当前用户的email
 		String email = (String) httpSession.getAttribute("nowemail");
-		System.out.println(email);
 		//如果email不为空才进行如下操作
 		if(email!=null) {
 		User user = userCenterServiceImpl.selectUserAccordingEmail(email);
-		System.out.println(user.getNickname());
 		model.addAttribute("user", user);
 		
 		int user_id = userServiceImpl.findIdAccordingEmail(email);
@@ -99,7 +97,6 @@ public class UserCenterController {
 			@RequestParam(value="u_pageNum",defaultValue="1") int u_pageNum) {
 		//获取当前用户的email
 		String email = (String) httpSession.getAttribute("nowemail");
-		System.out.println(email);
 		
 		//如果email不为空才进行如下操作
 		if(email!=null) {
@@ -111,7 +108,6 @@ public class UserCenterController {
 		userCenterServiceImpl.updataUserInfo(email, sex, nickname, hobby, address, age);
 		
 		User user = userCenterServiceImpl.selectUserAccordingEmail(email);
-		System.out.println(user.getNickname());
 		model.addAttribute("user", user);
 		
 		int user_id = userServiceImpl.findIdAccordingEmail(email);

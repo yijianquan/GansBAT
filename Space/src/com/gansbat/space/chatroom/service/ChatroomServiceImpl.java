@@ -43,7 +43,6 @@ public class ChatroomServiceImpl implements ChatroomService {
 	
 	@Transactional(readOnly=true)
 	public List<Chatroom> selectAll(Integer space_id){
-		System.out.println("正在查询该场地对应的聊天室...");
 		try {
 			List<Chatroom> c_list = chatroomDaoImpl.findChatroomById(space_id);
 			return c_list;

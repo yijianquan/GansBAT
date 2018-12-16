@@ -52,7 +52,6 @@ public class UploadspaceServiceImpl {
 	@Transactional(readOnly=true)
 	public Page<Upload> selectUpload(int pageNum,int user_id){
 		try {
-			System.out.println("正在进行分页查询上传过的界面....");
 			return uploadspaceDaoImpl.findPage(pageNum, user_id);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

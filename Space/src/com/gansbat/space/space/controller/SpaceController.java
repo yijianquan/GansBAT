@@ -60,7 +60,6 @@ public class SpaceController {
 	@RequestMapping(value="/aspace",method=RequestMethod.GET)
 	public String toFindASpace(HttpSession httpSession,HttpServletRequest request,Model model) {
 		Integer space_id = Integer.parseInt(request.getParameter("space_id"));
-		System.out.println(space_id);
 		
 		//查询场地的基本信息
 		Space space = spaceServiceImpl.selectSpaceAccordingSpaceId(space_id);
@@ -71,9 +70,6 @@ public class SpaceController {
 		
 		//查询场地的评论
 		List<Comment> c_list = commentServiceImpl.selectAllAccordingSpaceId(space_id);
-		for(Comment comment :c_list) {
-			System.out.println(comment.getUser_nickname());
-		}
 		model.addAttribute("comment", c_list);		
 		
 
@@ -82,7 +78,6 @@ public class SpaceController {
 		 */
 			//获取当前用户的email
 			String email = (String) httpSession.getAttribute("nowemail");
-			System.out.println("当前用户的email是："+email);
 			if(email!=null) {
 				//根据email查询出用户的id
 				Integer u_id = userServiceImpl.findIdAccordingEmail(email);
@@ -97,8 +92,6 @@ public class SpaceController {
 	@RequestMapping(value="/tocomment",method=RequestMethod.POST)
 	public String toComment(@RequestParam("space_comment") String space_comment,HttpSession httpSession,HttpServletRequest request,Model model) {
 		Integer space_id = Integer.parseInt(request.getParameter("space_id"));
-		System.out.println(space_id);
-		
 		
 		//查询场地的基本信息
 		Space space = spaceServiceImpl.selectSpaceAccordingSpaceId(space_id);
@@ -113,7 +106,6 @@ public class SpaceController {
 		 */
 			//获取当前用户的email
 			String email = (String) httpSession.getAttribute("nowemail");
-			System.out.println("当前用户的email是："+email);
 			//根据email查询出用户的id,email
 			Integer u_id = userServiceImpl.findIdAccordingEmail(email);
 			String user_nickname = userServiceImpl.findNicknameAccordingEmail(email);
@@ -127,9 +119,6 @@ public class SpaceController {
 		
 		//查询场地的评论
 		List<Comment> c_list = commentServiceImpl.selectAllAccordingSpaceId(space_id);
-		for(Comment comment :c_list) {
-			System.out.println(comment.getUser_nickname());
-		}
 		model.addAttribute("comment", c_list);		
 		
 		return "space";

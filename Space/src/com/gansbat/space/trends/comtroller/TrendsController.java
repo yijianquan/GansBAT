@@ -54,7 +54,6 @@ public class TrendsController {
 		
 		//如果用户已登录，则可继续查询其他信息，否则直接跳转
 		if(email!=null) {
-			System.out.println(email);
 			String nickname = userServiceImpl.findNicknameAccordingEmail(email);
 			model.addAttribute("nickname", nickname);
 			model.addAttribute("email", email);

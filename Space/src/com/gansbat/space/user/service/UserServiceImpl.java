@@ -50,7 +50,6 @@ public class UserServiceImpl implements UserService {
 		try {
 			user = userDaoImpl.findNicknameAccordingEmail(email);
 			nickname = user.getNickname();
-			System.out.println(nickname);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -63,16 +62,13 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Transactional(readOnly=true)
 	public String findNicknameAccordingUserId(Integer user_id) {
-		System.out.println("正在根据user_id查询用户nickname");
 		try {
 			User user = userDaoImpl.findNicknameAccordingUserId(user_id);
 			String user_nickname = user.getNickname();
-			System.out.println(user_nickname);
 			return user_nickname;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("根据user_id查询用户昵称失败");
 			return null;
 		}
 	}
@@ -84,12 +80,10 @@ public class UserServiceImpl implements UserService {
 	public Integer findIdAccordingEmail(String email) {
 		try {
 			User user = userDaoImpl.findIdAccordingUserEmail(email);
-			System.out.println("根据email查询用户Id成功，Id是："+user.getId());
 			return user.getId();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("取出用户Id失败！");
 			return null;
 		}
 	}

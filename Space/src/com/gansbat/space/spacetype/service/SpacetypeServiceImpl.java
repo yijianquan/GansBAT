@@ -48,7 +48,6 @@ public class SpacetypeServiceImpl {
 		List<Type> t_list = new ArrayList<>();
 		try {
 			t_list = spacetypeDaoImpl.findAll();
-			System.out.println("service查询成功！");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

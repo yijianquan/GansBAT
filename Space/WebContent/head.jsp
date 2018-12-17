@@ -31,7 +31,24 @@
 						<%}else{ %>
 							<li id="userlogin"><a href="#" data-toggle="modal" data-target="#myModal"><img
 								src="images/login.jpg"></a></li>
-						<%}%>						
+							<script>
+								window.onload = function() {
+									$("#usercenter").attr('href','');
+									$("#usercenter").on("click",function(){
+										return false;
+									})
+									$("#usercenter").attr("onclick","pleaselogin()");
+									$("#usertrends").attr('href','');
+									$("#usertrends").on("click",function(){
+										return false;
+									})
+									$("#usertrends").attr("onclick","pleaselogin()");
+								};
+								function pleaselogin(){
+									alert("清先登录！");
+								}								
+							</script>
+						<%}%>
 						<!-- 模态框（Modal） -->
 							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 								<div class="modal-dialog">
@@ -90,8 +107,8 @@
 								</div>
 							</div>
 						<li class="smallicon"><a href="${ctx}/usercenter/tocenter"
-							class="scroll"><img src="images/account.jpg"></a></li>
-						<li class="smallicon"><a href="${ctx}/trends/totrends" class="scroll"><img
+							class="scroll" id="usercenter"><img src="images/account.jpg"></a></li>
+						<li class="smallicon"><a href="${ctx}/trends/totrends" class="scroll" id="usertrends"><img
 								src="images/trends.jpg"></a></li>
 					</ul>
 				</div>

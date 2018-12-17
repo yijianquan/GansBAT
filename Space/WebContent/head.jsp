@@ -55,7 +55,7 @@
 												        var password = $("#password").val();
 														$.post("${ctx}/login/ajax",{email:email,password:password},function(data){
 															var res = $.parseJSON(data);//把后台传回的json数据解析
-															alert(res);
+															alert("登陆成功！");
 															$.each(res,function(index,value){
 															     a = res[0];
 															     b = res[1];
@@ -66,7 +66,6 @@
 																$("#username").text(b);
 															}
 														});
-														event.preventDefault();
 													});
 												})
 												</script>

@@ -32,7 +32,7 @@ import com.gansbat.space.space.dao.SpaceDaoImpl;
 * Dec 6, 2018     Xiaoyi           v1.0.0               修改原因
 */
 @Service
-@Transactional(readOnly=true)
+@Transactional(readOnly=false)
 public class SpaceServiceImpl {
 
 	@Resource
@@ -45,9 +45,23 @@ public class SpaceServiceImpl {
 			space = spaceDaoImpl.findSpaceAccordingSpaceId(space_id);
 			return space;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return space;
+	}
+	
+	//用户点赞
+	@Transactional(readOnly=false)
+	public Integer likeSpace(Integer space_id,Integer likenum) {
+		Space space  = selectSpaceAccordingSpaceId(space_id);
+		space.setLikenum(likenum);
+		System.out.println(space.getLikenum());
+		try {
+			spaceDaoImpl.updataLikeSpace(space);
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
 }

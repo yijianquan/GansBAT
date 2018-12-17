@@ -121,7 +121,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<p class="historycontent">浏览历史：</p>
 			<div class="browsercontent">
 				<c:forEach items="${p_history}" var="p_history" >
-					<p><a href="#">${p_history.space_name}</a></p>
+					<p><a href="${ctx }/selectthisspace/aspace?space_id=${p_history.space_id }">${p_history.space_name}</a></p>
 				</c:forEach>
 			</div>
 			<div style="float:right;margin-right:5%;">

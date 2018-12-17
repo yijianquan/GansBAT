@@ -114,9 +114,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="intro">
 				<!-- 简介 -->
 				<span class="intro_font">位置：</span>${space.space_address }<br> 
-				<span class="intro_font">距你：</span>0.5km<br> 
-				<a href="#"><img class="space_icon" src="images/like.png" /></a>&nbsp;&nbsp;<span>“点赞数：”${space.likenum }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img class="space_icon" src="images/share.png" />&nbsp;&nbsp;&nbsp;分享</a><br>
-				<span style="font-size:1.3em"><a href="${ctx }/chatroom/tochatroom?space_id=${space.space_id }">"聊天室"</a></span><span style="font-size:1.3em;margin-left:2em;"><a href="#">"查看地图"</a></span>				
+				<span class="intro_font">距你：</span>0.5km<br>	
+				<a href="" onclick="likethis()" id="thumbsup"><img class="space_icon" src="images/dislike.png" id="likenum" /></a>&nbsp;&nbsp;<span>“点赞数：”${space.likenum }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<!-- 点赞 -->
+				<script>
+					window.onload = function(){
+						var likenum = $('#likenum').attr('src');
+						if(likenum=="images/dislike.png"){
+							$('#thumbsup').attr('href','${ctx }/selectthisspace/likespace?like=1&space_id=${space.space_id }');
+						}else{
+							$('#thumbsup').attr('href','${ctx }/selectthisspace/likespace?like=0&space_id=${space.space_id }');
+						}
+					}
+				</script>
+				<a href="#"><img class="space_icon" src="images/share.png" />&nbsp;&nbsp;&nbsp;分享</a><br>
+				<span style="font-size:1.3em"><a href="${ctx }/chatroom/tochatroom?space_id=${space.space_id }">"聊天室"</a></span>
+				<span style="font-size:1.3em;margin-left:2em;"><a href="${ctx }/selectthisspace/map?space_id=${space.space_id }">"查看地图"</a></span>			
 			</div>
 			<div class="intro">
 				<!-- 详情 -->
@@ -125,7 +138,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<span class="intro_font">开放时间：</span><span>${space.opentime }</span><br>
 			</div>
 			<div class="space_btn">
-			<a href="#" class="button button-glow button-border button-rounded button-primary">信息不准确，我要反馈</a>
+			<a href="" class="button button-glow button-border button-rounded button-primary">信息不准确，我要反馈</a>
 			</div>			
 		</div>
 		<script>

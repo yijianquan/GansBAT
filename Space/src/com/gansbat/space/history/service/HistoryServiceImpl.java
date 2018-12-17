@@ -59,7 +59,6 @@ public class HistoryServiceImpl {
 		if(d_history!=null) {
 			try {
 				historyDaoImpl.delete(d_history);
-				System.out.println("删除成功！");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

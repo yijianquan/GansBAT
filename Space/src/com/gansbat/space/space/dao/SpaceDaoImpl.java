@@ -40,4 +40,11 @@ public class SpaceDaoImpl extends BaseDao<Space, Integer> {
 	public Space findSpaceAccordingSpaceId(Integer space_id) throws Exception {
 		return super.findOne("from Space where space_id = ?", new Object[] {space_id});
 	}
+	/*
+	 * 点赞数+1
+	 */
+	public void updataLikeSpace(Space space) throws Exception{
+		System.out.println(space.getLikenum());
+		super.update(space);
+	}
 }

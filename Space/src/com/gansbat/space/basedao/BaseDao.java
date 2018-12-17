@@ -8,13 +8,10 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.catalina.ant.FindLeaksTask;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.CriteriaSpecification;
-
-import sun.net.www.content.text.plain;
 
 /**
  * @desc 用于Spring整合Hibernate之后，数据持久层代码的封装。提供了基本的数据增删改查，以及基于HQL的查询、分页查询，基于SQL的查询、分页查询等。

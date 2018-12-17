@@ -57,6 +57,7 @@ public class SpaceController {
 	@Resource
 	private HistoryServiceImpl historyServiceImpl;
 	
+	//跳转到场地
 	@RequestMapping(value="/aspace",method=RequestMethod.GET)
 	public String toFindASpace(HttpSession httpSession,HttpServletRequest request,Model model) {
 		Integer space_id = Integer.parseInt(request.getParameter("space_id"));
@@ -116,6 +117,39 @@ public class SpaceController {
 
 		//存储用户的评论信息
 		commentServiceImpl.saveComment(space_id, u_id, user_nickname, space_comment);
+		
+		//查询场地的评论
+		List<Comment> c_list = commentServiceImpl.selectAllAccordingSpaceId(space_id);
+		model.addAttribute("comment", c_list);		
+		
+		return "space";
+	}
+	
+	//用户点赞场地
+	@RequestMapping(value="/likespace",method=RequestMethod.GET)
+	public String toLikeSpace(HttpSession httpSession,HttpServletRequest request,Model model) {
+		Integer space_id = Integer.parseInt(request.getParameter("space_id"));
+		
+		//查询场地的基本信息
+		Space space = spaceServiceImpl.selectSpaceAccordingSpaceId(space_id);
+		model.addAttribute("space", space);
+		
+		//用户点赞
+		Integer like = Integer.parseInt(request.getParameter("like"));
+		Integer likenum = 0;
+		if(like==1) {
+			space.setLikenum(space.getLikenum()+1);
+			likenum = space.getLikenum();
+			spaceServiceImpl.likeSpace(space_id, likenum);
+		}else {
+			space.setLikenum(space.getLikenum()-1);
+			likenum = space.getLikenum();
+			spaceServiceImpl.likeSpace(space_id, likenum);
+		}
+		
+		//将场地是否收费单独到页面
+		int charge = space.getCharge();
+		model.addAttribute("charge", charge);
 		
 		//查询场地的评论
 		List<Comment> c_list = commentServiceImpl.selectAllAccordingSpaceId(space_id);

@@ -72,24 +72,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="container">
 						<div class="content-from">
 							<div class="col-md-4 from-grid ">
-								<a href="detail.html"><img class="img-responsive left-pic" src="images/basketball.jpg" alt=" " /></a>
-								<a href="detail.html"><p>篮球场</p></a>							
+								<a href="${ctx }/selectspace/alltypespace?spacetype=1"><img class="img-responsive left-pic" src="images/basketball.jpg" alt=" " /></a>
+								<a href="${ctx }/selectspace/alltypespace?spacetype=1"><p>篮球场</p></a>							
 							</div>
 							<div class="col-md-4 from-grid ">
-								<a href="detail.html"><img class="img-responsive left-pic" src="images/football.jpg" alt=" " /></a>
-								<a href="detail.html"><p>足球场</p></a>							
+								<a href="${ctx }/selectspace/alltypespace?spacetype=2"><img class="img-responsive left-pic" src="images/football.jpg" alt=" " /></a>
+								<a href="${ctx }/selectspace/alltypespace?spacetype=2"><p>足球场</p></a>							
 							</div>
 							<div class="col-md-4 from-grid ">
-								<a href="detail.html"><img class="img-responsive left-pic" src="images/pingpong.jpg" alt=" " /></a>
-								<a href="detail.html"><p>乒乓球</p></a>							
+								<a href="${ctx }/selectspace/alltypespace?spacetype=3"><img class="img-responsive left-pic" src="images/pingpong.jpg" alt=" " /></a>
+								<a href="${ctx }/selectspace/alltypespace?spacetype=3"><p>乒乓球</p></a>							
 							</div>
 							<div class="col-md-4 from-grid ">
-								<a href="detail.html"><img class="img-responsive left-pic" src="images/ground.jpg" alt=" " /></a>
-								<a href="detail.html"><p>橡胶跑道</p></a>							
+								<a href="${ctx }/selectspace/alltypespace?spacetype=4"><img class="img-responsive left-pic" src="images/ground.jpg" alt=" " /></a>
+								<a href="${ctx }/selectspace/alltypespace?spacetype=4"><p>橡胶跑道</p></a>							
 							</div>
 							<div class="col-md-4 from-grid ">
-								<a href="detail.html"><img class="img-responsive left-pic" src="images/bodybuild.jpg" alt=" " /></a>
-								<a href="detail.html"><p>健身场地</p></a>							
+								<a href="${ctx }/selectspace/alltypespace?spacetype=5"><img class="img-responsive left-pic" src="images/bodybuild.jpg" alt=" " /></a>
+								<a href="${ctx }/selectspace/alltypespace?spacetype=5"><p>健身场地</p></a>							
 							</div>
 							<div class="col-md-4 from-grid ">
 								<a href="${ctx }/spacetype/select"><img class="img-responsive left-pic" src="images/moreplace.jpg" alt=" " /></a>

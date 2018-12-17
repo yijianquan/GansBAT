@@ -23,5 +23,9 @@
 		<property name="prefix" value="/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-    
+<!-- 使用annotation定义事务 -->
+<bean class="org.springframework.orm.hibernate5.HibernateTransactionManager" id="transactionManager">
+<property name="sessionFactory" ref="sessionFactory"/>
+</bean>
+<tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager"/>
 </beans>

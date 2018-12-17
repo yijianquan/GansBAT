@@ -23,36 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href='font/font.css?family=Passion+One:400,700,900' rel='stylesheet' type='text/css'>
 <!--//fonts-->
  <script src="js/responsiveslides.min.js"></script>
- <script>
-    function check(){
-		var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); //正则表达式
-		var obj = document.getElementById("mazey"); //要验证的对象
-		if(obj.value === ""){ //输入不能为空
-			document.getElementById("tip1").innerText="邮箱不能为空！";
-			return false;
-		}else if(!reg.test(obj.value)){ //正则验证不通过，格式不对
-			document.getElementById("tip1").innerText="邮箱格式不正确！";
-			return false;}
-		else{
-			document.getElementById("tip1").innerText="邮箱格式正确！";
-			return true;
-		}
-	}    
-    function pwCheck(obj){
-    	var pass1 = document.getElementById("p1").value;
-    	var pass2 = obj.value;
-    	if(pass1 == pass2){
-    		document.getElementById("tip").innerText="两次密码一致！";
-    	}else{
-    		document.getElementById("tip").innerText="两次密码不一致！";
-    		
-    	}
-    	if (pass1 == 0 && pass2 == 0) {
-    		document.getElementById("tip").innerText="请输入你的密码";
-    	} 
 
-    }
-  </script>
 <style type="text/css">
 	#tip{
 		float: right;
@@ -70,11 +41,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script>
-		$('#login-button').click(function(event) {
-			event.preventDefault();
-			$('form').fadeOut(500);
-			$('.wrapper').addClass('form-success');
-		});
+	$('#login-button').click(function(event) {
+		event.preventDefault();
+		$('form').fadeOut(500);
+		$('.wrapper').addClass('form-success');
+	});
 </script>
 </head>
 <body>
@@ -88,9 +59,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<p><h1>用 户 注 册</h1></p>
 		</div>
 		<div class="registinfo">
-		<form action="${ctx }regist/storage" method="post">
+		<form action="${ctx }/regist/storage" method="post" onsubmit="return check()">
 			<h5>你的邮箱*</h5>
-			<input class="registinformation" type="text" name="email" id="mazey" placeholder="请输入你的email" onblur="check()"><div id="tip1"></div>
+			<input class="registinformation" type="text" name="email" id="youremail" placeholder="请输入你的email" onblur="checkemail()"><div id="tip1"></div>
+			 <script>
+				 $(function () {
+					var registok = "${registok}";
+					if(registok == ""){
+					}else{
+						alert(registok);
+					}
+				 });
+			    function checkemail(){
+				 	var check = false;
+					var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); //正则表达式
+					var obj = document.getElementById("youremail"); //要验证的对象
+					if(obj.value === ""){ //输入不能为空
+						$("#tip1").html("邮箱不能为空！");
+						check = false;
+					}else if(!reg.test(obj.value)){ //正则验证不通过，格式不对
+						$("#tip1").html("邮箱格式不正确！");
+						check = false;
+					}else{
+						document.getElementById("tip1").innerText="邮箱格式正确！";
+						check = true;
+					}
+					return check;
+				}    
+			    function pwCheck(){
+				 	var check = false;
+			    	var pass1 = document.getElementById("p1").value;
+			    	var pass2 = document.getElementById("p2").value;
+			    	if(pass1 == pass2){
+			    		document.getElementById("tip").innerText="两次密码一致！";
+						check = true;
+			    	}else{
+			    		document.getElementById("tip").innerText="两次密码不一致！";
+						check = false;			    		
+			    	}
+			    	if (pass1 == 0 && pass2 == 0) {
+			    		document.getElementById("tip").innerText="请输入你的密码";
+						check = false;
+			    	} 
+					return check;
+			    }
+				function check() { 
+					 var check = false;
+					 var check = pwCheck() && checkemail() && registcode();
+					 if(check==false){
+						 alert("请先正确填写你的信息！");
+						 return check;
+					 }
+					 return check; 
+				}
+			  </script>
 			<h5>你的昵称*</h5>
 			<input class="registinformation" type="text" name="nickname" placeholder="请输入你的昵称">
 			<h5>请输入你的密码*</h5>
@@ -98,10 +120,53 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<h5>请确认你的密码*</h5>			
 			<input class="registinformation" type="password" name="confirmpassword" placeholder="请确认你的密码" id="p2" onblur="pwCheck(this)"><div id="tip"></div>
 
-			<input type="text" name="code" placeholder="请输入你收到的验证码" class="registcode">
-			<input type="submit" value="向邮箱发送验证码" class="sendcode">
+			<input type="text" name="code" placeholder="请输入你收到的验证码" id="registcode" class="registcode">
+			<input type="submit" value="向邮箱发送验证码" class="sendcode" id="btnSendCode" onsubmit="return check()" onclick="sendMessage()">
+			<script type="text/javascript">
+				var InterValObj; //timer变量，控制时间
+				var count = 100; //间隔函数，1秒执行
+				var curCount;//当前剩余秒数
+				var a = ",./,/.,/.,";
+				var email = null;
+				function sendMessage() {
+					email = $("#youremail").val();
+					console.log(email);
+					curCount = count;
+					//设置button效果，开始计时
+					$("#btnSendCode").attr("disabled", "true");
+					$("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+					InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+					//向后台发送处理数据
+					$.post("${ctx}/regist/sendcode",{email:email},function(data){
+						var res = $.parseJSON(data);
+						$.each(res,function(index,value){
+							a = res[0];
+						});
+					});
+				}
+				//timer处理函数
+				function SetRemainTime() {
+				    if (curCount == 0) {                
+				        window.clearInterval(InterValObj);//停止计时器
+				        $("#btnSendCode").removeAttr("disabled");//启用按钮
+				        $("#btnSendCode").val("重新发送验证码");
+				    }else {
+				        curCount--;
+				        $("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+				    }
+				}
+				function registcode(){
+					var code = $("#registcode").val();
+					if(a==code){
+						return true;	
+					}else{
+						alert("验证码错误！");
+						return false;
+					}
+				}
+			</script>
 			<div>
-				<input id="regist" type="submit" value="注 册" onMouseOut="this.style.backgroundColor=''" onMouseOver="this.style.backgroundColor='#9D9D9D'" class="registbutton">
+				<input id="regist" type="submit" value="注 册" onMouseOut="this.style.backgroundColor=''" onMouseOver="this.style.backgroundColor='#9D9D9D'" onclick="registcode()" class="registbutton">
 			</div>
 		</form>
 		</div>

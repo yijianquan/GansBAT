@@ -69,12 +69,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="sendmessage">
 					<div class="chatbutton">
 						<input type="button" name="" value="刷 新" class="chatfresh">
-						<input type="button" name="" value="发 送" class="chatsend">
+						<form action="${ctx }/chatroom/storage" method="post"  onsubmit="return sendMessage()">
+							<input type="button" name="" value="发 送" class="chatsend" onclick="sendMessage()">
+						</form>
 					</div>
 					<div class="sendframe">
 						<textarea></textarea>
 					</div>
 				</div>
+				<% String user=(String)session.getAttribute("nowuser");
+					if(user!=null){%>
+					<script>
+						function sendMessage(){
+							alert("发聊天信息请先登录！");
+							return false;
+						}
+					</script>
+				<%}else{ %>
+				
+				<%} %>
 			</div>
 
 			<!--成员-->

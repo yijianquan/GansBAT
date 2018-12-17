@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gansbat.space.entity.User;
 import com.gansbat.space.regist.dao.RegistDaoImpl;
+import com.gansbat.space.user.dao.UserDaoImpl;
 
 /**   
 * Copyright: Copyright (c) 2018 LanRu-Caifu
@@ -38,14 +39,29 @@ public class RegistServieImpl implements RegistService {
 	
 	@Resource
 	private RegistDaoImpl registDaoImpl;
+	@Resource
+	private UserDaoImpl userDaoImpl;
 	
 	@Transactional(readOnly=false)
-	public void registUser(User user) {
+	public Integer registUser(User user) {
+		User users = null;
 		try {
-			registDaoImpl.save(user);
-		} catch (Exception e) {
+			users = userDaoImpl.findIdAccordingUserEmail(user.getEmail());
+		} catch (Exception e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
+		}
+		if(users==null) {
+			try {
+				registDaoImpl.save(user);
+				return 1;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return 0;
+			}
+		}else {
+			return 2;
 		}
 	}
 }

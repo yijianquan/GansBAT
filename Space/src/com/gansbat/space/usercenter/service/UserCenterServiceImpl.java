@@ -69,7 +69,18 @@ public class UserCenterServiceImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return 0;
+		}		
+	}
+	/*
+	 * 用户编辑资料，传来的是user对象
+	 */
+	@Transactional(readOnly=false)
+	public void updataUserFromChatroom(User user) {
+		try {
+			userCenterDaoImpl.update(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
 	}
 }

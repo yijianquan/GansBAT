@@ -26,6 +26,7 @@ import com.gansbat.space.chatroom.service.ChatroomServiceImpl;
 import com.gansbat.space.entity.Chatroom;
 import com.gansbat.space.entity.User;
 import com.gansbat.space.user.service.UserServiceImpl;
+import com.gansbat.space.usercenter.service.UserCenterServiceImpl;
 import com.sun.jndi.url.iiopname.iiopnameURLContextFactory;
 
 /**   
@@ -51,6 +52,8 @@ public class ChatroomController {
 	private UserServiceImpl userServiceImpl;
 	@Resource
 	private ChatroomServiceImpl chatroomServiceImpl;
+	@Resource
+	private UserCenterServiceImpl userCenterServiceImpl;
 	
 	/*
 	 * 跳转到chatroom页面
@@ -76,6 +79,9 @@ public class ChatroomController {
 		return "chatroom";
 	}
 	
+	/*
+	 * 发送聊天信息，如果用户刷新信息也是这个
+	 */
 	@RequestMapping(value="sendmessage",method=RequestMethod.POST)
 	public String toSendMessage(@RequestParam("message") String chat_content,HttpServletRequest request,HttpSession httpSession,Model model) {
 		String email = (String) httpSession.getAttribute("nowemail");
@@ -101,5 +107,44 @@ public class ChatroomController {
 		
 		return "chatroom";
 	}
-
+	
+	/*
+	 * 用户在聊天室修改自己的信息
+	 */
+	@RequestMapping(value = "changeinformation",method=RequestMethod.POST)
+	public String toChangeInformation(@RequestParam("user_nickname") String nickname,
+			@RequestParam("intro") String intro,
+			@RequestParam("age") Integer age,
+			@RequestParam("height") Integer height,
+			@RequestParam("weight") Integer weight,
+			HttpServletRequest request,HttpSession httpSession,Model model) {
+		String email = (String) httpSession.getAttribute("nowemail");
+		//查到用户的信息并进行修改
+		User user = userServiceImpl.findUserByEmail(email);
+		if(nickname.equals("")) {}else {
+			user.setNickname(nickname);
+		}
+		user.setAge(age);
+		user.setHeight(height);
+		user.setWeight(weight);
+		user.setIntro(intro);
+		userCenterServiceImpl.updataUserFromChatroom(user);
+		
+		//根据场地id找到对应的聊天室
+		Integer space_id = Integer.parseInt(request.getParameter("space_id"));
+		List<Chatroom> c_list = chatroomServiceImpl.selectAll(space_id);
+		//根据聊天室对应的Id，并去除重复的，找到user_id来查找到每个用户的基本信息
+		List<Integer> list = new ArrayList<>();
+		list = chatroomServiceImpl.selectDistinct(space_id);
+		List<User> u_List = new ArrayList<User>();
+		for(int user_id:list) {
+			u_List.add(userServiceImpl.findUserById(user_id));
+		}
+		
+		model.addAttribute("space_id", space_id);
+		model.addAttribute("c_list", c_list);
+		model.addAttribute("u_list", u_List);
+		
+		return "chatroom";
+	}
 }

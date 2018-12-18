@@ -44,9 +44,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a href="">
 					<p style="background-color: yellow;">聊天室</p>
 				</a>
-				<a href="">
-					<p style="background-color: green;">个人设置</p>
-				</a>
+				<p style="background-color: green;" data-toggle="modal" data-target="#edit">个人设置</p>
+								
+				<!--弹框-->
+				<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="editLabel" aria-hidden="true">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header">
+               					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+           					</div>
+
+           					<div class="edit_data" style="color:black;">
+           						<center>
+	           							<form onsubmit="return checkForm()" action="${ctx }/chatroom/changeinformation?space_id=${space_id }" method="post" style="margin-bottom:15px ;margin-top:15px">
+	           								昵称：<input type="text" name="user_nickname" value="" placeholder="请输入你的昵称"style="width:300px; height:40px;" />*<br><br>
+	           								介绍：<input type="text" name="intro" value="" placeholder="请输入你的爱好"style="width:300px; height:40px;" /> <br><br>
+	           								年龄：<input type="text" name="age" value="" placeholder="请输入你的年龄"style="width:300px; height:40px;" /> <br><br>
+	           								身高：<input type="text" name="height" value="" placeholder="请输入你的身高（cm）"style="width:300px; height:40px;" /> <br><br>
+	           								体重：<input type="text" name="weight" value="" placeholder="请输入你的体重（kg）"style="width:300px; height:40px;" /> <br><br>
+	           							 	<input type=submit name="submit1"  class="btn "  value="保存 " onclick="return check(this.form)">  
+	           							</form>
+	           					</center>
+	           					<script type="text/javascript">
+	           					function checkForm(){
+	           						<%String user = (String)session.getAttribute("nowuser");
+	           						if(user==null){%>
+	           						alert("请先登录！");
+	           						return false;
+	           						<%}%>
+	           						if(window.confirm("确认保存修改吗？")){
+	           							return true;
+	           						}
+	           						return false;
+	           					}
+	           					</script>
+           					</div>
+
+				        </div><!-- /.modal-content -->
+				    </div><!-- /.modal -->
+				</div>
+				
 				<a href="">
 					<p style="background-color: red;">退出聊天</p>
 				</a>
@@ -85,8 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						alert("请填写文章内容！");
 						return false;
 					}
-					<%String user = (String)session.getAttribute("nowuser");
-					if(user==null){%>
+					<%if(user==null){%>
 					alert("请登录后再发送！");
 					return false;
 					<%}%>

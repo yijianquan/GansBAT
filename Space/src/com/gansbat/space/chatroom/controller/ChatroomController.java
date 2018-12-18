@@ -76,7 +76,7 @@ public class ChatroomController {
 		return "chatroom";
 	}
 	
-	@RequestMapping(value="/sendmessage",method=RequestMethod.POST)
+	@RequestMapping(value="sendmessage",method=RequestMethod.POST)
 	public String toSendMessage(@RequestParam("message") String chat_content,HttpServletRequest request,HttpSession httpSession,Model model) {
 		String email = (String) httpSession.getAttribute("nowemail");
 		User user = userServiceImpl.findUserByEmail(email);

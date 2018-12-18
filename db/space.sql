@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50506
 File Encoding         : 65001
 
-Date: 2018-12-12 17:38:27
+Date: 2018-12-18 14:23:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,14 +23,19 @@ CREATE TABLE `chatroom` (
   `room_id` int(11) NOT NULL AUTO_INCREMENT,
   `space_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
+  `user_nickname` varchar(20) DEFAULT NULL,
+  `chat_content` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`room_id`),
   KEY `space_id` (`space_id`),
   CONSTRAINT `chatroom_ibfk_1` FOREIGN KEY (`space_id`) REFERENCES `space` (`space_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of chatroom
 -- ----------------------------
+INSERT INTO `chatroom` VALUES ('1', '2', '1', '王伟老师', '哈哈哈，你们好');
+INSERT INTO `chatroom` VALUES ('2', '2', '7', '张飞宇', '我是大哥');
+INSERT INTO `chatroom` VALUES ('3', '2', '12', '纯情小火又鸟', '大家好');
 
 -- ----------------------------
 -- Table structure for `comment`
@@ -43,7 +48,7 @@ CREATE TABLE `comment` (
   `user_nickname` varchar(20) DEFAULT NULL,
   `comment` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`comment_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of comment
@@ -56,6 +61,8 @@ INSERT INTO `comment` VALUES ('5', '2', '5', '我是武永亮老师', '贼爽，
 INSERT INTO `comment` VALUES ('6', '2', '6', '我是小得润润', '我是这儿的学生，经常在这打球，最近崴脚了，很难受，有时间约球啊');
 INSERT INTO `comment` VALUES ('7', '2', '7', '小飞飞爱打球', '石家庄的冬天有点冷，晚上建议去体育学院打球，那儿舒服。');
 INSERT INTO `comment` VALUES ('8', '2', '8', '李岱恒同学', '还可以哈');
+INSERT INTO `comment` VALUES ('9', '2', '7', '小飞飞爱打球', '打球真尼玛好玩');
+INSERT INTO `comment` VALUES ('10', '2', '7', '小飞飞爱打球', '不错不错');
 
 -- ----------------------------
 -- Table structure for `contact`
@@ -87,22 +94,13 @@ CREATE TABLE `history` (
   `space_name` varchar(20) DEFAULT NULL,
   `space_img` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of history
 -- ----------------------------
-INSERT INTO `history` VALUES ('0', '7', '1', '河北师范大学体育学院', 'images/basketball1.jpg');
-INSERT INTO `history` VALUES ('1', '7', '2', '河北师范大学西操场', 'images/basketball2.jpg');
-INSERT INTO `history` VALUES ('3', '7', '3', '石家庄体育馆', 'images/basketball3.jpg');
-INSERT INTO `history` VALUES ('4', '7', '4', '石家庄平安公园篮球场', 'images/basketball4.jpg');
-INSERT INTO `history` VALUES ('6', '7', '5', '石家庄粟水清苑', 'images/basketball5.jpg');
-INSERT INTO `history` VALUES ('7', '7', '6', '石家庄南山', 'images/basketball5.jpg');
-INSERT INTO `history` VALUES ('14', '7', '2', '河北师范大学西操场', 'images/basketball2.jpg');
-INSERT INTO `history` VALUES ('15', '2', '2', '河北师范大学西操场', 'images/basketball2.jpg');
-INSERT INTO `history` VALUES ('16', '2', '2', '河北师范大学西操场', 'images/basketball2.jpg');
-INSERT INTO `history` VALUES ('17', '7', '2', '河北师范大学西操场', 'images/basketball2.jpg');
-INSERT INTO `history` VALUES ('18', '7', '1', '河北师范大学体育学院', 'images/basketball1.jpg');
+INSERT INTO `history` VALUES ('62', '7', '2', '河北师范大学西操场', 'images/basketball2.jpg');
+INSERT INTO `history` VALUES ('69', '12', '2', '河北师范大学西操场', 'images/basketball2.jpg');
 
 -- ----------------------------
 -- Table structure for `space`
@@ -127,8 +125,8 @@ CREATE TABLE `space` (
 -- ----------------------------
 -- Records of space
 -- ----------------------------
-INSERT INTO `space` VALUES ('1', '1', '河北师范大学体育学院', 'images/basketball1.jpg', null, null, '0', null, null, '00000000000', null, null);
-INSERT INTO `space` VALUES ('2', '1', '河北师范大学西操场', 'images/basketball2.jpg', 'images/1.jpg', 'images/2.jpg', '1', '塑料地板', '全天', '00000000099', null, null);
+INSERT INTO `space` VALUES ('1', '1', '河北师范大学体育学院', 'images/basketball1.jpg', 'images/basketball1.jpg', 'images/basketball1.jpg', '0', '木地板', '白天', '00000000013', '114.525476', '37.998133');
+INSERT INTO `space` VALUES ('2', '1', '河北师范大学西操场', 'images/basketball2.jpg', 'images/1.jpg', 'images/2.jpg', '1', '塑料地板', '全天', '00000000102', '114.513658', '37.995527');
 INSERT INTO `space` VALUES ('3', '1', '石家庄体育馆', 'images/basketball3.jpg', null, null, '0', null, null, '00000000000', null, null);
 INSERT INTO `space` VALUES ('4', '1', '石家庄平安公园篮球场', 'images/basketball4.jpg', null, null, '0', null, null, '00000000000', null, null);
 INSERT INTO `space` VALUES ('5', '1', '石家庄粟水清苑', 'images/basketball5.jpg', null, null, '0', null, null, '00000000000', null, null);
@@ -170,13 +168,18 @@ CREATE TABLE `upload` (
   `space_intro` varchar(50) DEFAULT NULL,
   `opentime` varchar(20) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
+  `longitude` decimal(10,6) DEFAULT NULL,
+  `latitude` decimal(10,6) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of upload
 -- ----------------------------
-INSERT INTO `upload` VALUES ('1', '1', '', null, null, '结了婚', '1', '系红领巾hh', '河涸海干开关机', '0');
+INSERT INTO `upload` VALUES ('1', '1', 'images/basketball2.jpg', null, null, '河北师范大学西操场', '1', '塑料地板', '全天，除了晚上', '7', null, null);
+INSERT INTO `upload` VALUES ('2', '1', 'images/basketball1.jpg', null, null, '河北师大体育学院', '1', '木质地板', '白天', '7', null, null);
+INSERT INTO `upload` VALUES ('3', '1', 'images/basketball3.jpg', null, null, '校外篮球场', '0', '水泥地', '全天', '7', null, null);
+INSERT INTO `upload` VALUES ('4', '1', 'images/basketball4.jpg', null, null, '石家庄平安公园篮球场', '0', '水泥地', '全天', '7', null, null);
 
 -- ----------------------------
 -- Table structure for `users`
@@ -192,32 +195,20 @@ CREATE TABLE `users` (
   `hobby` varchar(20) DEFAULT NULL,
   `address` varchar(30) DEFAULT NULL,
   `intro` varchar(50) DEFAULT NULL,
+  `height` int(4) DEFAULT NULL,
+  `weight` int(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'wangwei', '王伟老师', 'yijianquan', '0', '0', null, null, null);
-INSERT INTO `users` VALUES ('2', 'wangpengfan', '王鹏帆老师', 'wangpengfan', '0', '0', null, null, null);
-INSERT INTO `users` VALUES ('3', 'chenrunzi', '陈润滋老师', 'zhangfeiyu', '0', '0', null, null, null);
-INSERT INTO `users` VALUES ('4', 'dingmeng', '丁盟老师', 'dingmeng', '0', '45', null, null, null);
-INSERT INTO `users` VALUES ('5', 'wuyongliang', '我是武永亮老师', 'wuyongliang', '0', '50', null, null, null);
-INSERT INTO `users` VALUES ('6', 'wangderun', '我是小得润润', 'wangderun', '0', '20', null, null, null);
-INSERT INTO `users` VALUES ('7', 'zhangfeiyu', '小飞飞爱打球', 'zhangfeiyu', '1', '47', '篮球,足球', '河北省石家庄市', '我的优点是我很帅，我的缺点是我帅的并不明显');
-INSERT INTO `users` VALUES ('8', 'lidaiheng', '李岱恒同学', 'lidaiheng', '0', '0', null, null, null);
-
--- ----------------------------
--- Table structure for `user_upload`
--- ----------------------------
-DROP TABLE IF EXISTS `user_upload`;
-CREATE TABLE `user_upload` (
-  `upload_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `space_id` int(11) NOT NULL,
-  PRIMARY KEY (`upload_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of user_upload
--- ----------------------------
+INSERT INTO `users` VALUES ('1', 'wangwei', '王伟老师', 'yijianquan', '0', '0', null, null, '我爱篮球，篮球爱我', '165', '110');
+INSERT INTO `users` VALUES ('2', 'wangpengfan', '王鹏帆老师', 'wangpengfan', '0', '0', null, null, null, null, null);
+INSERT INTO `users` VALUES ('3', 'chenrunzi', '陈润滋老师', 'zhangfeiyu', '0', '0', null, null, null, null, null);
+INSERT INTO `users` VALUES ('4', 'dingmeng', '丁盟老师', 'dingmeng', '0', '45', null, null, null, null, null);
+INSERT INTO `users` VALUES ('5', 'wuyongliang', '我是武永亮老师', 'wuyongliang', '0', '50', null, null, null, null, null);
+INSERT INTO `users` VALUES ('6', 'wangderun', '我是小得润润', 'wangderun', '0', '20', null, null, null, null, null);
+INSERT INTO `users` VALUES ('7', 'zhangfeiyu', '小飞飞爱打球', 'zhangfeiyu', '1', '47', '篮球,足球', '河北省石家庄市', '我的优点是我很帅，我的缺点是我帅的并不明显', '167', '120');
+INSERT INTO `users` VALUES ('8', 'lidaiheng', '李岱恒同学', 'lidaiheng', '0', '0', null, null, null, null, null);
+INSERT INTO `users` VALUES ('12', '1355335683@qq.com', '纯情小火又鸟', 'yijianquan', '0', '0', null, null, null, null, null);

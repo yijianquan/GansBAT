@@ -34,12 +34,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--header-->
 	<jsp:include page="head.jsp"></jsp:include>
 	<!-- header -->
-	<c:if test="${result != null }"><script>alert("上传成功！")</script>${result }=null;</c:if>
+	<c:if test="${results != null }">
+		<script>
+			alert("${results }");
+		</script>
+		${results }=null;
+	</c:if>
 	<!-- body -->
 	<div class="container container1">
 	<div class="upload">
 		<p class="upload_title">上传一个你发现的场地</p>
-		<form action="${ctx }upload/upload" method="post">
+		<form action="${ctx }/upload/upload" method="post">
+			
+			<p class="upload_must">*</p><p class="upload_intro">详细地点(二选一)：</p><br>
+				场地在附近:&nbsp;<a href="mapupload.jsp">获取定位</a><c:if test="${longitude!=null }"><img alt="" src="images/ok.png"></c:if><br>
+				或：<br>
+				<input type="text" name="address" class="upload_formw" placeholder="省-市-街道-参照物" value=""/><br>
+			
 			<p class="upload_must">*</p><p class="upload_intro">场地类别：</p>
 				<select name="type_id">
 					<option value="1">篮球场</option>
@@ -53,9 +64,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<br>
 
 			<p class="upload_must">*</p><p class="upload_intro">上传图片：</p><input type="file" name="upfile"/>
-
-			<p class="upload_must">*</p><p class="upload_intro">详细地点：</p>
-				<input type="text" name="address" class="upload_formw" placeholder="省-市-街道-参照物" value=""/>
 
 			<p class="upload_otherintro">是否收费：</p>
 					<input type="radio" name="charge" value="1">是

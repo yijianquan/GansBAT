@@ -20,7 +20,7 @@
 <body>
 <div id="container"></div>
 <div class="input-card" style='width:28rem;'>
-    <form action="mapUpload" method="post">
+    <form action="${ctx }/upload/mapupload" method="post">
         <label style='color:grey'>在地图上单击鼠标左键选取标记点</label>
         <div class="input-item">
             <div class="input-item-prepend"><span class="input-item-text">经纬度</span></div>

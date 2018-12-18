@@ -84,7 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    </div><!-- /.modal -->
 				</div>
 				
-				<a href="">
+				<a href="${ctx }/selectthisspace/returnspace?space_id=${space_id }">
 					<p style="background-color: red;">退出聊天</p>
 				</a>
 			</div>

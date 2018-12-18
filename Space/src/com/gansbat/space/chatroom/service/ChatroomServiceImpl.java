@@ -78,4 +78,23 @@ public class ChatroomServiceImpl implements ChatroomService {
 			e.printStackTrace();
 		}
 	}
+	
+	/*
+	 * 删除用户在该的聊天室记录
+	 */
+	@Transactional(readOnly=false)
+	public void deleteChatroomByUserIdSpaceID(Integer user_id,Integer space_id) {
+		try {
+			List<Chatroom> c_List = chatroomDaoImpl.findByUserIdSpaceId(user_id, space_id);
+			for(Chatroom chatroom:c_List) {
+				chatroomDaoImpl.delete(chatroom);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
+
+
+

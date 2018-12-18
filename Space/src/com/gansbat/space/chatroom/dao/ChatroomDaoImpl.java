@@ -51,4 +51,16 @@ public class ChatroomDaoImpl extends BaseDao<Chatroom, Integer>{
 	public void save(Chatroom chatroom) throws Exception {
 		super.save(chatroom);
 	}
+	/*
+	 * 用户查询他在聊天室的所有记录
+	 */
+	public List<Chatroom> findByUserIdSpaceId(Integer user_id,Integer space_id) throws Exception{
+		return super.find("from Chatroom where space_id = ? and user_id = ?", new Object[] {space_id,user_id});
+	}
+	/*
+	 * 用户删除并且退出聊天室，
+	 */
+	public void delete(Chatroom chatroom) throws Exception{
+		super.delete(chatroom);
+	}
 }

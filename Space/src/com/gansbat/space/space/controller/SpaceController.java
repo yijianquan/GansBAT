@@ -22,9 +22,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.gansbat.space.chatroom.service.ChatroomService;
+import com.gansbat.space.chatroom.service.ChatroomServiceImpl;
 import com.gansbat.space.comment.service.CommentServiceImpl;
+import com.gansbat.space.entity.Chatroom;
 import com.gansbat.space.entity.Comment;
 import com.gansbat.space.entity.Space;
+import com.gansbat.space.entity.User;
 import com.gansbat.space.history.service.HistoryServiceImpl;
 import com.gansbat.space.space.service.SpaceServiceImpl;
 import com.gansbat.space.user.service.UserServiceImpl;
@@ -56,6 +60,8 @@ public class SpaceController {
 	private UserServiceImpl userServiceImpl;
 	@Resource
 	private HistoryServiceImpl historyServiceImpl;
+	@Resource
+	private ChatroomServiceImpl chatroomServiceImpl;
 	
 	//跳转到场地
 	@RequestMapping(value="/aspace",method=RequestMethod.GET)
@@ -79,7 +85,7 @@ public class SpaceController {
 		 */
 			//获取当前用户的email
 			String email = (String) httpSession.getAttribute("nowemail");
-			if(email!=null) {
+			if("".equals(email)||email=="") {
 				//根据email查询出用户的id
 				Integer u_id = userServiceImpl.findIdAccordingEmail(email);
 				//将用户id，场地图片，名称放入history
@@ -156,8 +162,7 @@ public class SpaceController {
 		model.addAttribute("comment", c_list);		
 		
 		return "space";
-	}
-	
+	}	
 	
 	//查看地图
 	@RequestMapping(value="/map",method=RequestMethod.GET)
@@ -170,6 +175,44 @@ public class SpaceController {
 		model.addAttribute("latitude",latitude);
 		return "map";
 	}
+	
 
+	
+	/*
+	 * 用户退出聊天室，并删除在该聊天室的记录
+	 */
+	@RequestMapping(value="returnspace",method=RequestMethod.GET)
+	public String userDeleteChatroom(HttpServletRequest request,HttpSession httpSession,Model model) {
+		String email = (String) httpSession.getAttribute("nowemail");
+		//根据场地id找到对应的聊天室
+		Integer space_id = Integer.parseInt(request.getParameter("space_id"));
+		if(email!=null) {
+		User user = userServiceImpl.findUserByEmail(email);
+		//删除聊天室记录
+		chatroomServiceImpl.deleteChatroomByUserIdSpaceID(user.getId(), space_id);
+		}
+		
+		//跳转回场地
+		//查询场地的基本信息
+		Space space = spaceServiceImpl.selectSpaceAccordingSpaceId(space_id);
+		model.addAttribute("space", space);
+		//将场地是否收费单独到页面
+		int charge = space.getCharge();
+		model.addAttribute("charge", charge);
+		//查询场地的评论
+		List<Comment> c_list = commentServiceImpl.selectAllAccordingSpaceId(space_id);
+		model.addAttribute("comment", c_list);		
+		/*
+		 * 如果当前用户已登录，则帮用户记录他的历史记录
+		 */
+			if(email!=null) {
+			//根据email查询出用户的id
+			Integer u_id = userServiceImpl.findIdAccordingEmail(email);
+			//将用户id，场地图片，名称放入history
+				historyServiceImpl.insertHistory(u_id,space_id,space.getSpace_address(), space.getSpace_img1());
+			}
+		
+		return "space";
+	}
 	
 }

@@ -17,7 +17,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.gansbat.space.basedao.Page;
 import com.gansbat.space.entity.Space;
 import com.gansbat.space.selectspace.service.SelectspaceServiceImpl;
 
@@ -44,10 +46,12 @@ public class SelectspaceController {
 	private SelectspaceServiceImpl selectspaceServiceImpl;
 	
 	@RequestMapping(value="alltypespace",method=RequestMethod.GET)
-	public String toTypeSpace(HttpServletRequest request,Model model) {
+	public String toTypeSpace(@RequestParam(value="pageNum",defaultValue="1") int pageNum,HttpServletRequest request,Model model) {
 		Integer t_id = Integer.parseInt(request.getParameter("spacetype"));
-		List<Space> s_list = selectspaceServiceImpl.selectAllSpace(t_id);
-		model.addAttribute("typeallspace", s_list);
+		
+		Page<Space> p_space = selectspaceServiceImpl.selectSpaceByTypeId(pageNum, t_id);
+		model.addAttribute("p_space", p_space.getList());
+		model.addAttribute("s_page", p_space);
 		return "detail";
 	}
 }

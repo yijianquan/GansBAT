@@ -55,21 +55,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 		
-		<c:forEach items="${typeallspace}" var="allspace" >
+		<c:forEach items="${p_space}" var="p_space" >
 			<div class="detail_body">
-				<a href="${ctx }/selectthisspace/aspace?space_id=${allspace.space_id }">
+				<a href="${ctx }/selectthisspace/aspace?space_id=${p_space.space_id }">
 				<div class="detail_pic">
-					<img width="100%" height="100%" src="${allspace.space_img1 }">
+					<img width="100%" height="100%" src="${p_space.space_img1 }">
 				</div>
 				<div class="detail_text">
-					<span>地点：${allspace.space_address }</span><br>
+					<span>地点：${p_space.space_address }</span><br>
 					<span>距离：0.3km</span><br>
 					<span>查看详情</span>
 				</div>
 				</a>
 			</div>
 		</c:forEach>
-				
+		
+		<div style="float:right;margin-right:44%;margin-top:2%;margin-bottom:2%;">
+			<a href="${ctx}/selectspace/alltypespace?pageNum=1">首页</a>
+			<a href="${ctx}/selectspace/alltypespace?pageNum=${s_page.prePageNum}">上一页</a>
+			<a href="${ctx}/selectspace/alltypespace?pageNum=${s_page.nextPageNum}">下一页</a>
+			<a href="${ctx}/selectspace/alltypespace?pageNum=${s_page.totalPageNum}">末页</a>
+		</div>
 	</div>
 
 	</div>

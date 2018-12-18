@@ -13,6 +13,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.gansbat.space.basedao.BaseDao;
+import com.gansbat.space.basedao.Page;
 import com.gansbat.space.entity.Space;
 
 /**   
@@ -47,6 +48,12 @@ public class SelectspaceDaoImpl extends BaseDao<Space, Integer>{
 	public List<Space> find(String hql, Object[] params) throws Exception {
 		// TODO Auto-generated method stub
 		return super.find(hql, params);
+	}
+	/*
+	 * 场地分页查询
+	 */
+	public Page<Space> findPageSpace(int pageNum,int type_id) throws Exception{
+		return super.findPage(pageNum, 8, "select count(*) from Space where type_id=?", "from Space where type_id=?",new Object[] {type_id});
 	}
 	
 }

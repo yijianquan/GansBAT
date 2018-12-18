@@ -16,9 +16,9 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gansbat.space.basedao.Page;
 import com.gansbat.space.entity.Space;
 import com.gansbat.space.selectspace.dao.SelectspaceDaoImpl;
-import com.gansbat.space.user.service.UserServiceImpl;
 
 /**   
 * Copyright: Copyright (c) 2018 LanRu-Caifu
@@ -55,6 +55,19 @@ public class SelectspaceServiceImpl implements SelectspaceService {
 			e.printStackTrace();
 		}
 		return s_list;
+	}
+	/*
+	 * 根据类型Id进行分页查询
+	 */
+	@Transactional(readOnly=true)
+	public Page<Space> selectSpaceByTypeId(int pageNum,int type_id){
+		try {
+			return selectspaceDaoImpl.findPageSpace(pageNum, type_id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 }

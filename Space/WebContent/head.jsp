@@ -2,13 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<script>
-		$('#login-button').click(function(event) {
-			event.preventDefault();
-			$('form').fadeOut(500);
-			$('.wrapper').addClass('form-success');
-		});
-</script>
 <div class="header-bottom-top">
 		<div class="container">
 			<div class="clearfix"></div>
@@ -72,9 +65,9 @@
 														$.each(res,function(index,value){
 														     a = res[0];
 														});
-														$("#userwelcome").css("display","none");
-														$("#userlogin").css("display","inline");
 														alert(a);
+														$("#userlogin").show();
+														$("#userwelcome").hide();
 													});
 												}
 												$(function(){
@@ -91,8 +84,8 @@
 															     b = res[1];
 															});
 															if(a=="Login success!"){
-																$("#userwelcome").css("display","inline");
-																$("#userlogin").css("display","none");
+																$("#userwelcome").show();
+																$("#userlogin").hide();
 																$("#username").text(b);
 															}
 														});

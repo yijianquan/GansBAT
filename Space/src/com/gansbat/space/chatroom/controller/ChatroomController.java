@@ -15,10 +15,12 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.ObjectUtils.Null;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gansbat.space.chatroom.service.ChatroomServiceImpl;
 import com.gansbat.space.entity.Chatroom;
@@ -66,6 +68,34 @@ public class ChatroomController {
 		for(int user_id:list) {
 			u_List.add(userServiceImpl.findUserById(user_id));
 		}
+		
+		model.addAttribute("space_id", space_id);
+		model.addAttribute("c_list", c_list);
+		model.addAttribute("u_list", u_List);
+		
+		return "chatroom";
+	}
+	
+	@RequestMapping(value="/sendmessage",method=RequestMethod.POST)
+	public String toSendMessage(@RequestParam("message") String chat_content,HttpServletRequest request,HttpSession httpSession,Model model) {
+		String email = (String) httpSession.getAttribute("nowemail");
+		User user = userServiceImpl.findUserByEmail(email);
+		Integer space_id = Integer.parseInt(request.getParameter("space_id"));
+		//如果发送的信息不为空则只是普通的数信，否则存储发送的信息
+		if(chat_content!=null) {
+			//存储用户发送的信息
+			chatroomServiceImpl.saveMessage(space_id, user.getId(), user.getNickname(), chat_content);
+		}
+		
+		List<Chatroom> c_list = chatroomServiceImpl.selectAll(space_id);		
+		List<Integer> list = new ArrayList<>();
+		list = chatroomServiceImpl.selectDistinct(space_id);
+		List<User> u_List = new ArrayList<User>();
+		for(int user_id:list) {
+			u_List.add(userServiceImpl.findUserById(user_id));
+		}
+		
+		model.addAttribute("space_id", space_id);
 		model.addAttribute("c_list", c_list);
 		model.addAttribute("u_list", u_List);
 		

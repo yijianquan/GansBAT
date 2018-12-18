@@ -67,27 +67,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				<!--发送聊天-->
 				<div class="sendmessage">
-					<div class="chatbutton">
-						<input type="button" name="" value="刷 新" class="chatfresh">
-						<form action="${ctx }/chatroom/storage" method="post"  onsubmit="return sendMessage()">
-							<input type="button" name="" value="发 送" class="chatsend" onclick="sendMessage()">
-						</form>
-					</div>
-					<div class="sendframe">
-						<textarea></textarea>
-					</div>
-				</div>
-				<% String user=(String)session.getAttribute("nowuser");
-					if(user!=null){%>
-					<script>
-						function sendMessage(){
-							alert("发聊天信息请先登录！");
-							return false;
-						}
-					</script>
-				<%}else{ %>
 				
-				<%} %>
+					<form action="${ctx }/chatroom/sendmessage?space_id=${space_id }" method="post" onsubmit="return check()">
+						<div class="sendframe">
+							<textarea name="message" id="message"></textarea>
+						</div>
+						<div class="chatbutton">
+							<input type="submit" name="" value="刷 新" class="chatfresh">
+							<input type="submit" name="" value="发 送" class="chatsend" onclick="sendMessage()">
+						</div>
+					</form>
+				</div>
+				<script>
+				function sendMessage(){
+					var message = $("#message").val();
+					if(message==null){
+						alert("请填写文章内容！");
+						return false;
+					}
+					<%String user = (String)session.getAttribute("nowuser");
+					if(user==null){%>
+					alert("请登录后再发送！");
+					return false;
+					<%}%>
+					return true;
+				}
+				function check() { 
+					 var check = false;
+					 var check = sendMessage();
+					 return check; 
+				}
+				</script>
 			</div>
 
 			<!--成员-->

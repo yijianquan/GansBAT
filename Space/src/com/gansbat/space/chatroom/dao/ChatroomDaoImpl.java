@@ -37,7 +37,7 @@ public class ChatroomDaoImpl extends BaseDao<Chatroom, Integer>{
 	 * 根据场地ID来查到对应的聊天室
 	 */
 	public List<Chatroom> findChatroomById(Integer space_id) throws Exception{
-		return super.find("from Chatroom where space_id = ?",new Object[] {space_id});
+		return super.find("from Chatroom where space_id = ? order by id desc",new Object[] {space_id});
 	}
 	/*
 	 * 根据场地Id来查到里面的人物并不重复出现去除ID
@@ -45,5 +45,10 @@ public class ChatroomDaoImpl extends BaseDao<Chatroom, Integer>{
 	public List<Integer> findUserIdBySpaceID(Integer space_id) throws Exception{
 		return super.findDistinct("select distinct user_id from Chatroom where space_id = ?", new Object[] {space_id});
 	}
-
+	/*
+	 * 插入聊天内容
+	 */
+	public void save(Chatroom chatroom) throws Exception {
+		super.save(chatroom);
+	}
 }

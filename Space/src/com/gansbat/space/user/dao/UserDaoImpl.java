@@ -58,6 +58,6 @@ public class UserDaoImpl extends BaseDao<User, Integer> {
 	 * 根据用户id来查出该学生
 	 */
 	public User findUserById(Integer user_id) throws Exception{
-		return super.findOne("from User where id = ?", new Object[] {user_id});
+		return super.findOne("from User where id = ? order by id desc", new Object[] {user_id});
 	}
 }

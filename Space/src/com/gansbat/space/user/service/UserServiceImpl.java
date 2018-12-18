@@ -101,4 +101,18 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 	}
+	/*
+	 * 根据email查询到用户
+	 */
+	@Transactional(readOnly=true)
+	public User findUserByEmail(String email) {
+		try {
+			User user = userDaoImpl.findIdAccordingUserEmail(email);
+			return user;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

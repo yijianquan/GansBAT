@@ -43,13 +43,13 @@
 .sendmessage{
 	float: left;
 }
-.chatbutton{
-	display: inline-block;
-	float: right;
-}
 .sendframe{
 	display: block;
-	float: right;
+	float: left;
+}
+.chatbutton{
+	display: inline-block;
+	float: left;
 }
 .sendframe textarea{
 	font-size: 1.6em;

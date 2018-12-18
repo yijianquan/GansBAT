@@ -64,4 +64,18 @@ public class ChatroomServiceImpl implements ChatroomService {
 			return null;
 		}
 	}
+
+	@Transactional(readOnly=false)
+	public void saveMessage(Integer space_id,Integer user_id,String user_nickname,String chat_content) {
+		Chatroom chatroom = new Chatroom();
+		chatroom.setChat_content(chat_content);
+		chatroom.setSpace_id(space_id);
+		chatroom.setUser_id(user_id);
+		chatroom.setUser_nickname(user_nickname);
+		try {
+			chatroomDaoImpl.save(chatroom);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

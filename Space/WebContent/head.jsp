@@ -82,6 +82,7 @@
 																$("#userlogin").hide();
 																$("#username").text(b);
 															}
+															event.preventDefault();
 														});
 													});
 												})

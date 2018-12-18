@@ -71,10 +71,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</c:forEach>
 		
 		<div style="float:right;margin-right:44%;margin-top:2%;margin-bottom:2%;">
-			<a href="${ctx}/selectspace/alltypespace?pageNum=1">首页</a>
-			<a href="${ctx}/selectspace/alltypespace?pageNum=${s_page.prePageNum}">上一页</a>
-			<a href="${ctx}/selectspace/alltypespace?pageNum=${s_page.nextPageNum}">下一页</a>
-			<a href="${ctx}/selectspace/alltypespace?pageNum=${s_page.totalPageNum}">末页</a>
+			<a href="${ctx}/selectspace/alltypespace?spacetype=${type_id}&pageNum=1">首页</a>
+			<a href="${ctx}/selectspace/alltypespace?spacetype=${type_id}&pageNum=${s_page.prePageNum}">上一页</a>
+			<a href="${ctx}/selectspace/alltypespace?spacetype=${type_id}&pageNum=${s_page.nextPageNum}">下一页</a>
+			<a href="${ctx}/selectspace/alltypespace?spacetype=${type_id}&pageNum=${s_page.totalPageNum}">末页</a>
 		</div>
 	</div>
 

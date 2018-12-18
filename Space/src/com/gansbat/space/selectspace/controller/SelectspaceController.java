@@ -50,6 +50,8 @@ public class SelectspaceController {
 		Integer t_id = Integer.parseInt(request.getParameter("spacetype"));
 		
 		Page<Space> p_space = selectspaceServiceImpl.selectSpaceByTypeId(pageNum, t_id);
+		
+		model.addAttribute("type_id", t_id);
 		model.addAttribute("p_space", p_space.getList());
 		model.addAttribute("s_page", p_space);
 		return "detail";

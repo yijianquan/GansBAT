@@ -48,26 +48,58 @@ public class UploadspaceController {
 	}
 	
 	@RequestMapping(value="upload",method=RequestMethod.POST)
-	public String toUpload(
-			@RequestParam("type_id") int type_id,
+	public String Upload(
+			@RequestParam(value="type_id",required=false) int type_id,
 			@RequestParam("upfile") String space_img,
 			@RequestParam("address") String address,
 			@RequestParam("charge") int charge,
 			@RequestParam("intro") String intro,
 			@RequestParam("opentime") String opentime,
+			HttpSession httpSession,
 			Model model
 			) {
-		String result=null;
-		Upload upload = new Upload();
-		upload.setType_id(type_id);
-		upload.setSpace_img1(space_img);
-		upload.setSpace_address(address);
-		upload.setCharge(charge);
-		upload.setSpace_intro(intro);
-		upload.setOpentime(opentime);
-		uploadspaceServiceImpl.saveUpload(upload);
-		
-		model.addAttribute("result", "上传成功！");
+		//获取当前用户的email
+		String email = (String) httpSession.getAttribute("nowemail");
+		BigDecimal longitude = new BigDecimal((String)httpSession.getAttribute("longitude"));
+		BigDecimal latitude = new BigDecimal((String)httpSession.getAttribute("latitude"));
+		String upaddress = (String) httpSession.getAttribute("address");
+		if(!"".equals(upaddress)) {
+			address = upaddress;
+		}
+		if(!"".equals(email)) {
+			Upload upload = new Upload();
+			upload.setLongitude(longitude);
+			upload.setLatitude(latitude);
+			upload.setType_id(type_id);
+			upload.setSpace_img1(space_img);
+			upload.setSpace_address(address);
+			upload.setCharge(charge);
+			upload.setSpace_intro(intro);
+			upload.setOpentime(opentime);
+			uploadspaceServiceImpl.saveUpload(upload);
+			model.addAttribute("results", "上传成功！");
+		}else {
+			model.addAttribute("results","请登陆后上传！");
+		}
+		httpSession.removeAttribute("longitude");
+		httpSession.removeAttribute("latitude");
+		httpSession.removeAttribute("address");
+		return "upload";
+	}
+	
+	@RequestMapping(value="mapupload",method=RequestMethod.POST)
+	public String MapUpload(
+			@RequestParam("lnglat") String lnglat,
+			@RequestParam(value="address",required=false) String address,
+			HttpSession session,
+			Model model
+			) {
+		String[] s = lnglat.split(",");
+		String longitude = s[0];
+		String latitude = s[1];
+		session.setAttribute("longitude", longitude);
+		session.setAttribute("latitude", latitude);
+		session.setAttribute("address", address);
 		return "upload";
 	}
 }

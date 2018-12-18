@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html>
 <head>
@@ -23,12 +27,12 @@
     <form action="${ctx }/upload/mapupload" method="post">
         <label style='color:grey'>在地图上单击鼠标左键选取标记点</label>
         <div class="input-item">
-            <div class="input-item-prepend"><span class="input-item-text">经纬度</span></div>
-            <input id='lnglat' type="text">
+            <div class="input-item-prepend"><span class="input-item-text">经纬度:</span></div>
+            <input name="lnglat" id='lnglat' type="text">
         </div>
         <div class="input-item">
-            <div class="input-item-prepend"><span class="input-item-text" >地址</span></div>
-            <input id='address' type="text" disabled>
+            <div class="input-item-prepend"><span class="input-item-text" >地址:</span></div>
+            <input name="address" id='address' type="text" disabled>
         </div>
         <input type="submit" class="btn" value="提交" >
     </form>

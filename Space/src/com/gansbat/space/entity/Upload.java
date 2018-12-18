@@ -8,6 +8,8 @@
  */
 package com.gansbat.space.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -43,6 +45,8 @@ public class Upload {
 	private String space_intro;
 	private String opentime;
 	private int user_id;
+	private BigDecimal longitude;//经度
+	private BigDecimal latitude;//纬度
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -105,6 +109,18 @@ public class Upload {
 	}
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
+	}
+	public BigDecimal getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(BigDecimal longitude) {
+		this.longitude = longitude;
+	}
+	public BigDecimal getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(BigDecimal latitude) {
+		this.latitude = latitude;
 	}
 	
 	

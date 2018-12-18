@@ -18,20 +18,20 @@
 				</div>
 				<div class="top-nav">
 					<ul>
-						<li class="userwelcome" id="userwelcome" style="display:none;"><p style="font-size:1.1em;color:#fff;display:inline;">尊敬的</p><p id="username" style="font-size:1.1em;color:#fff;display:inline;"></p><p style="font-size:1.1em;color:#fff;display:inline;">，你好！</p></li>
+						<li class="userwelcome" id="userwelcome" style="display:none;"><p style="font-size:1.1em;color:#fff;display:inline;">尊敬的</p><p id="username" style="font-size:1.1em;color:#fff;display:inline;"></p><p style="font-size:1.1em;color:#fff;display:inline;">，你好！</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="logoff();return false;">注销</</a></li>
 						<% String user=(String)session.getAttribute("nowuser");
 						if(user!=null){%>
 							<script type="text/javascript">
 								window.onload = function() {
-									$("#userwelcome").css("display","inline")
-									$("#userlogin").css("display","none")
+									$("#userwelcome").css("display","inline");
+									$("#userlogin").css("display","none");
 									$("#username").text("<%=user%>");
 								};
 							</script>
 						<%}else{ %>
 							<li id="userlogin"><a href="#" data-toggle="modal" data-target="#myModal"><img
 								src="images/login.jpg"></a></li>
-							<script>
+							<script type="text/javascript">
 								window.onload = function() {
 									$("#usercenter").attr('href','');
 									$("#usercenter").on("click",function(){
@@ -64,6 +64,19 @@
 													<a href="regist.html"><div class="login_foot_right">注册</div></a>
 												</form>
 												<script type="text/javascript">
+												function logoff(){
+													var username = $("#username").text();
+													$.post("${ctx}/login/upoff",{},function(data){
+														var a = null;
+														var res = $.parseJSON(data);//把后台传回的json数据解析
+														$.each(res,function(index,value){
+														     a = res[0];
+														});
+														$("#userwelcome").css("display","none");
+														$("#userlogin").css("display","inline");
+														alert(a);
+													});
+												}
 												$(function(){
 													 $("#login-button").click(function(event){
 														var a=null;
@@ -78,12 +91,12 @@
 															     b = res[1];
 															});
 															if(a=="Login success!"){
-																$("#userwelcome").show();
-																$("#userlogin").hide();
+																$("#userwelcome").css("display","inline");
+																$("#userlogin").css("display","none");
 																$("#username").text(b);
 															}
-															event.preventDefault();
 														});
+														event.preventDefault();
 													});
 												})
 												</script>

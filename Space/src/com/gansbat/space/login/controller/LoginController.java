@@ -91,4 +91,24 @@ public class LoginController {
 			e.printStackTrace();
 		}
 	}
+	 /*
+	 * 实现注销操作
+	 */
+	 @RequestMapping(value="upoff",method=RequestMethod.POST)
+	 @ResponseBody
+	 public void logOff(HttpServletResponse response,HttpServletRequest request,HttpSession session) {
+		 session.invalidate();
+		 String logoff = "注销成功！";
+		 Object[] b = {logoff};
+		 response.setCharacterEncoding("UTF-8");//resp是HttpServletResponse对象
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+			System.out.println(JSON.toJSONString(b));
+			out.print(JSON.toJSONString(b));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

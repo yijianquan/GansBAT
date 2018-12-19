@@ -115,4 +115,18 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 	}
+	/*
+	 * 根据email查出password
+	 */
+	@Transactional(readOnly=true)
+	public String findPasswordByEmail(String email) {
+		try {
+			User user = userDaoImpl.findIdAccordingUserEmail(email);
+			return user.getPassword();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

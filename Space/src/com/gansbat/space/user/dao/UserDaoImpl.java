@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.gansbat.space.basedao.BaseDao;
 import com.gansbat.space.entity.User;
 import com.sun.jmx.snmp.SnmpStringFixed;
+import com.sun.org.apache.bcel.internal.generic.ReturnInstruction;
 
 import jdk.nashorn.internal.runtime.ECMAErrors;
 
@@ -49,13 +50,13 @@ public class UserDaoImpl extends BaseDao<User, Integer> {
 	}
 	
 	/*
-	 * 根据用户email来查询出用户的id
+	 * 根据用户email来查询出用户
 	 */
 	public User findIdAccordingUserEmail(String email) throws Exception{		
 		return super.findOne("from User where email = ?",new Object[] { email});
 	}
 	/*
-	 * 根据用户id来查出该学生
+	 * 根据用户id来查出该用户
 	 */
 	public User findUserById(Integer user_id) throws Exception{
 		return super.findOne("from User where id = ? order by id desc", new Object[] {user_id});

@@ -106,8 +106,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				function check() { 
 					 var check = false;
 					 var check = pwCheck() && checkemail() && registcode();
+					 if(pwCheck()==false){
+						 alert("填写验证码后修改了密码！");
+						 return check;
+					 }else if(checkemail()==false){
+						 alert("填写验证码后修改错了邮箱！");
+						 return check;
+					 }else if(registcode()==false){
+						 alert("验证码错误");
+						 return check;
+					 }
+					 return check; 
+				}
+				function check1() { 
+					 var check = false;
+					 var check = pwCheck() && checkemail();
 					 if(check==false){
-						 alert("请先正确填写你的信息！");
 						 return check;
 					 }
 					 return check; 
@@ -121,7 +135,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<input class="registinformation" type="password" name="confirmpassword" placeholder="请确认你的密码" id="p2" onblur="pwCheck(this)"><div id="tip"></div>
 
 			<input type="text" name="code" placeholder="请输入你收到的验证码" id="registcode" class="registcode">
-			<input type="submit" value="向邮箱发送验证码" class="sendcode" id="btnSendCode" onsubmit="return check()" onclick="sendMessage()">
+			<input type="button" value="向邮箱发送验证码" class="sendcode" id="btnSendCode" onclick="sendMessage()">
 			<script type="text/javascript">
 				var InterValObj; //timer变量，控制时间
 				var count = 100; //间隔函数，1秒执行
@@ -129,20 +143,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var a = ",./,/.,/.,";
 				var email = null;
 				function sendMessage() {
-					email = $("#youremail").val();
-					console.log(email);
-					curCount = count;
-					//设置button效果，开始计时
-					$("#btnSendCode").attr("disabled", "true");
-					$("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
-					InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-					//向后台发送处理数据
-					$.post("${ctx}/regist/sendcode",{email:email},function(data){
-						var res = $.parseJSON(data);
-						$.each(res,function(index,value){
-							a = res[0];
+					if(check1()){
+						email = $("#youremail").val();
+						console.log(email);
+						curCount = count;
+						//设置button效果，开始计时
+						$("#btnSendCode").attr("disabled", "true");
+						$("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+						InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+						//向后台发送处理数据
+						$.post("${ctx}/regist/sendcode",{email:email},function(data){
+							var res = $.parseJSON(data);
+							$.each(res,function(index,value){
+								a = res[0];
+							});
 						});
-					});
+					}else{
+						 alert("请先正确填写你的信息！");
+					}
 				}
 				//timer处理函数
 				function SetRemainTime() {
@@ -160,7 +178,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					if(a==code){
 						return true;	
 					}else{
-						alert("验证码错误！");
 						return false;
 					}
 				}

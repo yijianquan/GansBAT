@@ -85,6 +85,14 @@ public class RegistController {
 		SendEmail sendEmail = new SendEmail();
 		sendEmail.setAcceptEmailAddress(email);
 		Integer randomnum = (int) (Math.random()*9999);
+		while(true) {
+			if(randomnum>999&&randomnum<10000) {
+				System.out.println(randomnum);
+				break;
+			}else {
+				randomnum = (int) (Math.random()*9999);
+			}
+		}
 		SendEmail.setSendContent(SendEmail.getSendContent()+String.valueOf(randomnum));
 		sendEmail.sendVerifyEmail();
 		//封装发送到页面

@@ -35,11 +35,14 @@
 									$("#usertrends").on("click",function(){
 										return false;
 									})
-									$("#usertrends").attr("onclick","pleaselogin()");
+									$("#usertrends").attr("onclick","pleaselogin1()");
 								};
 								function pleaselogin(){
-									alert("请先登录！");
-								}								
+									alert("进个人中心前请先登录！");
+								}
+								function pleaselogin1(){
+									alert("查看历史前请先登录！");
+								}
 							</script>
 						<%}%>
 						<!-- 模态框（Modal） -->
@@ -76,19 +79,25 @@
 														var b = null;
 													 	var email = $("#email").val();  
 												        var password = $("#password").val();
-														$.post("${ctx}/login/ajax",{email:email,password:password},function(data){
-															var res = $.parseJSON(data);//把后台传回的json数据解析
-															alert("登陆成功！");
-															$.each(res,function(index,value){
-															     a = res[0];
-															     b = res[1];
+												        if(email!=""&&password!=""){
+															$.post("${ctx}/login/ajax",{email:email,password:password},function(data){
+																var res = $.parseJSON(data);//把后台传回的json数据解析
+																$.each(res,function(index,value){
+																     a = res[0];
+																     b = res[1];
+																});
+																if(a=="Login success!"){
+																	$("#userwelcome").show();
+																	$("#userlogin").hide();
+																	$("#username").text(b);
+																	alert("登陆成功！");
+																}else{
+																	alert("登陆失败！请检查你的邮箱和密码。");
+																}
 															});
-															if(a=="Login success!"){
-																$("#userwelcome").show();
-																$("#userlogin").hide();
-																$("#username").text(b);
-															}
-														});
+												        }else{
+												        	alert("请输入邮箱和密码！");
+												        }
 														event.preventDefault();
 													});
 												})

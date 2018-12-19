@@ -65,8 +65,6 @@ public class LoginController {
 		 user.setEmail(email);user.setPassword(password);
 		 
 		 String now_user = userServiceImpl.findNicknameAccordingEmail(email);
-		 session.setAttribute("nowuser", now_user);
-		 session.setAttribute("nowemail", email);
 		 
 		 
 		//判断登录是否成功，若成功并得到用户的名字
@@ -76,6 +74,8 @@ public class LoginController {
 			a = "Login fault!Please check your email or password!";
 		}else {
 			a = "Login success!";
+			session.setAttribute("nowuser", now_user);
+			session.setAttribute("nowemail", email);
 		};
 		
 		//b用来封装成集合传到页面

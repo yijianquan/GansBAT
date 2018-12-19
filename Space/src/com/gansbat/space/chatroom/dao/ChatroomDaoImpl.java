@@ -13,7 +13,9 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.gansbat.space.basedao.BaseDao;
+import com.gansbat.space.basedao.Page;
 import com.gansbat.space.entity.Chatroom;
+import com.gansbat.space.entity.Space;
 
 /**   
 * Copyright: Copyright (c) 2018 LanRu-Caifu
@@ -38,6 +40,12 @@ public class ChatroomDaoImpl extends BaseDao<Chatroom, Integer>{
 	 */
 	public List<Chatroom> findChatroomById(Integer space_id) throws Exception{
 		return super.find("from Chatroom where space_id = ? order by id desc",new Object[] {space_id});
+	}
+	/*
+	 * 聊天记录分页查询
+	 */
+	public Page<Chatroom> findPageChatroom(int pageNum,Integer space_id) throws Exception{
+		return super.findPage(pageNum, 14, "select count(*) from Chatroom where space_id = ?", "from Chatroom where space_id=? order by id desc", new Object[] {space_id});
 	}
 	/*
 	 * 根据场地Id来查到里面的人物并不重复出现去除ID

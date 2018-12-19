@@ -94,10 +94,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				<!--聊天内容-->
 				<div class="chatcontent">
-					<c:forEach items="${c_list}" var="c_list" >
+					<c:forEach items="${p_chatroom}" var="p_chatroom" >
 						<div class="human">
-							<p>${c_list.user_nickname }：</p>
-							<p>${c_list.chat_content }</p>
+							<p>${p_chatroom.user_nickname }：</p>
+							<p>${p_chatroom.chat_content }</p>
 						</div>
 					</c:forEach>
 				</div>
@@ -105,7 +105,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<!--发送聊天-->
 				<div class="sendmessage">
 				
-					<form action="${ctx }/chatroom/sendmessage?space_id=${space_id }" method="post" onsubmit="return check()">
+					<form action="${ctx }/chatroom/sendmessage?space_id=${space_id }" method="post" onsubmit="return check()" style="display:inline;">
 						<div class="sendframe">
 							<textarea name="message" id="message"></textarea>
 						</div>
@@ -114,6 +114,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<input type="submit" name="" value="发 送" class="chatsend" onclick="sendMessage()">
 						</div>
 					</form>
+					<div style="display:inline-block;float:left;margin-left:0%;margin-top:2%;margin-bottom:2%;">
+						<a href="${ctx}/chatroom/tochatroom?space_id=${space_id }&pageNum=1">首页</a>
+						<a href="${ctx}/chatroom/tochatroom?space_id=${space_id }&pageNum=${s_page.prePageNum}">上一页</a>
+						<a href="${ctx}/chatroom/tochatroom?space_id=${space_id }&pageNum=${s_page.nextPageNum}">下一页</a>
+						<a href="${ctx}/chatroom/tochatroom?space_id=${space_id }&pageNum=${s_page.totalPageNum}">末页</a>
+					</div>
 				</div>
 				<script>
 				function sendMessage(){

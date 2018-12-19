@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.gansbat.space.basedao.Page;
 import com.gansbat.space.chatroom.service.ChatroomServiceImpl;
 import com.gansbat.space.entity.Chatroom;
 import com.gansbat.space.entity.User;
@@ -59,11 +60,15 @@ public class ChatroomController {
 	 * 跳转到chatroom页面
 	 */
 	@RequestMapping(value = "tochatroom",method=RequestMethod.GET)
-	public String toChatroom(HttpServletRequest request,HttpSession httpSession,Model model) {
+	public String toChatroom(@RequestParam(value="pageNum",defaultValue="1") int pageNum,HttpServletRequest request,HttpSession httpSession,Model model) {
 		String email = (String) httpSession.getAttribute("nowemail");
 		//根据场地id找到对应的聊天室
 		Integer space_id = Integer.parseInt(request.getParameter("space_id"));
-		List<Chatroom> c_list = chatroomServiceImpl.selectAll(space_id);
+		
+		Page<Chatroom> p_chatroom = chatroomServiceImpl.selectChatroomBySpaceId(pageNum, space_id);
+		model.addAttribute("p_chatroom", p_chatroom.getList());
+		model.addAttribute("c_page",p_chatroom);
+		
 		//根据聊天室对应的Id，并去除重复的，找到user_id来查找到每个用户的基本信息
 		List<Integer> list = new ArrayList<>();
 		list = chatroomServiceImpl.selectDistinct(space_id);
@@ -73,7 +78,6 @@ public class ChatroomController {
 		}
 		
 		model.addAttribute("space_id", space_id);
-		model.addAttribute("c_list", c_list);
 		model.addAttribute("u_list", u_List);
 		
 		return "chatroom";
@@ -83,7 +87,8 @@ public class ChatroomController {
 	 * 发送聊天信息，如果用户刷新信息也是这个
 	 */
 	@RequestMapping(value="sendmessage",method=RequestMethod.POST)
-	public String toSendMessage(@RequestParam("message") String chat_content,HttpServletRequest request,HttpSession httpSession,Model model) {
+	public String toSendMessage(@RequestParam("message") String chat_content,
+			@RequestParam(value="pageNum",defaultValue="1") int pageNum,HttpServletRequest request,HttpSession httpSession,Model model) {
 		String email = (String) httpSession.getAttribute("nowemail");
 		User user = userServiceImpl.findUserByEmail(email);
 		Integer space_id = Integer.parseInt(request.getParameter("space_id"));
@@ -91,9 +96,12 @@ public class ChatroomController {
 		if(chat_content!=null) {
 			//存储用户发送的信息
 			chatroomServiceImpl.saveMessage(space_id, user.getId(), user.getNickname(), chat_content);
-		}
+		}		
+
+		Page<Chatroom> p_chatroom = chatroomServiceImpl.selectChatroomBySpaceId(pageNum, space_id);
+		model.addAttribute("p_chatroom", p_chatroom.getList());
+		model.addAttribute("c_page",p_chatroom);
 		
-		List<Chatroom> c_list = chatroomServiceImpl.selectAll(space_id);		
 		List<Integer> list = new ArrayList<>();
 		list = chatroomServiceImpl.selectDistinct(space_id);
 		List<User> u_List = new ArrayList<User>();
@@ -102,7 +110,6 @@ public class ChatroomController {
 		}
 		
 		model.addAttribute("space_id", space_id);
-		model.addAttribute("c_list", c_list);
 		model.addAttribute("u_list", u_List);
 		
 		return "chatroom";
@@ -117,6 +124,7 @@ public class ChatroomController {
 			@RequestParam("age") Integer age,
 			@RequestParam("height") Integer height,
 			@RequestParam("weight") Integer weight,
+			@RequestParam(value="pageNum",defaultValue="1") int pageNum,
 			HttpServletRequest request,HttpSession httpSession,Model model) {
 		String email = (String) httpSession.getAttribute("nowemail");
 		//查到用户的信息并进行修改
@@ -132,7 +140,10 @@ public class ChatroomController {
 		
 		//根据场地id找到对应的聊天室
 		Integer space_id = Integer.parseInt(request.getParameter("space_id"));
-		List<Chatroom> c_list = chatroomServiceImpl.selectAll(space_id);
+		Page<Chatroom> p_chatroom = chatroomServiceImpl.selectChatroomBySpaceId(pageNum, space_id);
+		model.addAttribute("p_chatroom", p_chatroom.getList());
+		model.addAttribute("c_page",p_chatroom);
+		
 		//根据聊天室对应的Id，并去除重复的，找到user_id来查找到每个用户的基本信息
 		List<Integer> list = new ArrayList<>();
 		list = chatroomServiceImpl.selectDistinct(space_id);
@@ -142,7 +153,6 @@ public class ChatroomController {
 		}
 		
 		model.addAttribute("space_id", space_id);
-		model.addAttribute("c_list", c_list);
 		model.addAttribute("u_list", u_List);
 		
 		return "chatroom";

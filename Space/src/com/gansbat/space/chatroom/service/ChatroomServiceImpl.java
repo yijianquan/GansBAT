@@ -16,6 +16,7 @@ import org.apache.taglibs.standard.lang.jstl.test.beans.PublicInterface2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gansbat.space.basedao.Page;
 import com.gansbat.space.chatroom.dao.ChatroomDaoImpl;
 import com.gansbat.space.entity.Chatroom;
 
@@ -46,6 +47,20 @@ public class ChatroomServiceImpl implements ChatroomService {
 		try {
 			List<Chatroom> c_list = chatroomDaoImpl.findChatroomById(space_id);
 			return c_list;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	/*
+	 * 分页查询聊天室的聊天记录
+	 */
+	@Transactional(readOnly=true)
+	public Page<Chatroom> selectChatroomBySpaceId(int pageNum,int space_id){
+		try {
+			return chatroomDaoImpl.findPageChatroom(pageNum, space_id);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

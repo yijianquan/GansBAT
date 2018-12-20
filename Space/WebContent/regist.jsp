@@ -107,10 +107,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 var check = false;
 					 var check = pwCheck() && checkemail() && registcode();
 					 if(pwCheck()==false){
-						 alert("填写验证码后修改了密码！");
+						 alert("密码有误！");
 						 return check;
 					 }else if(checkemail()==false){
-						 alert("填写验证码后修改错了邮箱！");
+						 alert("邮箱错误！");
 						 return check;
 					 }else if(registcode()==false){
 						 alert("验证码错误");
@@ -135,7 +135,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<input class="registinformation" type="password" name="confirmpassword" placeholder="请确认你的密码" id="p2" onblur="pwCheck(this)"><div id="tip"></div>
 
 			<input type="text" name="code" placeholder="请输入你收到的验证码" id="registcode" class="registcode">
-			<input type="button" value="向邮箱发送验证码" class="sendcode" id="btnSendCode" onclick="sendMessage()">
+			<input type="submit" value="向邮箱发送验证码" class="sendcode" id="btnSendCode" onclick="sendMessage()">
 			<script type="text/javascript">
 				var InterValObj; //timer变量，控制时间
 				var count = 100; //间隔函数，1秒执行

@@ -8,9 +8,12 @@
  */
 package com.gansbat.space.uploadspace.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gansbat.space.entity.Upload;
 import com.gansbat.space.uploadspace.service.UploadspaceServiceImpl;
@@ -50,39 +54,67 @@ public class UploadspaceController {
 		return "upload";
 	}
 	
-	@RequestMapping(value="upload",method=RequestMethod.POST)
+	@RequestMapping(value = "upload", method = RequestMethod.POST)
 	public String Upload(
-			@RequestParam(value="type_id",required=false) int type_id,
-			@RequestParam("upfile") String space_img,
-			@RequestParam("address") String address,
+			@RequestParam("type_id") int type_id,
+			@RequestParam("upfile") MultipartFile file,
+			@RequestParam("address") String address, 
 			@RequestParam("charge") int charge,
-			@RequestParam("intro") String intro,
-			@RequestParam("opentime") String opentime,
+			@RequestParam("intro") String intro, 
+			@RequestParam("opentime") String opentime, 
 			HttpSession httpSession,
-			Model model
-			) {
-		//获取当前用户的email
+			HttpServletRequest request,
+			Model model) {
+		// 获取当前用户的email
 		String email = (String) httpSession.getAttribute("nowemail");
-		BigDecimal longitude = new BigDecimal((String)httpSession.getAttribute("longitude"));
-		BigDecimal latitude = new BigDecimal((String)httpSession.getAttribute("latitude"));
-		String upaddress = (String) httpSession.getAttribute("address");
-		if(!"".equals(upaddress)) {
-			address = upaddress;
-		}
-		if(!"".equals(email)) {
+		BigDecimal longitude = new BigDecimal((String) httpSession.getAttribute("longitude"));
+		BigDecimal latitude = new BigDecimal((String) httpSession.getAttribute("latitude"));
+		String upaddress = (String) httpSession.getAttribute("upaddress");
+		String filesqlpath = null;
+		
+		
+		if (email!=null) {
+			if (upaddress!=null) {
+				address = upaddress;
+			}
+			if(!file.isEmpty()) {
+				//上传文件路径
+				String path = request.getServletContext().getRealPath("/images/");
+				//上传文件名
+	            String filename = file.getOriginalFilename();
+	            File filepath = new File(path,filename);
+	            //判断路径是否存在，如果不存在就创建一个
+	            if (!filepath.getParentFile().exists()) { 
+	                filepath.getParentFile().mkdirs();
+	            }
+	            filesqlpath = path + File.separator + filename;
+	            //将上传文件保存到一个目标文件当中
+	            try {
+					file.transferTo(new File(path + File.separator + filename));
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else {
+				model.addAttribute("results", "请上传照片！");
+				return "upload";
+			}
 			Upload upload = new Upload();
 			upload.setLongitude(longitude);
 			upload.setLatitude(latitude);
 			upload.setType_id(type_id);
-			upload.setSpace_img1(space_img);
+			upload.setSpace_img1(filesqlpath);
 			upload.setSpace_address(address);
 			upload.setCharge(charge);
 			upload.setSpace_intro(intro);
 			upload.setOpentime(opentime);
 			uploadspaceServiceImpl.saveUpload(upload);
 			model.addAttribute("results", "上传成功！");
-		}else {
-			model.addAttribute("results","请登陆后上传！");
+		} else {
+			model.addAttribute("results", "请登陆后上传！");
 		}
 		httpSession.removeAttribute("longitude");
 		httpSession.removeAttribute("latitude");
@@ -93,7 +125,7 @@ public class UploadspaceController {
 	@RequestMapping(value="mapupload",method=RequestMethod.POST)
 	public String MapUpload(
 			@RequestParam("lnglat") String lnglat,
-			@RequestParam(value="address",required=false) String address,
+			@RequestParam("upaddress") String upaddress,
 			HttpSession session,
 			Model model
 			) {
@@ -102,7 +134,10 @@ public class UploadspaceController {
 		String latitude = s[1];
 		session.setAttribute("longitude", longitude);
 		session.setAttribute("latitude", latitude);
-		session.setAttribute("address", address);
+		session.setAttribute("upaddress", upaddress);
 		return "upload";
 	}
+	
+	
+   
 }

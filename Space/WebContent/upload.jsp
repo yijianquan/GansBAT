@@ -38,13 +38,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script>
 			alert("${results }");
 		</script>
-		${results }=null;
+		${results = null };
 	</c:if>
 	<!-- body -->
 	<div class="container container1">
 	<div class="upload">
 		<p class="upload_title">上传一个你发现的场地</p>
-		<form action="${ctx }/upload/upload" method="post">
+		<form action="${ctx }/upload/upload" method="post" enctype="multipart/form-data" >
 			
 			<p class="upload_must">*</p><p class="upload_intro">详细地点(二选一)：</p><br>
 				场地在附近:&nbsp;<a href="mapupload.jsp">获取定位</a><c:if test="${longitude!=null }"><img alt="" src="images/ok.png"></c:if><br>

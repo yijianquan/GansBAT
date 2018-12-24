@@ -10,6 +10,9 @@
 <%String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";%> 
 <base href="<%=basePath%>">
+<script src="js/jquery.min.js"></script>
+ <script src="js/responsiveslides.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
 
 <!-- Custom Theme files -->
@@ -23,11 +26,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href='font/font.css?family=Passion+One:400,700,900' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="css/information.css" type="text/css" />
 <!--//fonts-->
- <script src="js/responsiveslides.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/login.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 
 </head>
 <body>

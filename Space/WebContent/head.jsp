@@ -12,20 +12,21 @@
 				<div class="top-nav">
 					<ul>
 						<li class="userwelcome" id="userwelcome" style="display:none;"><p style="font-size:1.1em;color:#fff;display:inline;">尊敬的</p><p id="username" style="font-size:1.1em;color:#fff;display:inline;"></p><p style="font-size:1.1em;color:#fff;display:inline;">，你好！</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="logoff();return false;">注销</</a></li>
+						<li id="userlogin"><a href="#" data-toggle="modal" data-target="#myModal"><img src="images/login.jpg"></a></li>
 						<% String user=(String)session.getAttribute("nowuser");
 						if(user!=null){%>
 							<script type="text/javascript">
 								window.onload = function() {
-									$("#userwelcome").css("display","inline");
-									$("#userlogin").css("display","none");
+									$("#userwelcome").show();
+									$("#userlogin").hide();
 									$("#username").text("<%=user%>");
 								};
 							</script>
 						<%}else{ %>
-							<li id="userlogin"><a href="#" data-toggle="modal" data-target="#myModal"><img
-								src="images/login.jpg"></a></li>
 							<script type="text/javascript">
 								window.onload = function() {
+									$("#userwelcome").hide();
+									$("#userlogin").show();
 									$("#usercenter").attr('href','');
 									$("#usercenter").on("click",function(){
 										return false;

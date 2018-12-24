@@ -118,7 +118,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a href="" onclick="likethis()" id="thumbsup"><img class="space_icon" src="images/dislike.png" id="likenum" /></a>&nbsp;&nbsp;<span>“点赞数：”${space.likenum }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<!-- 点赞 -->
 				<script>
+					var saved;  
+			        if (typeof window.onload == 'function') {  
+			            saved = window.onload;  
+			        }
 					window.onload = function(){
+						if (saved) saved();
 						var likenum = $('#likenum').attr('src');
 						if(likenum=="images/dislike.png"){
 							$('#thumbsup').attr('href','${ctx }/selectthisspace/likespace?like=1&space_id=${space.space_id }');

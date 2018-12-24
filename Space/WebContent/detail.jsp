@@ -31,6 +31,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
 </head>
 <body>
 	<!--header-->
@@ -44,7 +46,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="detail_sort">
 			<form action="" method="post">
 			<script>
+				var saved;  
+		        if (typeof window.onload == 'function') {  
+		            saved = window.onload;  
+		        }
 				window.onload = function(){
+					if (saved) saved();
 					var num = ${num};
 					if(num==3){
 						alert("程序员正在加班实现中...");

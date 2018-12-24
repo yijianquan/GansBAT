@@ -74,8 +74,8 @@ public class SelectspaceController {
 	@RequestMapping(value="alltypespace",method=RequestMethod.GET)
 	public String toTypeSpace(@RequestParam(value="pageNum",defaultValue="1") int pageNum,HttpServletRequest request,Model model) {
 		Integer t_id = Integer.parseInt(request.getParameter("spacetype"));
-		double latitude1 = 38;
-		double longitude1 = 114;
+		double latitude1 = 22.545318;
+		double longitude1 = 114.016759;
 		Page<Space> p_space = selectspaceServiceImpl.selectSpaceByTypeId(pageNum, t_id);
 		
 		List<Space> s_List = p_space.getList();
@@ -99,11 +99,11 @@ public class SelectspaceController {
 	@RequestMapping(value="bylike",method=RequestMethod.GET)
 	public String toSpaceByLike(@RequestParam(value="pageNum",defaultValue="1") int pageNum,HttpServletRequest request,Model model) {
 		Integer t_id = Integer.parseInt(request.getParameter("spacetype"));
-		
+
+		double latitude1 = 22.545318;
+		double longitude1 = 114.016759;
 		Page<Space> p_space = selectspaceServiceImpl.selectSpaceByLike(pageNum, t_id);
 		
-		double latitude1 = 38;
-		double longitude1 = 114;
 		List<Space> s_List = p_space.getList();
 		for(Space s:s_List) {
 			double f = getDistance(latitude1, longitude1, s.getLatitude().doubleValue(),s.getLongitude().doubleValue());  

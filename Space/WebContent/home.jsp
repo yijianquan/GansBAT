@@ -26,6 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--//fonts-->
 <link rel="stylesheet" type="text/css" href="css/login.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
  <script>
     // You can also use "$(window).load(function() {"
     $(function () {

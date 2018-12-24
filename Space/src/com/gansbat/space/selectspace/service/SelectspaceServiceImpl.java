@@ -8,6 +8,7 @@
  */
 package com.gansbat.space.selectspace.service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,8 @@ import com.gansbat.space.selectspace.dao.SelectspaceDaoImpl;
 */
 @Service
 @Transactional(readOnly=false)
-public class SelectspaceServiceImpl implements SelectspaceService {
+public class SelectspaceServiceImpl implements SelectspaceService {	
+
 
 	@Resource
 	private SelectspaceDaoImpl selectspaceDaoImpl;
@@ -61,7 +63,7 @@ public class SelectspaceServiceImpl implements SelectspaceService {
 	 */
 	@Transactional(readOnly=true)
 	public Page<Space> selectSpaceByTypeId(int pageNum,int type_id){
-		try {
+		try {			
 			return selectspaceDaoImpl.findPageSpace(pageNum, type_id);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -69,5 +71,31 @@ public class SelectspaceServiceImpl implements SelectspaceService {
 			return null;
 		}
 	}
-	
+	/*
+	 * 根据类型Id进行分页查询
+	 */
+	@Transactional(readOnly=true)
+	public Page<Space> selectSpaceByLike(int pageNum,int type_id){
+		try {
+			return selectspaceDaoImpl.findPageSpaceByLike(pageNum, type_id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	/*
+	 * 根据类型Id进行分页查询
+	 */
+	@Transactional(readOnly=true)
+	public List<Space> selectSpaceByDistance(int type_id,BigDecimal longitude,BigDecimal latitude){
+		try {
+			return selectspaceDaoImpl.findByDistance(type_id, longitude, latitude);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

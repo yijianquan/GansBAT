@@ -47,11 +47,11 @@ public class Space {
 	private int likenum;
 	private BigDecimal longitude;//经度
 	private BigDecimal latitude;//纬度
-
+	private Double distance;
 
 	public Space() {
 	}
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getSpace_id() {
@@ -130,5 +130,13 @@ public class Space {
 
 	public void setLatitude(BigDecimal latitude) {
 		this.latitude = latitude;
+	}
+	
+	public Double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(Double distance) {
+		this.distance = distance;
 	}
 }

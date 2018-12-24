@@ -43,10 +43,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="detail_top">
 			<div class="detail_sort">
 			<form action="" method="post">
-				<select name="sort" class="sort_select">  
-					<option value="综合排序">综合排序</option>  
-					<option value="距离最近">距离最近</option>  
-					<option value="评分最高">评分最高</option> 
+			<script>
+				window.onload = function(){
+					var num = ${num};
+					if(num==3){
+						alert("程序员正在加班实现中...");
+					}
+					if(num==1){
+						 $("#select_id").prepend("<option value='${ctx }/selectspace/alltypespace?spacetype=${type_id }'>综合排序</option>");
+						 $("#select_id").append("<option value='${ctx }/selectspace/bydistance?spacetype=${type_id }'>距离最近</option>");
+						 $("#select_id").append("<option value='${ctx }/selectspace/bylike?spacetype=${type_id }'>评分最高</option>");
+					}else if(num==3){
+						 $("#select_id").prepend("<option value='${ctx }/selectspace/bydistance?spacetype=${type_id }'>距离最近</option>");
+						 $("#select_id").append("<option value='${ctx }/selectspace/alltypespace?spacetype=${type_id }'>综合排序</option>");
+						 $("#select_id").append("<option value='${ctx }/selectspace/bylike?spacetype=${type_id }'>评分最高</option>");
+					}else if(num==2){
+
+						 $("#select_id").prepend("<option value='${ctx }/selectspace/bylike?spacetype=${type_id }'>评分最高</option>");
+						 $("#select_id").append("<option value='${ctx }/selectspace/alltypespace?spacetype=${type_id }'>综合排序</option>");
+						 $("#select_id").append("<option value='${ctx }/selectspace/bydistance?spacetype=${type_id }'>距离最近</option>");
+					}
+				}				
+			</script>
+				<select name="sort" class="sort_select" id="select_id" onchange="window.location=this.value;">
       			</select>
 			</form>
 			</div>
@@ -63,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="detail_text">
 					<span>地点：${p_space.space_address }</span><br>
-					<span>距离：0.3km</span><br>
+					<span>距离：${p_space.distance }km</span><br>
 					<span>查看详情</span>
 				</div>
 				</a>

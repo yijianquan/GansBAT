@@ -63,7 +63,7 @@ public class SelectspaceServiceImpl implements SelectspaceService {
 	 */
 	@Transactional(readOnly=true)
 	public Page<Space> selectSpaceByTypeId(int pageNum,int type_id){
-		try {
+		try {			
 			return selectspaceDaoImpl.findPageSpace(pageNum, type_id);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -8,6 +8,7 @@
  */
 package com.gansbat.space.selectspace.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -54,6 +55,18 @@ public class SelectspaceDaoImpl extends BaseDao<Space, Integer>{
 	 */
 	public Page<Space> findPageSpace(int pageNum,int type_id) throws Exception{
 		return super.findPage(pageNum, 8, "select count(*) from Space where type_id=?", "from Space where type_id=?",new Object[] {type_id});
+	}
+	/*
+	 * 场地分页查询，根据喜欢人数进行排序
+	 */
+	public Page<Space> findPageSpaceByLike(int pageNum,int type_id) throws Exception{
+		return super.findPage(pageNum, 8, "select count(*) from Space where type_id=?", "from Space where type_id=? order by likenum",new Object[] {type_id});
+	}
+	/*
+	 * 场地查询根据距离进行排序
+	 */
+	public List<Space> findByDistance(int type_id,BigDecimal longitude,BigDecimal latitude) throws Exception {
+		return super.findByDistance("from Space where type_id=?", new Object[] {type_id}, longitude, latitude);
 	}
 	
 }

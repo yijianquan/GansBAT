@@ -8,6 +8,7 @@
  */
 package com.gansbat.space.selectspace.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -54,6 +55,55 @@ public class SelectspaceController {
 		model.addAttribute("type_id", t_id);
 		model.addAttribute("p_space", p_space.getList());
 		model.addAttribute("s_page", p_space);
+		model.addAttribute("num",1);
 		return "detail";
 	}
+
+	/*
+	 * 按照热度进行查询
+	 */
+	@RequestMapping(value="bylike",method=RequestMethod.GET)
+	public String toSpaceByLike(@RequestParam(value="pageNum",defaultValue="1") int pageNum,HttpServletRequest request,Model model) {
+		Integer t_id = Integer.parseInt(request.getParameter("spacetype"));
+		
+		Page<Space> p_space = selectspaceServiceImpl.selectSpaceByLike(pageNum, t_id);
+		
+		model.addAttribute("type_id", t_id);
+		model.addAttribute("p_space", p_space.getList());
+		model.addAttribute("s_page", p_space);
+		model.addAttribute("num",2);
+		return "detail";
+	}
+
+	/*
+	 * 按照距离进行查询,功能未实现，正在开发
+	 */
+	@RequestMapping(value="bydistance",method=RequestMethod.GET)
+	public String toSpaceByDistance(@RequestParam(value="pageNum",defaultValue="1") int pageNum,HttpServletRequest request,Model model) {
+		Integer t_id = Integer.parseInt(request.getParameter("spacetype"));
+		
+		Page<Space> p_space = selectspaceServiceImpl.selectSpaceByTypeId(pageNum, t_id);
+		
+		model.addAttribute("type_id", t_id);
+		model.addAttribute("p_space", p_space.getList());
+		model.addAttribute("s_page", p_space);
+		model.addAttribute("num",3);
+		return "detail";
+	}
+	
+//	/*
+//	 * 按照距离进行查询，功能未实现，正在开发
+//	 */
+//	@RequestMapping(value="bydistance",method=RequestMethod.GET)
+//	public String toSpaceByDistance(HttpServletRequest request,Model model) {
+//		Integer t_id = Integer.parseInt(request.getParameter("spacetype"));
+//		BigDecimal longitude = new BigDecimal(23.231321);
+//		BigDecimal latitude = new BigDecimal(32.434322);
+//		List<Space> s_List = selectspaceServiceImpl.selectSpaceByDistance(t_id, longitude, latitude);
+//		
+//		model.addAttribute("type_id", t_id);
+//		model.addAttribute("p_space", s_List);
+//		model.addAttribute("num",3);
+//		return "detail";
+//	}
 }

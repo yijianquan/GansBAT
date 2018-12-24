@@ -3,6 +3,8 @@ package com.gansbat.space.basedao;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +15,10 @@ import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.CriteriaSpecification;
 
+import com.alibaba.fastjson.support.odps.udf.CodecCheck.A;
+import com.gansbat.space.entity.Distance;
+import com.gansbat.space.entity.Space;
+
 /**
  * @desc 用于Spring整合Hibernate之后，数据持久层代码的封装。提供了基本的数据增删改查，以及基于HQL的查询、分页查询，基于SQL的查询、分页查询等。
  *
@@ -22,6 +28,32 @@ import org.hibernate.criterion.CriteriaSpecification;
  */
 public abstract class BaseDao<T, PK extends Serializable> {
 
+	private static double EARTH_RADIUS = 6378.137;
+	 
+	private static double rad(double d) {
+		return d * Math.PI / 180.0;
+	}
+
+	/**
+	 * 通过经纬度获取距离(单位：米)
+	 * 
+	 * @return 距离
+	 */
+	public static double getDistance(double lat1, double lng1, double lat2,
+			double lng2) {
+		double radLat1 = rad(lat1);
+		double radLat2 = rad(lat2);
+		double a = radLat1 - radLat2;
+		double b = rad(lng1) - rad(lng2);
+		double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2)
+				+ Math.cos(radLat1) * Math.cos(radLat2)
+				* Math.pow(Math.sin(b / 2), 2)));
+		s = s * EARTH_RADIUS;
+		s = Math.round(s * 10000d) / 10000d;
+		s = s * 1000;
+		return s;
+	}
+	
 	private Class<T> entityClass;
 
 	@Resource
@@ -184,6 +216,53 @@ public abstract class BaseDao<T, PK extends Serializable> {
 		query.setFirstResult((pageNum - 1) * pageSize);
 		query.setMaxResults(pageSize);
 		return query.list();
+	}	
+
+	/**
+	 * @desc 按条件分页查询数据
+	 * @param pageNum 页码
+	 * @param pageSize 每页数据个数
+	 * @param hql hql语句
+	 * @param params hql语句中占位符对应的参数
+	 * @param longitude1 经度
+	 * @param latitude1 纬度
+	 * @return 查询出的数据，List集合
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	public List<T> findByDistance(String hql, Object[] params,BigDecimal longitude1,BigDecimal latitude1) throws Exception {
+		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+		
+		List<Space> spaces = query.list();
+		double longitude = longitude1.doubleValue();
+		double latitude = latitude1.doubleValue();		
+		List<Space> spaces2 = new ArrayList<Space>();
+		List<Distance> d_list = new ArrayList<Distance>();
+		double distance;
+		Distance d = new Distance();
+		int a = 0;
+		for(Space s:spaces) {
+			distance = getDistance(latitude,longitude,s.getLatitude().doubleValue(),s.getLongitude().doubleValue());
+			d.setDistance(distance);d.setNum(a);d.setSpace_id(s.getSpace_id());
+			for(Distance d1:d_list) {
+				if(d1.getDistance()<d.getDistance()) {
+					continue;
+				}else {
+					d_list.add(d1.getNum()+1, d);
+					break;
+				}
+			}
+			a++;
+		}
+		for(Distance d2:d_list) {
+			for(Space space:spaces) {
+				if(space.getSpace_id()==d2.getSpace_id()) {
+					spaces2.add(space);
+					break;
+				}
+			}
+		}
+		return (List<T>) spaces2;
 	}
 
 	/**
@@ -197,6 +276,25 @@ public abstract class BaseDao<T, PK extends Serializable> {
 	 * @throws Exception
 	 */
 	public Page<T> findPage(int pageNum, int pageSize, String hqlCount, String hqlList, Object[] params)
+			throws Exception {
+		long total = findCount(hqlCount, params);
+		List<T> rows = find(pageNum, pageSize, hqlList, params);
+		return new Page<T>(pageNum, pageSize, (int) total, rows);
+	}
+	
+	/**
+	 * @desc 分页查询
+	 * @param pageNum 页码
+	 * @param pageSize 每页数据个数
+	 * @param hqlCount 用于统计数据个数的hql语句
+	 * @param hqlList 用于查询数据的hql语句
+	 * @param params hql语句中占位符对应的参数
+	 * @param longitude1 传过来的经度
+	 * @param latitude1 传过来的纬度
+	 * @return Page对象
+	 * @throws Exception
+	 */
+	public Page<T> findPageByDistance(int pageNum, int pageSize, String hqlCount, String hqlList, Object[] params,BigDecimal longitude1,BigDecimal latitude1)
 			throws Exception {
 		long total = findCount(hqlCount, params);
 		List<T> rows = find(pageNum, pageSize, hqlList, params);

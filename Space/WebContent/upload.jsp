@@ -29,6 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+
 </head>
 <body>
 	<!--header-->
@@ -46,10 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<p class="upload_title">上传一个你发现的场地</p>
 		<form action="${ctx }/upload/upload" method="post" enctype="multipart/form-data" >
 			
-			<p class="upload_must">*</p><p class="upload_intro">详细地点(二选一)：</p><br>
-				场地在附近:&nbsp;<a href="mapupload.jsp">获取定位</a><c:if test="${longitude!=null }"><img alt="" src="images/ok.png"></c:if><br>
-				或：<br>
-				<input type="text" name="address" class="upload_formw" placeholder="省-市-街道-参照物" value=""/><br>
+			<p class="upload_must">*</p><p class="upload_intro">详细地点：</p><a href="mapupload.jsp">点击获取地图定位</a><c:if test="${longitude!=null }"><img alt="" src="images/ok.png"></c:if><br>
 			
 			<p class="upload_must">*</p><p class="upload_intro">场地类别：</p>
 				<select name="type_id">
@@ -75,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<p class="upload_otherintro">开放时间:</p>
 				<input type="text" name="opentime" class="upload_formw" placeholder="简要描述" value=""/><br>
 
-			<input type="submit" class="upload_submit" value="提交" />
+			<input type="submit" class="upload_submit" value="提交"/>
 		
 		</form>
 	</div>

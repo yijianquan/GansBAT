@@ -32,7 +32,7 @@
         </div>
         <div class="input-item">
             <div class="input-item-prepend"><span class="input-item-text" >地址:</span></div>
-            <input name="upaddress" id='address' type="text">
+            <input name="address" id='address' type="text">
         </div>
         <input type="submit" class="btn" value="提交" >
     </form>

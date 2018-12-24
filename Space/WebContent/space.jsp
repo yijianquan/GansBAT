@@ -143,7 +143,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<span class="intro_font">开放时间：</span><span>${space.opentime }</span><br>
 			</div>
 			<div class="space_btn">
-			<a href="" class="button button-glow button-border button-rounded button-primary">信息不准确，我要反馈</a>
+			<a href="spaceerror.jsp" class="button button-glow button-border button-rounded button-primary">信息不准确，我要反馈</a>
 			</div>			
 		</div>
 		<script>

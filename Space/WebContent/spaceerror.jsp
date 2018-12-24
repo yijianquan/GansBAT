@@ -56,12 +56,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<input type="text" name="contact_infro" id="youremail" placeholder="电话/Email" onblur="checkEmail()">
 						</div>
 						<div class="yourcontent">
-							<p> 标题/类型<span>*</span></p>
-							<input type="text" name="contact_title" size="50">
+							<p> 错误的场地<span>*</span></p><p id="tip2" style="display:inline;color:red;"></p>
+							<input type="text" name="contact_title" size="50" onblur="checkMessage()">
 						</div>
 						<div class="yoursuggest">
-							<p>具体建议<span>*</span></p><p id="tip2" style="display:inline;color:red"></p>
-							<textarea cols="50" rows="8" name="contact_con" id="suggest" onblur="checkMessage()"></textarea>
+							<p> 错误处和正确场地信息<span>*</span></p>
+							<textarea cols="50" rows="8" name="contact_con" id="suggest"></textarea>
 						</div>
 						<div class="send">
 							<input type="submit" value="发送" />
@@ -99,7 +99,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    function checkMessage(){
 	    	var message = $("#suggest").val();
 	    	if(message===""){
-				document.getElementById("tip2").innerText="请填写好建议信息！";
+				document.getElementById("tip2").innerText="请填写好错误的场地！";
 	    		return false;
 	    	}
 	    	return true;
@@ -107,7 +107,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    function check(){
 	    	var check = checkEmail() && checkMessage();
 	    	if(check==false){
-	    		alert("请填写好联系方式和建议内容");
+	    		alert("请填写好联系方式和错误场地名称");
 	    	}
 	    	return check;
 	    }

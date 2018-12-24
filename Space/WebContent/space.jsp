@@ -132,7 +132,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						}
 					}
 				</script>
-				<a href="#"><img class="space_icon" src="images/share.png" />&nbsp;&nbsp;&nbsp;分享</a><br>
+				<a href="" onclick="return false;"><img class="space_icon" src="images/share.png" />&nbsp;&nbsp;&nbsp;分享</a><br>
 				<span style="font-size:1.3em"><a href="${ctx }/chatroom/tochatroom?space_id=${space.space_id }">"聊天室"</a></span>
 				<span style="font-size:1.3em;margin-left:2em;"><a href="${ctx }/selectthisspace/map?space_id=${space.space_id }">"查看地图"</a></span>			
 			</div>
@@ -152,7 +152,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				console.log(charge);
 				if(charge==1){
 					$("#charge").text('是');
-				}else{
+				}else{ 
 					$("#charge").text('否');
 				}
 			})

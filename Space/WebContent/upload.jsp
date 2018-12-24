@@ -29,15 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script type="text/javascript">
-	function check(){
-		if(<%=session.getAttribute("nowemail")%>==null){
-			alert("请登陆后上传！");
-		}else if(){
-			
-		}
-	}
-</script>
+
 </head>
 <body>
 	<!--header-->
@@ -81,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<p class="upload_otherintro">开放时间:</p>
 				<input type="text" name="opentime" class="upload_formw" placeholder="简要描述" value=""/><br>
 
-			<input type="submit" class="upload_submit" value="提交" onclick="check()" />
+			<input type="submit" class="upload_submit" value="提交"/>
 		
 		</form>
 	</div>

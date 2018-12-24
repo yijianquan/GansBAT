@@ -58,7 +58,6 @@ public class UploadspaceController {
 	public String Upload(
 			@RequestParam("type_id") int type_id,
 			@RequestParam("upfile") MultipartFile file,
-			@RequestParam("address") String address, 
 			@RequestParam("charge") int charge,
 			@RequestParam("intro") String intro, 
 			@RequestParam("opentime") String opentime, 
@@ -69,13 +68,14 @@ public class UploadspaceController {
 		String email = (String) httpSession.getAttribute("nowemail");
 		BigDecimal longitude = new BigDecimal((String) httpSession.getAttribute("longitude"));
 		BigDecimal latitude = new BigDecimal((String) httpSession.getAttribute("latitude"));
-		String upaddress = (String) httpSession.getAttribute("upaddress");
+		String address = (String) httpSession.getAttribute("address");
 		String filesqlpath = null;
 		
 		
 		if (email!=null) {
-			if (upaddress!=null) {
-				address = upaddress;
+			if(longitude==null || latitude==null) {
+				model.addAttribute("results","请点击地图定位！");
+				return "upload";
 			}
 			if(!file.isEmpty()) {
 				//上传文件路径
@@ -125,7 +125,7 @@ public class UploadspaceController {
 	@RequestMapping(value="mapupload",method=RequestMethod.POST)
 	public String MapUpload(
 			@RequestParam("lnglat") String lnglat,
-			@RequestParam("upaddress") String upaddress,
+			@RequestParam("address") String address,
 			HttpSession session,
 			Model model
 			) {
@@ -134,7 +134,7 @@ public class UploadspaceController {
 		String latitude = s[1];
 		session.setAttribute("longitude", longitude);
 		session.setAttribute("latitude", latitude);
-		session.setAttribute("upaddress", upaddress);
+		session.setAttribute("address", address);
 		return "upload";
 	}
 	

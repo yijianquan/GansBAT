@@ -15,8 +15,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="js/jquery.min.js"></script>
 </head>
 <body>
+
 	<div class="main">
-		<p class="pswdtitle">找 回 密 码 ：<p>
+		<p class="pswdtitle">找 回 密 码 ：<p> <a href="${ctx }/home/tohome">点击返回首页</a>
 		<form class="pswdform" onsubmit="return false">
 			<p>请输入你的邮箱：</p><input type="text" class="youremail" id="youremail" onblur="checkemail()"/><div id="tip1" style="display: inline;"></div><br>
 			 <script type="text/javascript">

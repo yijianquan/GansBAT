@@ -114,7 +114,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="intro">
 				<!-- 简介 -->
 				<span class="intro_font">位置：</span>${space.space_address }<br> 
-				<span class="intro_font">距你：</span>0.5km<br>	
+				<span class="intro_font">距你：</span>${space.distance }km(功能正在开发)<br>	
 				<a href="" onclick="likethis()" id="thumbsup"><img class="space_icon" src="images/dislike.png" id="likenum" /></a>&nbsp;&nbsp;<span>“点赞数：”${space.likenum }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<!-- 点赞 -->
 				<script>

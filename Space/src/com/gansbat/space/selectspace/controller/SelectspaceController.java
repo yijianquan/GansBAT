@@ -77,7 +77,7 @@ public class SelectspaceController {
 		double latitude1 = 22.545318;
 		double longitude1 = 114.016759;
 		Page<Space> p_space = selectspaceServiceImpl.selectSpaceByTypeId(pageNum, t_id);
-		
+		//求出每个场地的距离
 		List<Space> s_List = p_space.getList();
 		for(Space s:s_List) {
 			double f = getDistance(latitude1, longitude1, s.getLatitude().doubleValue(),s.getLongitude().doubleValue());  

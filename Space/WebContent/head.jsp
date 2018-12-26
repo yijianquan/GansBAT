@@ -58,7 +58,7 @@
 													<input type="password" placeholder="Password （密码）" id="password" name="password">
 													<button type="submit" id="login-button">Login（登陆）</button><br>
 													<a href="${ctx }/findpswd/tofindpswd" target="_blank"><div class="login_foot_left">忘记密码</div></a>
-													<a href="regist.html"><div class="login_foot_right">注册</div></a>
+													<a href="regist.jsp"><div class="login_foot_right">注册</div></a>
 												</form>
 												<script type="text/javascript">
 												function logoff(){

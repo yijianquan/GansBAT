@@ -51,6 +51,31 @@ import com.gansbat.space.user.service.UserServiceImpl;
 @Controller
 @RequestMapping(value="/selectthisspace")
 public class SpaceController {
+
+	private static double EARTH_RADIUS = 6378.137;
+	 
+	private static double rad(double d) {
+		return d * Math.PI / 180.0;
+	}
+
+	/**
+	 * 通过经纬度获取距离(单位：米)
+	 * 
+	 * @return 距离
+	 */
+	public static double getDistance(double lat1, double lng1, double lat2,
+			double lng2) {
+		double radLat1 = rad(lat1);
+		double radLat2 = rad(lat2);
+		double a = radLat1 - radLat2;
+		double b = rad(lng1) - rad(lng2);
+		double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2)
+				+ Math.cos(radLat1) * Math.cos(radLat2)
+				* Math.pow(Math.sin(b / 2), 2)));
+		s = s * EARTH_RADIUS;
+		s = Math.round(s * 10000d) / 10000d;
+		return s;
+	}
 	
 	@Resource
 	private SpaceServiceImpl spaceServiceImpl;
@@ -67,9 +92,14 @@ public class SpaceController {
 	@RequestMapping(value="/aspace",method=RequestMethod.GET)
 	public String toFindASpace(HttpSession httpSession,HttpServletRequest request,Model model) {
 		Integer space_id = Integer.parseInt(request.getParameter("space_id"));
-		
+		double latitude1 = 22.545318;
+		double longitude1 = 114.016759;
 		//查询场地的基本信息
 		Space space = spaceServiceImpl.selectSpaceAccordingSpaceId(space_id);
+		double f = getDistance(latitude1, longitude1, space.getLatitude().doubleValue(),space.getLongitude().doubleValue());
+		BigDecimal b = new BigDecimal(f);  
+		double f1 = b.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+		space.setDistance(f1);
 		model.addAttribute("space", space);
 		//将场地是否收费单独到页面
 		int charge = space.getCharge();

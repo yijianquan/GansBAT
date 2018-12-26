@@ -89,7 +89,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="detail_text">
 					<span>地点：${p_space.space_address }</span><br>
-					<span>距离：${p_space.distance }km</span><br>
+					<span>距离：${p_space.distance }km(正在开发)</span><br>
 					<span>查看详情</span>
 				</div>
 				</a>

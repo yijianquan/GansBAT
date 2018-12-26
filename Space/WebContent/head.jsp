@@ -21,21 +21,21 @@
 									$("#userlogin").hide();
 									$("#username").text("<%=user%>");
 								};
+								function pleaselogin(){
+									alert("进个人中心前请先登录！");
+								}
+								function pleaselogin1(){
+									alert("查看历史前请先登录！");
+								}
 							</script>
 						<%}else{ %>
 							<script type="text/javascript">
 								window.onload = function() {
 									$("#userwelcome").hide();
 									$("#userlogin").show();
-									$("#usercenter").attr('href','');
-									$("#usercenter").on("click",function(){
-										return false;
-									})
+									$("#usercenter").attr('href','javascript:void(0)');
 									$("#usercenter").attr("onclick","pleaselogin()");
-									$("#usertrends").attr('href','');
-									$("#usertrends").on("click",function(){
-										return false;
-									})
+									$("#usertrends").attr('href','javascript:void(0)');
 									$("#usertrends").attr("onclick","pleaselogin1()");
 								};
 								function pleaselogin(){
@@ -72,6 +72,10 @@
 														alert(a);
 														$("#userlogin").show();
 														$("#userwelcome").hide();
+														$("#usercenter").attr('href','javascript:void(0)');
+														$("#usercenter").attr("onclick","pleaselogin()");
+														$("#usertrends").attr('href','javascript:void(0)');
+														$("#usertrends").attr("onclick","pleaselogin1()");
 													});
 												}
 												$(function(){
@@ -91,6 +95,10 @@
 																	$("#userwelcome").show();
 																	$("#userlogin").hide();
 																	$("#username").text(b);
+																	$("#usercenter").attr('href','${ctx}/usercenter/tocenter');
+																	$("#usertrends").attr('href','${ctx}/trends/totrends');
+																	$("#usercenter").removeAttr("onclick");
+																	$("#usertrends").removeAttr("onclick");
 																	alert("登陆成功！");
 																}else{
 																	alert("登陆失败！请检查你的邮箱和密码。");

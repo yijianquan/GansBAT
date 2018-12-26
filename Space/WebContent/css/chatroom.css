@@ -40,6 +40,12 @@
 	OVERFLOW-Y: auto;
 	OVERFLOW-X:hidden;
 }
+.chatname{
+	
+}
+.chatnews{
+	margin-left: 6%;
+}
 .sendmessage{
 	float: left;
 }

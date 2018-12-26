@@ -41,11 +41,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="chatroom">
 			<!--三个按钮-->
 			<div class="threebutton">
-				<a href="">
-					<p style="background-color: yellow;">聊天室</p>
+				<a href="${ctx }/chatroom/tochatroom?space_id=${space_id }">
+					<p style="background-color:#FFFF37;">聊天室</p>
 				</a>
-				<p style="background-color: green;" data-toggle="modal" data-target="#edit">个人设置</p>
-								
+				<a href="javascript:void(0)">
+				<p style="background-color: #9AFF02;" data-toggle="modal" data-target="#edit">个人设置</p>
+				</a>				
 				<!--弹框-->
 				<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="editLabel" aria-hidden="true">
 				    <div class="modal-dialog">
@@ -85,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				
 				<a href="${ctx }/selectthisspace/returnspace?space_id=${space_id }">
-					<p style="background-color: red;">退出聊天</p>
+					<p style="background-color: #FF2D3D;">退出聊天</p>
 				</a>
 			</div>
 
@@ -96,8 +97,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="chatcontent">
 					<c:forEach items="${p_chatroom}" var="p_chatroom" >
 						<div class="human">
-							<p>${p_chatroom.user_nickname }：</p>
-							<p>${p_chatroom.chat_content }</p>
+							<p class="chatname">${p_chatroom.user_nickname }：</p>
+							<p class="chatnews">${p_chatroom.chat_content }</p>
 						</div>
 					</c:forEach>
 				</div>

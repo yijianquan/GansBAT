@@ -15,7 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gansbat.space.basedao.Page;
 import com.gansbat.space.entity.Upload;
+import com.gansbat.space.entity.User;
 import com.gansbat.space.uploadspace.dao.UploadspaceDaoImpl;
+import com.gansbat.space.user.dao.UserDaoImpl;
 
 /**   
 * Copyright: Copyright (c) 2018 LanRu-Caifu
@@ -38,6 +40,8 @@ public class UploadspaceServiceImpl {
 	
 	@Resource
 	private UploadspaceDaoImpl uploadspaceDaoImpl;
+	@Resource
+	private UserDaoImpl userDaoImpl;
 	
 	@Transactional(readOnly=false)
 	public void saveUpload(Upload upload) {
@@ -53,6 +57,20 @@ public class UploadspaceServiceImpl {
 	public Page<Upload> selectUpload(int pageNum,int user_id){
 		try {
 			return uploadspaceDaoImpl.findPage(pageNum, user_id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	/*
+	 * 调用UploadspaceDaoImpl里的方法取出用户Id并返回
+	 */
+	@Transactional(readOnly=true)
+	public Integer findIdAccordingEmail(String email) {
+		try {
+			User user = userDaoImpl.findIdAccordingUserEmail(email);
+			return user.getId();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

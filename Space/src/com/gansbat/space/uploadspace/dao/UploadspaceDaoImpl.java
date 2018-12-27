@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.gansbat.space.basedao.BaseDao;
 import com.gansbat.space.basedao.Page;
 import com.gansbat.space.entity.Upload;
+import com.gansbat.space.entity.User;
 
 /**   
 * Copyright: Copyright (c) 2018 LanRu-Caifu
@@ -36,7 +37,6 @@ public class UploadspaceDaoImpl extends BaseDao<Upload,Integer>{
 	public void save(Upload upload) throws Exception{
 		super.save(upload);
 	}
-	
 	/*
 	 * 查询用户所有的上传记录
 	 */

@@ -61,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</select>
 				<br>
 
-			<p class="upload_must">*</p><p class="upload_intro">上传图片：</p><input type="file" name="upfile"/>
+			<p class="upload_must">*</p><p class="upload_intro">上传图片：</p><input type="file" name="upfile"/><input type="file" name="upfile"/><input type="file" name="upfile"/>
 
 			<p class="upload_otherintro">是否收费：</p>
 					<input type="radio" name="charge" value="1">是

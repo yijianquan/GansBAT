@@ -25,7 +25,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.gansbat.space.entity.Upload;
 import com.gansbat.space.uploadspace.service.UploadspaceServiceImpl;
-
 /**
  * 
 * Copyright: Copyright (c) 2018 LanRu-Caifu
@@ -54,10 +53,11 @@ public class UploadspaceController {
 		return "upload";
 	}
 	
+	
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
 	public String Upload(
 			@RequestParam("type_id") int type_id,
-			@RequestParam("upfile") MultipartFile file,
+			@RequestParam("upfile") MultipartFile file[],
 			@RequestParam("charge") int charge,
 			@RequestParam("intro") String intro, 
 			@RequestParam("opentime") String opentime, 
@@ -69,48 +69,59 @@ public class UploadspaceController {
 		BigDecimal longitude = new BigDecimal((String) httpSession.getAttribute("longitude"));
 		BigDecimal latitude = new BigDecimal((String) httpSession.getAttribute("latitude"));
 		String address = (String) httpSession.getAttribute("address");
-		String filesqlpath = null;
-		
+		String[] filesqlpath = new String[3];
+		int picnum=0;
 		
 		if (email!=null) {
+			
+			int user_id = uploadspaceServiceImpl.findIdAccordingEmail(email);
 			if(longitude==null || latitude==null) {
 				model.addAttribute("results","请点击地图定位！");
 				return "upload";
 			}
-			if(!file.isEmpty()) {
-				//上传文件路径
-				String path = request.getServletContext().getRealPath("/images/");
-				//上传文件名
-	            String filename = file.getOriginalFilename();
-	            File filepath = new File(path,filename);
-	            //判断路径是否存在，如果不存在就创建一个
-	            if (!filepath.getParentFile().exists()) { 
-	                filepath.getParentFile().mkdirs();
-	            }
-	            filesqlpath = path + File.separator + filename;
-	            //将上传文件保存到一个目标文件当中
-	            try {
-					file.transferTo(new File(path + File.separator + filename));
-				} catch (IllegalStateException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			for(int i=0;i<3;i++) {
+				if(!file[i].isEmpty()) {
+					//上传文件路径
+					String path = request.getServletContext().getRealPath("/images/");
+					//上传文件名
+		            String filename = file[i].getOriginalFilename();
+		            File filepath = new File(path,filename);
+		            //判断路径是否存在，如果不存在就创建一个
+		            if (!filepath.getParentFile().exists()) { 
+		                filepath.getParentFile().mkdirs();
+		            }
+		            filesqlpath[i] = path + File.separator + filename;
+		            //将上传文件保存到一个目标文件当中
+		            try {
+						file[i].transferTo(new File(path + File.separator + filename));
+					} catch (IllegalStateException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}else {
+					filesqlpath[i]=null;
+					picnum++;
 				}
-			}else {
+			}
+			if(picnum==3){
 				model.addAttribute("results", "请上传照片！");
 				return "upload";
 			}
 			Upload upload = new Upload();
-			upload.setLongitude(longitude);
-			upload.setLatitude(latitude);
 			upload.setType_id(type_id);
-			upload.setSpace_img1(filesqlpath);
+			upload.setSpace_img1(filesqlpath[0]);
+			upload.setSpace_img2(filesqlpath[1]);
+			upload.setSpace_img3(filesqlpath[2]);
 			upload.setSpace_address(address);
 			upload.setCharge(charge);
 			upload.setSpace_intro(intro);
 			upload.setOpentime(opentime);
+			upload.setUser_id(user_id);
+			upload.setLongitude(longitude);
+			upload.setLatitude(latitude);
 			uploadspaceServiceImpl.saveUpload(upload);
 			model.addAttribute("results", "上传成功！");
 		} else {

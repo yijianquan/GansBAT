@@ -69,7 +69,7 @@ public class ChatroomController {
 		model.addAttribute("p_chatroom", p_chatroom.getList());
 		model.addAttribute("c_page",p_chatroom);
 		
-		//根据聊天室对应的Id，并去除重复的，找到user_id来查找到每个用户的基本信息
+		//根据聊天室对应的Id，并去除重复的Id，找到user_id来查找到每个用户的基本信息
 		List<Integer> list = new ArrayList<>();
 		list = chatroomServiceImpl.selectDistinct(space_id);
 		List<User> u_List = new ArrayList<User>();

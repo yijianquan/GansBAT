@@ -47,7 +47,7 @@ public class ContactController {
 	public String toContact() {		
 		return "contact";
 	}
-	
+	// 这是反馈请求
 	@RequestMapping(value="storage",method=RequestMethod.POST)
 	public String toSaveContact(@RequestParam("contact_name") String name,
 			@RequestParam("contact_infro") String contact_infro,
